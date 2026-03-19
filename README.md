@@ -1,6 +1,4 @@
-بص يا بكر، ده ملف README.md كلاسيك جداً، مكتوب بلغة تقنية احترافية (Technical English) زي ملفات المشاريع الكبيرة (زي Linux kernel أو Tools بتاعة الأندرويد الرسمية). الملف ده هيدي هيبة للمشروع ويحسس أي حد يدخل إنه بيتعامل مع أداة قوية.
 
-انسخ النص ده بالظبط وحطه في ملف اسمه README.md في المجلد الرئيسي:
 UIC-X Ultimate Image Converter (v14.4.0)
 High-Performance Firmware Analysis and Image Conversion Tool
 Overview
