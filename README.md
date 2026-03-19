@@ -1,5 +1,5 @@
 
-UIC-X Ultimate Image Converter (v14.4.0)
+UIC-X Ultimate Image Converter (v14.4.2)
 High-Performance Firmware Analysis and Image Conversion Tool
 Overview
 
