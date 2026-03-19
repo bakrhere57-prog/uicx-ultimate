@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uicx-ultimate"
+version = "14.4.0"
+authors = [
+  { name="Bakr", email="bakrhere57@gmail.com" },
+]
+description = "Ultimate Image Converter & Firmware Analyzer (ISO, Android Boot, BIOS, Sparse)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator",
+    "Development Status :: 5 - Production/Stable",
+]
+dependencies = [
+    "colorama>=0.4.6",
+    "tqdm>=4.66.0",
+    "PyYAML>=6.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/bakrhere57-prog/uicx-ultimate"
+"Bug Tracker" = "https://github.com/bakrhere57-prog/uicx-ultimate/issues"
+
+[project.scripts]
+uicx = "uicx.main:main"
