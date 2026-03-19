@@ -4898,7 +4898,7 @@ class SparseBuilder:
             print(f"{BOLD}  Only UIC-X can decompress this format.{RESET}")
             print(f"  Use case: storage/archival only, NOT for flashing to a device.")
             print(f"  To flash: first convert back with:")
-            print(f"    python3 uic6_enhanced.py input.simg output.simg --build simg")
+            print(f"    uicx input.simg output.simg --build simg")
             print(f"    (without --compress)")
             print(f"{RED}{BOLD}{'='*68}{RESET}")
             print()
@@ -10104,7 +10104,7 @@ class DirectFlashEngine:
       Windows: \\.\\PhysicalDriveN — requires Administrator privileges
 
     Flash command:
-      python3 uic6_enhanced.py image.img /dev/sdb --flash
+      uicx image.img /dev/sdb --flash
 
     ALWAYS DOUBLE-CHECK THE DEVICE PATH BEFORE CONFIRMING.
     """
@@ -12082,7 +12082,7 @@ class AIEngine:
         if "Permission denied" in err_str or isinstance(error, PermissionError):
             recovery = [
                 "Run with elevated privileges:",
-                "  Linux/macOS: sudo python3 uic6_enhanced.py ...",
+                "  Linux/macOS: sudo uicx ...",
                 "  Windows:     Run as Administrator",
                 "Or check file ownership: ls -la " + path,
             ]
@@ -12098,7 +12098,7 @@ class AIEngine:
         elif "simg metadata missing" in err_str or "simg_info" in err_str:
             recovery = [
                 "The sparse image failed pre-parse validation.",
-                "Try: python3 uic6_enhanced.py " + path + " /dev/null --info",
+                "Try: uicx " + path + " /dev/null --info",
                 "Check for file corruption with: sha256sum " + path,
             ]
 
@@ -12140,7 +12140,7 @@ class AIEngine:
             recovery = [
                 "Unexpected error. Try running with --verbose for full traceback.",
                 "If the issue persists, report with:",
-                f"  python3 uic6_enhanced.py {path} /dev/null --info --verbose",
+                f"  uicx {path} /dev/null --info --verbose",
             ]
 
         if recovery:
@@ -15122,7 +15122,7 @@ def print_banner():
 
 def print_usage():
     print("Usage:")
-    print("  python3 uic6_enhanced.py <source> <output> [options]")
+    print("  uicx <source> <output> [options]")
     print()
     print("Modes:")
     print("  Default                  Convert / transform source image")
@@ -15189,23 +15189,23 @@ def print_usage():
     print("  --help                   Show this help")
     print()
     print("Examples:")
-    print("  python3 uic6_enhanced.py system.img system.simg --build simg --compress")
-    print("  python3 uic6_enhanced.py bios.bin BIOS.CAP --build cap")
-    print("  python3 uic6_enhanced.py ASUS.cap /dev/null --info --security --json out.json")
-    print("  python3 uic6_enhanced.py super.img /tmp/parts --extract /tmp/parts")
-    print("  python3 uic6_enhanced.py boot.img out.img --boot-analyze --report report.html")
-    print("  python3 uic6_enhanced.py disk.img disk.qcow2 --export qcow2")
-    print("  python3 uic6_enhanced.py --merge system:/tmp/s.img vendor:/tmp/v.img out.img")
-    print("  python3 uic6_enhanced.py --genkey priv.pem pub.pem")
-    print("  python3 uic6_enhanced.py capsule.cap signed.cap --sign priv.pem")
-    print("  python3 uic6_enhanced.py vbmeta.img /dev/null --vbmeta-parse")
-    print("  python3 uic6_enhanced.py vbmeta.img vbmeta_patched.img --vbmeta-disable")
-    print("  python3 uic6_enhanced.py --vbmeta-blank vbmeta_disabled.img")
-    print("  python3 uic6_enhanced.py bios.bin /dev/null --entropy-map entropy.csv")
-    print("  python3 uic6_enhanced.py disk.img /dev/sdb --flash")
+    print("  uicx system.img system.simg --build simg --compress")
+    print("  uicx bios.bin BIOS.CAP --build cap")
+    print("  uicx ASUS.cap /dev/null --info --security --json out.json")
+    print("  uicx super.img /tmp/parts --extract /tmp/parts")
+    print("  uicx boot.img out.img --boot-analyze --report report.html")
+    print("  uicx disk.img disk.qcow2 --export qcow2")
+    print("  uicx --merge system:/tmp/s.img vendor:/tmp/v.img out.img")
+    print("  uicx --genkey priv.pem pub.pem")
+    print("  uicx capsule.cap signed.cap --sign priv.pem")
+    print("  uicx vbmeta.img /dev/null --vbmeta-parse")
+    print("  uicx vbmeta.img vbmeta_patched.img --vbmeta-disable")
+    print("  uicx --vbmeta-blank vbmeta_disabled.img")
+    print("  uicx bios.bin /dev/null --entropy-map entropy.csv")
+    print("  uicx disk.img /dev/sdb --flash")
     print()
     print("Usage:")
-    print("  python3 uic6_enhanced.py <source_file> <output_file> [options]")
+    print("  uicx <source_file> <output_file> [options]")
     print()
     print("Modes:")
     print("  Default           Convert / transform the source image")
@@ -15230,22 +15230,22 @@ def print_usage():
     print("  --help          Show this help message")
     print()
     print("Examples:")
-    print("  python3 uic6_enhanced.py system.img system.simg --build simg")
+    print("  uicx system.img system.simg --build simg")
     print("    -> Convert raw ext4 image to Android sparse format")
     print()
-    print("  python3 uic6_enhanced.py bios.bin BIOS-UPDATE.CAP --build cap")
+    print("  uicx bios.bin BIOS-UPDATE.CAP --build cap")
     print("    -> Wrap raw BIOS binary in ASUS CAP capsule (prompts for metadata)")
     print()
-    print("  python3 uic6_enhanced.py bios.bin firmware.cap --build efi")
+    print("  uicx bios.bin firmware.cap --build efi")
     print("    -> Wrap raw BIOS binary in UEFI EFI Firmware Capsule")
     print()
-    print("  python3 uic6_enhanced.py ASUS-Z790.cap output.bin")
+    print("  uicx ASUS-Z790.cap output.bin")
     print("    -> Detects ASUS CAP, shows header + content inspection, extract/passthrough")
     print()
-    print("  python3 uic6_enhanced.py system.iso /dev/null --info")
+    print("  uicx system.iso /dev/null --info")
     print("    -> Full inspection: volume label, root dir listing, kernel version")
     print()
-    print("  python3 uic6_enhanced.py firmware.cap /dev/null --dry-run")
+    print("  uicx firmware.cap /dev/null --dry-run")
     print("    -> Parse and validate CAP without writing any output")
     print()
 
@@ -15748,7 +15748,7 @@ def main():
                 parts_str = " ".join(
                     f"--partition {p['name']}" for p in selected
                 )
-                print(f"    python3 uic6_enhanced.py {src_path} "
+                print(f"    uicx {src_path} "
                       f"{dst_path} --extract {dst_path} {parts_str}")
                 sys.exit(UIC_Globals.EXIT_OK)
         Logger.warn("--ai-suggest partition selection only works on super.img files.")

@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+uicx/__init__.py
+uicx/main.py
+uicx_ultimate_tool.egg-info/PKG-INFO
+uicx_ultimate_tool.egg-info/SOURCES.txt
+uicx_ultimate_tool.egg-info/dependency_links.txt
+uicx_ultimate_tool.egg-info/entry_points.txt
+uicx_ultimate_tool.egg-info/requires.txt
+uicx_ultimate_tool.egg-info/top_level.txt
