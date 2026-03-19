@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: uicx-ultimate-tool
-Version: 14.4.1
+Version: 14.4.2
 Summary: Ultimate Image Converter & Firmware Analyzer (ISO, Android Boot, BIOS, Sparse)
 Author-email: Bakr <bakrhere57@gmail.com>
 License: MIT
@@ -19,9 +19,7 @@ Requires-Dist: tqdm>=4.66.0
 Requires-Dist: PyYAML>=6.0
 Dynamic: license-file
 
-بص يا بكر، ده ملف README.md كلاسيك جداً، مكتوب بلغة تقنية احترافية (Technical English) زي ملفات المشاريع الكبيرة (زي Linux kernel أو Tools بتاعة الأندرويد الرسمية). الملف ده هيدي هيبة للمشروع ويحسس أي حد يدخل إنه بيتعامل مع أداة قوية.
 
-انسخ النص ده بالظبط وحطه في ملف اسمه README.md في المجلد الرئيسي:
 UIC-X Ultimate Image Converter (v14.4.0)
 High-Performance Firmware Analysis and Image Conversion Tool
 Overview

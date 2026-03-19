@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uicx-ultimate-tool"
-version = "14.4.1"
+version = "14.4.2"
 authors = [
   { name="Bakr", email="bakrhere57@gmail.com" },
 ]

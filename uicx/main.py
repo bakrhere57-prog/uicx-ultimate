@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # =============================================================================
 #  UIC-X Ultimate Image Converter — Enhanced Precision Edition
-#  Version: 10.0.0-ULTIMATE
+#  Version: 14.4.1-ULTIMATE
 #
 #  Supports: ISO 9660, Raw BIN, IMG, GPT Disk, MBR Disk, Android Boot,
 #            BIOS Firmware BIN, Raw Binary Blobs,
@@ -11,7 +11,7 @@
 #            Server BIOS CAP / EDK2 CAP with variable-size headers,
 #            Android Sparse Image (simg / sparse ext4 / super.img)
 #
-#  Key Improvements over v9.3.0 (this release):
+#  Key Improvements over v14.4.2 (this release):
 #   - BUILD MODE: construct output images from scratch
 #       * Raw/IMG/BIN → Android Sparse Image (.simg)
 #         Detects DONT_CARE (zero blocks), FILL (repeated 4-byte pattern),
@@ -44,7 +44,7 @@
 #       * Linux kernel (raw): version string extracted from bzImage header
 #         at spec-defined offset 0x20e and by scanning for the version string
 #
-#  Key Improvements over v9.2.0 (carried forward):
+#  Key Improvements over v14.4.2 (carried forward):
 #   - Full Android Sparse Image (simg) support:
 #       * Magic byte detection: 0xED26FF3A at offset 0 (exact)
 #       * Global header parser: block size, total blocks, chunk count,
@@ -62,9 +62,9 @@
 #       * Progress bar shows chunk index + type + bytes written in real time
 #       * Unsparsed output can optionally be wrapped in GPT/MBR disk image
 #
-#  Version: 12.0.0-FULL
+#  Version: 14.4.2-ULTRA
 #
-#  Key Improvements over v10.0.0 (this release):
+#  Key Improvements over v14.4.2 (this release):
 #   - ANDROID SUPER IMAGE (Dynamic Partitions) full support:
 #       * LP Metadata magic detection (0x616C4467 at offset 4096)
 #       * LpMetadataGeometry parser: metadata_max_size, slot count, block size
@@ -93,7 +93,7 @@
 #       * Standard simg tools will reject the compressed output (by design —
 #         it is a UIC-X proprietary extension); the decompression is built in
 #
-#  Key Improvements over v9.0.0 (carried forward):
+#  Key Improvements over v14.4.2 (carried forward):
 #   - Full CAP file support: ASUS / EFI / AMI capsule detection & parsing
 #   - CAPAnalyzer: extracts vendor, version, payload offset, checksum
 #   - CAP payload extraction mode: strip capsule header -> raw BIOS BIN
@@ -105,7 +105,7 @@
 #   - Improved progress bar: shows ETA alongside speed
 #   - More granular error messages for struct parse failures
 #
-#  Key Improvements over v8.1.0 (carried forward):
+#  Key Improvements over v14.4.2 (carried forward):
 #   - Deep format fingerprinting: BIN/IMG/ISO auto-disambiguation
 #   - GPT/MBR partition scheme prompt (English, required for all modes)
 #   - Slow, deliberate I/O with per-block verification (no fast-skip logic)
@@ -1134,7 +1134,7 @@ class UIC_Globals:
     AI_API_VERSION           = "2023-06-01"
 
     # ---- Tool Metadata ------------------------------------------------------
-    VERSION               = "14.4.0-ULTRA"
+    VERSION               = "14.4.2-ULTRA"
     TOOL_NAME             = "UIC-X Ultimate Image Converter"
     AUTHOR                = "UIC-X Project"
     BUILD_DATE            = "2026-03"
