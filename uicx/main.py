@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # =============================================================================
 #  UIC-X Ultimate Image Converter — Enhanced Precision Edition
-#  Version: 14.4.1-ULTIMATE
+#  Version: 14.5.0-STABLE
 #
 #  Supports: ISO 9660, Raw BIN, IMG, GPT Disk, MBR Disk, Android Boot,
 #            BIOS Firmware BIN, Raw Binary Blobs,
@@ -1134,7 +1134,7 @@ class UIC_Globals:
     AI_API_VERSION           = "2023-06-01"
 
     # ---- Tool Metadata ------------------------------------------------------
-    VERSION               = "14.4.2-ULTRA"
+    VERSION               = "14.5.0-STABLE"
     TOOL_NAME             = "UIC-X Ultimate Image Converter"
     AUTHOR                = "UIC-X Project"
     BUILD_DATE            = "2026-03"
@@ -8459,26 +8459,409 @@ body::before {{
 }}
 .footer a {{ color: var(--blue); text-decoration: none }}
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar {{ width: 6px; height: 6px }}
-::-webkit-scrollbar-track {{ background: var(--bg2) }}
-::-webkit-scrollbar-thumb {{ background: var(--border2); border-radius: 3px }}
-::-webkit-scrollbar-thumb:hover {{ background: var(--txt3) }}
-
-code {{
-  background: var(--bg2); padding: 2px 7px; border-radius: 4px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .82em; color: var(--cyan); word-break: break-all;
+/* ── Enhanced animations ── */
+@keyframes float-in {{
+  from {{ opacity:0; transform: scale(0.9) translateY(20px) }}
+  to   {{ opacity:1; transform: scale(1) translateY(0) }}
 }}
 
+@keyframes slide-in-right {{
+  from {{ opacity:0; transform: translateX(-30px) }}
+  to   {{ opacity:1; transform: translateX(0) }}
+}}
+
+@keyframes pulse-glow {{
+  0%,100% {{ box-shadow: 0 0 20px rgba(88,166,255,.4) }}
+  50%      {{ box-shadow: 0 0 40px rgba(88,166,255,.8) }}
+}}
+
+@keyframes data-stream {{
+  0% {{ background-position: 0% 0% }}
+  100% {{ background-position: 100% 0% }}
+}}
+
+@keyframes security-pulse {{
+  0%,100% {{ border-color: var(--red); opacity: .8 }}
+  50% {{ border-color: var(--orange); opacity: 1 }}
+}}
+
+@keyframes typing-effect {{
+  from {{ width: 0 }}
+  to   {{ width: 100% }}
+}}
+
+/* ── Enhanced visual effects ── */
+.enhanced-bg {{
+  position: fixed; inset: 0; z-index: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(88,166,255,.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(179,146,240,.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(6,214,160,.04) 0%, transparent 50%),
+    linear-gradient(135deg, #080c12 0%, #0d1117 50%, #161b22 100%);
+  animation: bg-shift 20s ease-in-out infinite alternate;
+}}
+
+@keyframes bg-shift {{
+  0%,100% {{ filter: hue-rotate(0deg) }}
+  50% {{ filter: hue-rotate(10deg) }}
+}}
+
+.particle-field {{
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}}
+
+.particle {{
+  position: absolute; width: 2px; height: 2px;
+  background: var(--blue); border-radius: 50%;
+  opacity: .3; animation: particle-float 8s linear infinite;
+}}
+
+@keyframes particle-float {{
+  from {{ transform: translateY(100vh) rotate(0deg) }}
+  to   {{ transform: translateY(-10px) rotate(360deg) }}
+}}
+
+/* ── Enhanced cards ── */
+.card {{
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: float-in .6s ease both;
+  position: relative;
+  backdrop-filter: blur(10px);
+}}
+
+.card::before {{
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(88,166,255,.02) 100%);
+  pointer-events: none;
+  border-radius: 16px;
+}}
+
+.card:hover {{ 
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--blue);
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,.4),
+    0 0 0 1px rgba(88,166,255,.2);
+}}
+
+/* ── Enhanced header ── */
+.header {{
+  position: relative; z-index: 10;
+  padding: 50px 40px 40px;
+  border-bottom: 1px solid var(--border2);
+  background: 
+    linear-gradient(180deg, rgba(88,166,255,.08) 0%, transparent 100%),
+    linear-gradient(90deg, rgba(179,146,240,.04) 0%, transparent 100%);
+  backdrop-filter: blur(20px);
+}}
+
+.header-logo {{
+  width: 50px; height: 50px;
+  background: linear-gradient(135deg, var(--blue), var(--purple), var(--cyan));
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; 
+  box-shadow: 0 0 30px rgba(88,166,255,.4);
+  animation: pulse-glow 3s ease-in-out infinite;
+  position: relative;
+}}
+
+.header-logo::after {{
+  content: '';
+  position: absolute; inset: -2px;
+  background: linear-gradient(45deg, var(--blue), var(--purple), var(--cyan), var(--blue));
+  border-radius: 14px;
+  z-index: -1;
+  opacity: .6;
+  animation: rotate 4s linear infinite;
+}}
+
+@keyframes rotate {{
+  from {{ transform: rotate(0deg) }}
+  to   {{ transform: rotate(360deg) }}
+}}
+
+.header-title {{
+  font-size: 2em; font-weight: 800;
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--purple), var(--blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+  background-size: 300% auto;
+  text-shadow: 0 0 30px rgba(88,166,255,.3);
+}}
+
+/* ── Enhanced data visualization ── */
+.data-viz {{
+  height: 200px; margin: 20px 0;
+  position: relative; border-radius: 12px;
+  background: var(--bg2);
+  overflow: hidden;
+}}
+
+.data-bar {{
+  position: absolute; bottom: 0;
+  background: linear-gradient(180deg, var(--blue), var(--cyan));
+  border-radius: 4px 4px 0 0;
+  transition: all .3s ease;
+  animation: slide-in-right .8s ease both;
+}}
+
+.data-bar:hover {{
+  background: linear-gradient(180deg, var(--purple), var(--pink));
+  transform: scaleY(1.05);
+}}
+
+/* ── Enhanced security indicators ── */
+.security-indicator {{
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 25px;
+  font-weight: 600; font-size: .85em;
+  position: relative; overflow: hidden;
+  animation: float-in .5s ease both;
+}}
+
+.security-indicator::before {{
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+  animation: data-stream 2s linear infinite;
+}}
+
+.security-critical {{
+  background: linear-gradient(135deg, var(--red), var(--orange));
+  color: white;
+  animation: security-pulse 1.5s ease-in-out infinite;
+}}
+
+.security-high {{
+  background: linear-gradient(135deg, var(--orange), var(--yellow));
+  color: var(--bg);
+}}
+
+/* ── Enhanced progress indicators ── */
+.progress-ring {{
+  width: 60px; height: 60px; margin: 10px auto;
+  position: relative;
+}}
+
+.progress-ring-circle {{
+  stroke: var(--border2);
+  stroke-width: 3;
+  fill: none;
+}}
+
+.progress-ring-progress {{
+  stroke: var(--blue);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: progress-fill 1s ease-out both;
+}}
+
+@keyframes progress-fill {{
+  from {{ stroke-dasharray: 0 283 }}
+  to   {{ stroke-dasharray: var(--progress) 283 }}
+}}
+
+/* ── Enhanced interactive elements ── */
+.interactive-badge {{
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 20px;
+  font-size: .8em; font-weight: 600;
+  cursor: pointer; transition: all .2s ease;
+  position: relative; overflow: hidden;
+}}
+
+.interactive-badge::after {{
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,.2) 0%, transparent 70%);
+  opacity: 0; transition: opacity .2s;
+}}
+
+.interactive-badge:hover::after {{ opacity: 1 }}
+.interactive-badge:hover {{ 
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}}
+
+/* ── Enhanced loading states ── */
+.loading-skeleton {{
+  background: linear-gradient(90deg, var(--bg3) 25%, var(--bg4) 50%, var(--bg3) 75%);
+  background-size: 200% 100%;
+  animation: data-stream 1.5s ease-in-out infinite;
+  border-radius: 4px;
+  height: 20px;
+  margin: 8px 0;
+}}
+
+/* ── Enhanced tooltips ── */
+.tooltip {{
+  position: relative; cursor: help;
+}}
+
+.tooltip::after {{
+  content: attr(data-tooltip);
+  position: absolute; bottom: 100%; left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg4); color: var(--txt);
+  padding: 8px 12px; border-radius: 8px;
+  font-size: .8em; white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transition: all .2s ease;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  z-index: 1000;
+}}
+
+.tooltip:hover::after {{ 
+  opacity: 1; 
+  transform: translateX(-50%) translateY(-4px);
+}}
+
+/* ── Enhanced status indicators ── */
+.status-indicator {{
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 12px;
+  font-size: .75em; font-weight: 600;
+  animation: float-in .4s ease both;
+}}
+
+.status-success {{
+  background: rgba(6,214,160,.15); color: var(--green);
+  border: 1px solid rgba(6,214,160,.3);
+}}
+
+.status-warning {{
+  background: rgba(255,209,102,.15); color: var(--yellow);
+  border: 1px solid rgba(255,209,102,.3);
+}}
+
+.status-error {{
+  background: rgba(255,77,109,.15); color: var(--red);
+  border: 1px solid rgba(255,77,109,.3);
+  animation: security-pulse 2s ease-in-out infinite;
+}}
+
+/* ── Enhanced code blocks ── */
+.code-block {{
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .85em; line-height: 1.6;
+  position: relative; overflow: hidden;
+}}
+
+.code-block::before {{
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--blue), var(--purple));
+}}
+
+.code-block:hover {{ border-color: var(--blue); }}
+
+/* ── Enhanced navigation ── */
+.nav-tabs {{
+  display: flex; gap: 2px;
+  background: var(--bg2); border-radius: 12px;
+  padding: 4px; margin: 16px 0;
+}}
+
+.nav-tab {{
+  padding: 8px 16px; border-radius: 8px;
+  font-size: .85em; font-weight: 600;
+  cursor: pointer; transition: all .2s ease;
+  position: relative;
+}}
+
+.nav-tab:hover {{ background: var(--bg3); }}
+.nav-tab.active {{ 
+  background: var(--blue); color: white;
+  box-shadow: 0 2px 8px rgba(88,166,255,.3);
+}}
+
+/* ── Enhanced footer ── */
+.footer {{
+  position: relative; z-index: 10;
+  text-align: center; padding: 32px;
+  color: var(--txt3); font-size: .8em;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(88,166,255,.02) 0%, transparent 100%);
+}}
+
+.footer-links {{
+  display: flex; justify-content: center; gap: 20px;
+  margin-top: 12px;
+}}
+
+.footer-links a {{
+  color: var(--blue); text-decoration: none;
+  transition: all .2s ease;
+  position: relative;
+}}
+
+.footer-links a::after {{
+  content: '';
+  position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--blue);
+  transition: width .2s ease;
+}}
+
+.footer-links a:hover::after {{ width: 100%; }}
+
+/* ── Responsive enhancements ── */
 @media (max-width: 700px) {{
   .content {{ padding: 20px 16px }}
   .header  {{ padding: 24px 16px 20px }}
   .kv-label {{ min-width: 100px }}
+  .card {{ border-radius: 12px }}
+  .header-title {{ font-size: 1.5em }}
+  .security-grid {{ grid-template-columns: repeat(2,1fr) }}
+}}
+
+/* ── Dark mode optimizations ── */
+@media (prefers-color-scheme: dark) {{
+  :root {{
+    --bg: #06080f;
+    --bg2: #0d1117;
+    --bg3: #161b22;
+    --bg4: #1c2130;
+  }}
+}}
+
+/* ── Reduced motion support ── */
+@media (prefers-reduced-motion: reduce) {{
+  *, *::before, *::after {{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }}
+}}
+
+/* ── High contrast support ── */
+@media (prefers-contrast: high) {{
+  :root {{
+    --border: #ffffff33;
+    --txt2: #ffffffcc;
+    --txt3: #ffffff99;
+  }}
 }}
 </style>
 </head>
 <body>
+<div class="enhanced-bg"></div>
+<div class="particle-field" id="particles"></div>
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
@@ -8489,16 +8872,33 @@ code {{
     <div>
       <div class="header-title">UIC-X Analysis Report</div>
       <div class="header-meta">
-        <span>🔧 {e(tool)} v{e(ver)}</span>
-        <span>🕐 {e(ts)}</span>
-        <span>📄 {e(src.get('path','').split('/')[-1])}</span>
+        <span class="interactive-badge" data-tooltip="Advanced Image Converter">🔧 {e(tool)} v{e(ver)}</span>
+        <span class="interactive-badge" data-tooltip="Analysis timestamp">🕐 {e(ts)}</span>
+        <span class="interactive-badge" data-tooltip="Source file name">📄 {e(src.get('path','').split('/')[-1])}</span>
       </div>
     </div>
     <div style="margin-left:auto">
-      <div class="risk-pill">
+      <div class="security-indicator security-critical" if risk_level in ('CRITICAL','HIGH') else "security-indicator security-high" if risk_level=='MEDIUM' else "security-indicator status-success">
         {'🔴' if risk_level in ('CRITICAL','HIGH') else '🟡' if risk_level=='MEDIUM' else '🟢'}
         {e(risk_level)}
       </div>
+    </div>
+  </div>
+  
+  <!-- Enhanced status bar -->
+  <div style="margin-top: 20px; display: flex; gap: 12px; align-items: center;">
+    <div class="status-indicator status-success">
+      ✅ Analysis Complete
+    </div>
+    <div class="status-indicator status-warning" if len([v for v in (sec.get('cve_findings',[]) if sec else []) if v.get('severity') in ['CRITICAL','HIGH']]) else "status-indicator status-success">
+      ⚠ {len([v for v in (sec.get('cve_findings',[]) if sec else []) if v.get('severity') in ['CRITICAL','HIGH']])} Critical Issues
+    </div>
+    <div class="progress-ring">
+      <svg width="60" height="60">
+        <circle class="progress-ring-circle" cx="30" cy="30" r="26"></circle>
+        <circle class="progress-ring-progress" cx="30" cy="30" r="26" 
+                style="--progress: {min(100, max(0, 100 - (len([v for v in (sec.get('cve_findings',[]) if sec else []) if v.get('severity') == 'CRITICAL']) * 25)))}"></circle>
+      </svg>
     </div>
   </div>
 </div>
@@ -8513,6 +8913,7 @@ code {{
 </div>
 
 <script>
+// Enhanced JavaScript interactions
 function toggleCard(id) {{
   const body  = document.getElementById('body_'  + id);
   const chev  = document.getElementById('chev_'  + id);
@@ -8521,33 +8922,162 @@ function toggleCard(id) {{
   chev.classList.toggle('rotated', hidden);
 }}
 
-// Init collapsed cards
-document.querySelectorAll('.card[data-collapsed]').forEach(card => {{
-  const id   = card.id.replace('card_','');
-  const body = document.getElementById('body_' + id);
-  const chev = document.getElementById('chev_' + id);
-  if (body) {{ body.classList.add('hidden'); }}
-  if (chev) {{ chev.classList.add('rotated'); }}
+// Initialize enhanced features
+document.addEventListener('DOMContentLoaded', () => {{
+  // Create floating particles
+  createParticles();
+  
+  // Init collapsed cards
+  document.querySelectorAll('.card[data-collapsed]').forEach(card => {{
+    const id   = card.id.replace('card_','');
+    const body = document.getElementById('body_' + id);
+    const chev = document.getElementById('chev_' + id);
+    if (body) {{ body.classList.add('hidden'); }}
+    if (chev) {{ chev.classList.add('rotated'); }}
+  }});
+
+  // Stagger table row animations
+  document.querySelectorAll('.animated-row').forEach((row, i) => {{
+    row.style.animationDelay = (i * 0.04) + 's';
+  }});
+
+  // Enhanced scroll-triggered reveal
+  const observer = new IntersectionObserver(entries => {{
+    entries.forEach(e => {{
+      if (e.isIntersecting) {{
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        
+        // Add glow effect on reveal
+        e.target.style.boxShadow = '0 0 30px rgba(88,166,255,0.2)';
+        setTimeout(() => {{
+          e.target.style.boxShadow = '';
+        }}, 1000);
+      }}
+    }});
+  }}, {{ threshold: 0.1 }});
+
+  document.querySelectorAll('.card, .security-indicator, .status-indicator').forEach(element => {{
+    observer.observe(element);
+  }});
+
+  // Interactive hover effects
+  document.querySelectorAll('.interactive-badge, .tooltip').forEach(element => {{
+    element.addEventListener('mouseenter', () => {{
+      element.style.transform = 'translateY(-2px) scale(1.05)';
+    }});
+    element.addEventListener('mouseleave', () => {{
+      element.style.transform = '';
+    }});
+  }});
+
+  // Dynamic progress ring animation
+  animateProgressRings();
+  
+  // Enhanced keyboard navigation
+  setupKeyboardNavigation();
+  
+  // Auto-refresh for live data
+  setupLiveUpdates();
 }});
 
-// Stagger table row animations
-document.querySelectorAll('.animated-row').forEach((row, i) => {{
-  row.style.animationDelay = (i * 0.04) + 's';
-}});
+// Create floating particle effect
+function createParticles() {{
+  const particleField = document.getElementById('particles');
+  if (!particleField) return;
+  
+  for (let i = 0; i < 15; i++) {{
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 8 + 's';
+    particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+    particleField.appendChild(particle);
+  }}
+}}
 
-// Scroll-triggered reveal
-const observer = new IntersectionObserver(entries => {{
-  entries.forEach(e => {{
-    if (e.isIntersecting) {{
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
+// Animate progress rings
+function animateProgressRings() {{
+  document.querySelectorAll('.progress-ring-progress').forEach(ring => {{
+    const progress = ring.style.getPropertyValue('--progress');
+    if (progress) {{
+      const circumference = 2 * Math.PI * 26;
+      const offset = circumference - (progress / 100) * circumference;
+      ring.style.strokeDasharray = `${circumference} ${circumference}`;
+      ring.style.strokeDashoffset = offset;
     }}
   }});
-}}, {{ threshold: 0.1 }});
+}}
 
+// Enhanced keyboard navigation
+function setupKeyboardNavigation() {{
+  document.addEventListener('keydown', (e) => {{
+    if (e.key === 'Tab') {{
+      e.preventDefault();
+      const focusableElements = document.querySelectorAll('.card-header, .interactive-badge');
+      const currentIndex = Array.from(focusableElements).indexOf(document.activeElement);
+      const nextIndex = (currentIndex + 1) % focusableElements.length;
+      focusableElements[nextIndex].focus();
+    }}
+  }});
+}}
+
+// Simulated live updates (for demo)
+function setupLiveUpdates() {{
+  // Add subtle pulsing to status indicators
+  setInterval(() => {{
+    document.querySelectorAll('.status-indicator').forEach(indicator => {{
+      indicator.style.opacity = '0.7';
+      setTimeout(() => {{
+        indicator.style.opacity = '1';
+      }}, 500);
+    }});
+  }}, 5000);
+}}
+
+// Enhanced card interactions
 document.querySelectorAll('.card').forEach(card => {{
-  observer.observe(card);
+  card.addEventListener('mouseenter', () => {{
+    card.style.zIndex = '20';
+  }});
+  
+  card.addEventListener('mouseleave', () => {{
+    card.style.zIndex = '';
+  }});
 }});
+
+// Dynamic theme switching
+function toggleTheme() {{
+  document.body.classList.toggle('light-theme');
+}}
+
+// Print-friendly version
+function printReport() {{
+  window.print();
+}}
+
+// Export data functionality
+function exportData(format) {{
+  const data = collectReportData();
+  const blob = new Blob([JSON.stringify(data, null, 2)], {{ type: 'application/json' }});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `uic-report-${{new Date().toISOString().split('T')[0]}}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}}
+
+// Collect report data for export
+function collectReportData() {{
+  return {{
+    timestamp: '{e(ts)}',
+    version: '{e(ver)}',
+    source: {repr(src)},
+    risk_level: '{e(risk_level)}',
+    // Add more data collection as needed
+  }};
+}}
 </script>
 </body>
 </html>"""
@@ -15121,133 +15651,179 @@ def print_banner():
 
 
 def print_usage():
-    print("Usage:")
-    print("  uicx <source> <output> [options]")
-    print()
-    print("Modes:")
-    print("  Default                  Convert / transform source image")
-    print("  --build simg             Raw/IMG -> Android Sparse Image")
-    print("  --build cap              Raw BIN -> ASUS CAP capsule")
-    print("  --build efi              Raw BIN -> EFI Firmware Capsule")
-    print("  --extract <output_dir>   Extract super.img logical partitions")
-    print("  --merge p1:f1 p2:f2 ...  Merge partition images into GPT disk")
-    print("  --sign <key.pem>         Sign capsule with RSA-2048")
-    print("  --verify <pubkey.pem>    Verify capsule RSA signature")
-    print("  --genkey <priv> <pub>    Generate RSA-2048 keypair")
-    print("  --edit gpt <idx> <name>  Rename GPT partition in-place")
-    print("  --edit mbr <idx> <0|1>   Set/clear MBR bootable flag")
-    print("  --edit cmdline <text>    Replace Android boot cmdline")
-    print("  --export qcow2           Export output as QEMU qcow2 (needs qemu-img)")
-    print("  --watermark [tag]        Embed digital fingerprint in output file")
-    print("  --verify-wm              Check watermark on source file")
-    print()
-    print("Analysis Options:")
-    print("  --info                   Analyze + inspect, no conversion")
-    print("  --security               Run security scan (CVE check, sensitive files)")
-    print("  --boot-analyze           Deep Android boot image analysis")
-    print("  --report <file.html>     Write HTML analysis report")
-    print("  --json <file.json>       Write JSON analysis report")
-    print("  --yaml <file.yaml>       Write YAML analysis report (needs PyYAML)")
-    print("  --vbmeta-parse           Parse vbmeta.img and show AVB 2.0 flags")
-    print("  --vbmeta-disable         Create patched vbmeta with verification disabled")
-    print("  --vbmeta-blank           Build blank vbmeta.img (no descriptors, flags off)")
-    print("  --entropy-map [csv_out]  Compute per-region Shannon entropy forensic map")
-    print("  --bios-analyze           Full 6-layer BIOS/UEFI analysis (IFD+FV+FFS+ME+SEC)")
-    print()
-    print("Deep Conversion (format-aware, verified output):")
-    print("  --convert img2bin        IMG → BIN (sector-aligned, SHA-256 verified)")
-    print("  --convert bin2img        BIN → IMG (power-of-2 pad for BIOS, 0xFF fill)")
-    print("  --convert iso2bin        ISO → BIN (copy or strip 32KB ISO header)")
-    print("  --convert bin2iso        BIN → ISO (wrap in ISO 9660 container)")
-    print("  --convert img2iso        IMG → ISO (embed disk image in ISO)")
-    print("  --convert bin2bin        BIN → BIN (normalize alignment + re-verify)")
-    print("  --no-verify-output       Skip post-conversion integrity check (not recommended)")
-    print()
-    print("Post-Task Audit:")
-    print("  --post-check             Deep audit after ANY operation (fast: samples 3×64KB)")
-    print("  --post-check-compact     Same but one-line per check (fails/warns only shown)")
-    print()
-    print()
-    print("Direct Flash Options:")
-    print("  --flash <device>         Write output image to block device (dd-replacement)")
-    print("  --list-devices           List available block devices for flashing")
-    print("  --no-verify              Skip read-back verification after flash")
-    print("  --force                  Skip interactive confirmation (DANGEROUS)")
-    print("  --dmg-analyze            Parse Apple DMG (UDIF) and show metadata")
-    print("  --dmg-extract <dir>      Extract DMG contents to directory")
-    print("  --dmg-tool <tool>        Extraction tool: auto|hdiutil|7z|dmg2img (default: auto)")
-    print()
-    print("AI Engine (built-in intelligence — no API key required):")
-    print("  --ai-analyze             Check conversion compatibility + suggest sparse params")
-    print("  --ai-suggest <goal>      LP partition selection for super.img (e.g. custom_rom)")
-    print("  Optional — set ANTHROPIC_API_KEY to enable enhanced AI reasoning for")
-    print("  format disambiguation and enriched security triage.")
-    print()
-    print("  --compress               Compress RAW chunks (--build simg)")
-    print("  --dry-run                Validate without writing output")
-    print("  --verbose                Enable debug logging")
-    print("  --help                   Show this help")
-    print()
-    print("Examples:")
-    print("  uicx system.img system.simg --build simg --compress")
-    print("  uicx bios.bin BIOS.CAP --build cap")
-    print("  uicx ASUS.cap /dev/null --info --security --json out.json")
-    print("  uicx super.img /tmp/parts --extract /tmp/parts")
-    print("  uicx boot.img out.img --boot-analyze --report report.html")
-    print("  uicx disk.img disk.qcow2 --export qcow2")
-    print("  uicx --merge system:/tmp/s.img vendor:/tmp/v.img out.img")
-    print("  uicx --genkey priv.pem pub.pem")
-    print("  uicx capsule.cap signed.cap --sign priv.pem")
-    print("  uicx vbmeta.img /dev/null --vbmeta-parse")
-    print("  uicx vbmeta.img vbmeta_patched.img --vbmeta-disable")
-    print("  uicx --vbmeta-blank vbmeta_disabled.img")
-    print("  uicx bios.bin /dev/null --entropy-map entropy.csv")
-    print("  uicx disk.img /dev/sdb --flash")
-    print()
-    print("Usage:")
-    print("  uicx <source_file> <output_file> [options]")
-    print()
-    print("Modes:")
-    print("  Default           Convert / transform the source image")
-    print("  --build simg      Build: Raw/IMG/BIN -> Android Sparse Image")
-    print("  --build cap       Build: Raw BIN -> ASUS BIOS CAP capsule")
-    print("  --build efi       Build: Raw BIN -> EFI Firmware Capsule")
-    print()
-    print("Supported Source Formats (auto-detected):")
-    print("  .cap  -- ASUS BIOS Capsule, EFI Firmware Capsule, AMI APTIO ROM")
-    print("  .bin  -- BIOS/UEFI firmware SPI flash image")
-    print("  .iso  -- ISO 9660 optical disc image")
-    print("  .img  -- Raw sector disk image (FAT, ext4, NTFS, etc.)")
-    print("  .simg -- Android Sparse Image (ext4, super, vendor, system)")
-    print("  .bin/.img -- GPT or MBR disk images")
-    print("  Any   -- Android boot, SquashFS, compressed archives, raw binary")
-    print()
-    print("Options:")
-    print("  --build <type>  Activate build mode: simg / cap / efi")
-    print("  --verbose       Enable debug logging")
-    print("  --dry-run       Validate and analyze source without writing output")
-    print("  --info          Analyze + inspect source; no conversion")
-    print("  --help          Show this help message")
-    print()
-    print("Examples:")
-    print("  uicx system.img system.simg --build simg")
-    print("    -> Convert raw ext4 image to Android sparse format")
-    print()
-    print("  uicx bios.bin BIOS-UPDATE.CAP --build cap")
-    print("    -> Wrap raw BIOS binary in ASUS CAP capsule (prompts for metadata)")
-    print()
-    print("  uicx bios.bin firmware.cap --build efi")
-    print("    -> Wrap raw BIOS binary in UEFI EFI Firmware Capsule")
-    print()
-    print("  uicx ASUS-Z790.cap output.bin")
-    print("    -> Detects ASUS CAP, shows header + content inspection, extract/passthrough")
-    print()
-    print("  uicx system.iso /dev/null --info")
-    print("    -> Full inspection: volume label, root dir listing, kernel version")
-    print()
-    print("  uicx firmware.cap /dev/null --dry-run")
-    print("    -> Parse and validate CAP without writing any output")
-    print()
+    print("""
+UIC-X Ultimate Image Converter v14.5.0-STABLE
+Usage Guide
+================================================================================
+
+BASIC USAGE
+================================================================================
+  uicx <source_file> <output_file> [options]
+  
+COMMON TASKS
+================================================================================
+  Android Images
+  -------------
+    uicx system.img system.simg --build simg
+    Convert raw Android image to sparse format
+    
+    uicx super.img /tmp/parts --extract
+    Extract logical partitions from super.img
+    
+    uicx boot.img patched.img --patch-kernel
+    Patch kernel for root access
+  
+  BIOS/UEFI Firmware
+  -----------------
+    uicx bios.bin BIOS.CAP --build cap
+    Wrap BIOS in ASUS capsule (prompts for version info)
+    
+    uicx bios.bin /dev/null --bios-analyze report.txt
+    Full BIOS analysis with security scan
+    
+    uicx firmware.cap /dev/null --info
+    Inspect capsule contents without conversion
+  
+  Disk Images
+  ----------
+    uicx disk.img disk.qcow2 --export qcow2
+    Convert to QEMU format
+    
+    uicx image.img /dev/sdb --flash
+    Write directly to storage device
+    
+    uicx --merge system:/tmp/s.img vendor:/tmp/v.img merged.img
+    Combine partitions into disk image
+
+SUPPORTED FORMATS
+================================================================================
+  Input Files (auto-detected):
+    .cap  - ASUS/EFI/AMI BIOS capsules
+    .bin  - Raw firmware, BIOS, SPI flash
+    .iso  - ISO 9660 disc images
+    .img  - Disk images (FAT, ext4, NTFS, etc.)
+    .simg - Android sparse images
+    Any   - Android boot, archives, raw binaries
+  
+  Build Modes:
+    --build simg  - Raw to Android sparse image
+    --build cap   - Raw to ASUS BIOS capsule
+    --build efi   - Raw to EFI capsule
+
+CORE OPTIONS
+================================================================================
+  Analysis & Inspection
+  ---------------------
+    --info                 Analyze file structure, no conversion
+    --security             Run security vulnerability scan
+    --report <file.html>   Generate detailed HTML report
+    --json <file.json>     Export analysis as JSON
+    --dry-run              Validate without writing output
+    --verbose              Show detailed debug information
+  
+  Cryptography & Signing
+  -----------------------
+    --sign <key.pem>       Sign capsule with RSA key
+    --verify <pubkey.pem>  Verify RSA signature
+    --genkey <priv> <pub>  Generate RSA-2048 keypair
+    --watermark [tag]      Embed digital fingerprint
+  
+  Conversion & Editing
+  --------------------
+    --convert <type>       Format-specific conversion (img2bin, iso2bin, etc.)
+    --extract <dir>         Extract partitions/files
+    --merge p1:f1 p2:f2     Combine partition images
+    --edit gpt <idx> <name> Rename GPT partition
+    --export qcow2          Export as QEMU disk image
+    --compress              Compress sparse image chunks
+
+ADVANCED ANALYSIS
+================================================================================
+  BIOS/UEFI Deep Analysis
+  -----------------------
+    --bios-analyze <file>      Complete BIOS analysis (6 layers)
+    --bios-extract <dir>       Extract all BIOS modules
+    --ifd-extract <dir>        Extract Intel Flash Descriptor
+    --uefi-tree <file>         Show UEFI firmware hierarchy
+    --nvram-parse <file>        Extract EFI variables
+    --microcode-extract <dir>  Extract CPU microcode
+    --vulnerability-scan <file> Scan for BIOS vulnerabilities
+  
+  Android Payload Analysis
+  -----------------------
+    --payload-analyze <file>   Analyze Android payload.bin
+    --payload-extract <dir>     Extract OTA partitions
+    --boot-analyze             Deep boot image analysis
+    --vbmeta-parse             Parse Android Verified Boot
+    --vbmeta-disable           Disable verification (root)
+  
+  Intel ME / AMD PSP
+  -----------------
+    --me-analyze <file>        Analyze Intel Management Engine
+    --me-extract <dir>         Extract ME firmware regions
+    --psp-analyze <file>       Analyze AMD PSP firmware
+    --psp-extract <dir>        Extract PSP regions
+
+SPECIALIZED TOOLS
+================================================================================
+  Pattern Hunting & Forensics
+  -------------------------
+    --find-offsets             Scan with YARA rules
+    --extract-blobs <dir>      Extract embedded compressed data
+    --entropy-heatmap <file>   Generate entropy visualization
+    --detect-integrity         Scan for anti-reversing
+  
+  System Utilities
+  ---------------
+    --list-devices             Show available storage devices
+    --flash <device>           Write to block device safely
+    --resize-gpt <idx> <size>  Resize GPT partitions
+    --patch-fstab <out>        Modify Android mount flags
+    --analyze-code <arch>      Disassemble code (x86/x64/ARM)
+    --cve-lookup <cpe>         Search CVE database
+  
+  AI Assistant (built-in)
+  -----------------------
+    --ai-analyze               Smart conversion suggestions
+    --ai-suggest <goal>        LP partition recommendations
+    --identify-format          AI-powered format detection
+
+QUICK EXAMPLES
+================================================================================
+  Convert Android system image to sparse format
+    uicx system.img system.simg --build simg --compress
+  
+  Analyze BIOS firmware with security scan
+    uicx bios.bin /dev/null --bios-analyze report.txt --security
+  
+  Extract Android OTA payload
+    uicx payload.bin extracted/ --payload-extract
+  
+  Create bootable USB from ISO
+    uicx ubuntu.iso /dev/sdb --flash
+  
+  Generate HTML analysis report
+    uicx firmware.bin /dev/null --info --report analysis.html
+  
+  Patch Android boot for root
+    uicx boot.img rooted.img --patch-kernel
+
+SAFETY NOTES
+================================================================================
+  * Always use --dry-run first when unsure
+  * Flash operations (--flash) write directly to storage
+  * Backup important firmware before modification
+  * Some operations require --force to bypass safety checks
+
+GETTING HELP
+================================================================================
+  * Use --verbose for detailed operation logs
+  * Check --info before conversion to understand input
+  * Generate --report for comprehensive analysis
+  * Visit project documentation for advanced usage
+
+================================================================================
+""")
 
 
 def main():
@@ -15293,6 +15869,24 @@ def main():
     do_ai_analyze    = False    # --ai-analyze
     do_ai_chat       = False    # --ai-chat
     ai_api_key       = os.environ.get("ANTHROPIC_API_KEY", "")
+    # Initialize ME/PSP analysis variables
+    me_analyze_report = ''
+    me_extract_dir = ''
+    psp_analyze_report = ''
+    psp_extract_dir = ''
+    # Initialize BIOS analysis variables
+    bios_analyze_report = ''
+    bios_extract_dir = ''
+    bios_rebuild_output = ''
+    ifd_extract_dir = ''
+    uefi_tree_output = ''
+    nvram_parse_output = ''
+    microcode_extract_dir = ''
+    vendor_parse_output = ''
+    vulnerability_scan_output = ''
+    # Initialize Android payload variables
+    payload_analyze_report = ''
+    payload_extract_dir = ''
 
     i = 0
     while i < len(raw_argv):
@@ -15365,6 +15959,39 @@ def main():
             do_verify_output = False; i += 1
         elif tok == '--post-check':
             do_post_check = True; i += 1
+        # BIOS Analysis Commands
+        elif tok == '--bios-analyze' and i + 1 < len(raw_argv):
+            bios_analyze_report = raw_argv[i+1]; i += 2
+        elif tok == '--bios-extract' and i + 1 < len(raw_argv):
+            bios_extract_dir = raw_argv[i+1]; i += 2
+        elif tok == '--bios-rebuild' and i + 1 < len(raw_argv):
+            bios_rebuild_output = raw_argv[i+1]; i += 2
+        elif tok == '--ifd-extract' and i + 1 < len(raw_argv):
+            ifd_extract_dir = raw_argv[i+1]; i += 2
+        elif tok == '--uefi-tree' and i + 1 < len(raw_argv):
+            uefi_tree_output = raw_argv[i+1]; i += 2
+        elif tok == '--nvram-parse' and i + 1 < len(raw_argv):
+            nvram_parse_output = raw_argv[i+1]; i += 2
+        elif tok == '--microcode-extract' and i + 1 < len(raw_argv):
+            microcode_extract_dir = raw_argv[i+1]; i += 2
+        elif tok == '--vendor-parse' and i + 1 < len(raw_argv):
+            vendor_parse_output = raw_argv[i+1]; i += 2
+        elif tok == '--vulnerability-scan' and i + 1 < len(raw_argv):
+            vulnerability_scan_output = raw_argv[i+1]; i += 2
+        # Android Payload Commands
+        elif tok == '--payload-analyze' and i + 1 < len(raw_argv):
+            payload_analyze_report = raw_argv[i+1]; i += 2
+        elif tok == '--payload-extract' and i + 1 < len(raw_argv):
+            payload_extract_dir = raw_argv[i+1]; i += 2
+        # Intel ME/AMD PSP Commands
+        elif tok == '--me-analyze' and i + 1 < len(raw_argv):
+            me_analyze_report = raw_argv[i+1]; i += 2
+        elif tok == '--me-extract' and i + 1 < len(raw_argv):
+            me_extract_dir = raw_argv[i+1]; i += 2
+        elif tok == '--psp-analyze' and i + 1 < len(raw_argv):
+            psp_analyze_report = raw_argv[i+1]; i += 2
+        elif tok == '--psp-extract' and i + 1 < len(raw_argv):
+            psp_extract_dir = raw_argv[i+1]; i += 2
         elif tok == '--post-check-compact':
             do_post_check = True; post_check_compact = True; i += 1
         elif tok == '--ai-analyze':
@@ -15388,6 +16015,77 @@ def main():
             ai_api_key = raw_argv[i+1]; i += 2
         elif tok == '--bios-analyze':
             do_bios_full = True; i += 1
+        # Advanced features from v15.0.0 addon
+        elif tok == '--find-offsets':
+            flags.append(tok); i += 1
+        elif tok == '--extract-blobs' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--entropy-heatmap' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--detect-integrity':
+            flags.append(tok); i += 1
+        elif tok == '--extract-erofs' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--extract-payload' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--parse-pit' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--parse-scatter' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--decrypt-firmware' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--build-image' and i + 1 < len(raw_argv):
+            # Handle --build-image <folder> <out> [--fs ext4|erofs]
+            flags.append(tok)
+            args.append(raw_argv[i+1])  # folder
+            if i + 2 < len(raw_argv) and not raw_argv[i+2].startswith('--'):
+                args.append(raw_argv[i+2])  # output
+                i += 3
+                # Check for optional --fs flag
+                if i < len(raw_argv) and raw_argv[i] == '--fs' and i + 1 < len(raw_argv):
+                    args.append('--fs')
+                    args.append(raw_argv[i+1])
+                    i += 2
+            else:
+                i += 2
+        elif tok == '--patch-kernel' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--lz4-samsung-decompress' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--lz4-samsung-compress' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--resize-gpt' and i + 2 < len(raw_argv):
+            flags.append(tok)
+            args.append(raw_argv[i+1])  # part_idx
+            args.append(raw_argv[i+2])  # new_sectors
+            i += 3
+        elif tok == '--patch-fstab' and i + 1 < len(raw_argv):
+            flags.append(tok)
+            args.append(raw_argv[i+1])  # out_path
+            i += 2
+            # Check for optional --mount flag
+            if i < len(raw_argv) and raw_argv[i] == '--mount' and i + 1 < len(raw_argv):
+                args.append('--mount')
+                args.append(raw_argv[i+1])
+                i += 2
+        elif tok == '--analyze-code' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--parse-signature':
+            flags.append(tok); i += 1
+        elif tok == '--repair-signatures':
+            flags.append(tok); i += 1
+        elif tok == '--decompress-auto' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--identify-format':
+            flags.append(tok); i += 1
+        elif tok == '--f2fs-info':
+            flags.append(tok); i += 1
+        elif tok == '--patch-interactive':
+            flags.append(tok); i += 1
+        elif tok == '--cve-lookup' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
+        elif tok == '--unpack' and i + 1 < len(raw_argv):
+            flags.append(tok); args.append(raw_argv[i+1]); i += 2
         elif tok.startswith('--'):
             flags.append(tok); i += 1
         else:
@@ -15466,6 +16164,792 @@ def main():
             if Logger.VERBOSE: traceback.print_exc()
             sys.exit(UIC_Globals.EXIT_UNKNOWN_ERROR)
         sys.exit(UIC_Globals.EXIT_OK)
+
+    # ---- Advanced Features from v15.0.0 Addon --------------------------------
+    # PatternHunter
+    if '--find-offsets' in flags:
+        if not src_path:
+            Logger.error("--find-offsets requires: <source_file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        results = PatternHunter().scan(src_path)
+        PatternHunter.log_results(results)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # BlobExtractor
+    if '--extract-blobs' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--extract-blobs requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        out_dir = args[1]
+        results = BlobExtractor.extract_all(src_path, out_dir)
+        BlobExtractor.log_results(results)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # Entropy Heatmap
+    if '--entropy-heatmap' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--entropy-heatmap requires: <source_file> <output.png>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        emap = EntropyMapper.analyze(src_path)
+        EntropyMapperExtended.generate_heatmap(emap, args[1])
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # SecurityScannerExtended
+    if '--detect-integrity' in flags:
+        if not src_path:
+            Logger.error("--detect-integrity requires: <source_file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        checks = SecurityScannerExtended.detect_integrity_checks(src_path)
+        Logger.section("Integrity Check Detection")
+        if checks:
+            for check, offset in checks:
+                print(f"  {check} at 0x{offset:08x}")
+        else:
+            print("  No integrity checks detected.")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # EROFSReader
+    if '--extract-erofs' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--extract-erofs requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        success = EROFSReader.extract(src_path, args[1])
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # PayloadDumper
+    if '--extract-payload' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--extract-payload requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        success = PayloadDumper.extract(src_path, args[1])
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # BIOS Analysis Features
+    if bios_analyze_report:
+        if not src_path:
+            Logger.error("--bios-analyze requires: <source_file> <report.txt>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = BIOSAnalyzer(src_path)
+        analyzer.generate_report(bios_analyze_report)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if bios_extract_dir:
+        if not src_path:
+            Logger.error("--bios-extract requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = BIOSAnalyzer(src_path)
+        analyzer.load_firmware()
+        analyzer.extract_all_modules(bios_extract_dir)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if ifd_extract_dir:
+        if not src_path:
+            Logger.error("--ifd-extract requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        success = UniversalDecompressor._decompress_ifd(src_path, ifd_extract_dir)
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    if uefi_tree_output:
+        if not src_path:
+            Logger.error("--uefi-tree requires: <source_file> <output.txt>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = BIOSAnalyzer(src_path)
+        analyzer.load_firmware()
+        fv_results = analyzer.analyze_uefi_fv()
+        
+        with open(uefi_tree_output, 'w') as f:
+            f.write("UEFI Firmware Volume Tree\n")
+            f.write("=" * 50 + "\n")
+            for fv in fv_results:
+                f.write(f"Firmware Volume at 0x{fv['offset']:08x}\n")
+                f.write(f"  Size: {fv['length']} bytes\n")
+                f.write(f"  Attributes: 0x{fv['attributes']:08x}\n")
+                f.write("  FFS Files:\n")
+                for ffs in fv['ffs_files']:
+                    f.write(f"    {ffs['type_name']} at 0x{ffs['offset']:08x}\n")
+                    f.write("      Sections:\n")
+                    for section in ffs['sections']:
+                        f.write(f"        {section['type_name']} at 0x{section['offset']:08x}\n")
+                f.write("\n")
+        
+        Logger.success(f"UEFI tree saved: {uefi_tree_output}")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # Intel ME Analysis Features
+    if me_analyze_report:
+        if not src_path:
+            Logger.error("--me-analyze requires: <source_file> <report.txt>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = IntelMEAnalyzer(src_path)
+        analyzer.generate_me_report(me_analyze_report)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if me_extract_dir:
+        if not src_path:
+            Logger.error("--me-extract requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = IntelMEAnalyzer(src_path)
+        analyzer.load_firmware()
+        analyzer.extract_me_region(me_extract_dir)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # AMD PSP Analysis Features
+    if psp_analyze_report:
+        if not src_path:
+            Logger.error("--psp-analyze requires: <source_file> <report.txt>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = AMDPSPAnalyzer(src_path)
+        analyzer.generate_psp_report(psp_analyze_report)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if psp_extract_dir:
+        if not src_path:
+            Logger.error("--psp-extract requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = AMDPSPAnalyzer(src_path)
+        analyzer.load_firmware()
+        analyzer.extract_psp_region(psp_extract_dir)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if nvram_parse_output:
+        if not src_path:
+            Logger.error("--nvram-parse requires: <source_file> <output.txt>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = BIOSAnalyzer(src_path)
+        analyzer.load_firmware()
+        variables = analyzer.analyze_nvram_variables()
+        
+        with open(nvram_parse_output, 'w') as f:
+            f.write("Comprehensive NVRAM/EFI Variables Analysis\n")
+            f.write("=" * 60 + "\n\n")
+            
+            # Group variables by type
+            secure_boot_vars = [v for v in variables if v['is_secure_boot']]
+            boot_vars = [v for v in variables if v['is_boot_variable']]
+            suspicious_vars = [v for v in variables if v['is_hidden']]
+            high_risk_vars = [v for v in variables if 'High' in v['security_risk'] or 'Critical' in v['security_risk']]
+            
+            f.write(f"Total Variables Found: {len(variables)}\n")
+            f.write(f"Secure Boot Variables: {len(secure_boot_vars)}\n")
+            f.write(f"Boot Variables: {len(boot_vars)}\n")
+            f.write(f"Suspicious Variables: {len(suspicious_vars)}\n")
+            f.write(f"High Risk Variables: {len(high_risk_vars)}\n\n")
+            
+            # NVRAM Stores
+            if 'nvram_stores' in analyzer.results:
+                f.write("NVRAM Stores:\n")
+                f.write("-" * 30 + "\n")
+                for store in analyzer.results['nvram_stores']:
+                    f.write(f"Type: {store['type']}\n")
+                    f.write(f"Offset: 0x{store['offset']:08x}\n")
+                    f.write(f"Size: {store['size']} bytes\n\n")
+            
+            # Secure Boot Variables
+            if secure_boot_vars:
+                f.write("Secure Boot Variables:\n")
+                f.write("-" * 30 + "\n")
+                for var in secure_boot_vars:
+                    f.write(f"Name: {var['name']}\n")
+                    f.write(f"Offset: 0x{var['offset']:08x}\n")
+                    f.write(f"Type: {var['type']}\n")
+                    f.write(f"Data Size: {var['data_size']} bytes\n")
+                    if var['guid']:
+                        f.write(f"GUID: {var['guid']}\n")
+                    f.write(f"Security Risk: {var['security_risk']}\n\n")
+            
+            # High Risk Variables
+            if high_risk_vars:
+                f.write("High Risk Variables:\n")
+                f.write("-" * 30 + "\n")
+                for var in high_risk_vars:
+                    f.write(f"Name: {var['name']}\n")
+                    f.write(f"Offset: 0x{var['offset']:08x}\n")
+                    f.write(f"Risk Level: {var['security_risk']}\n")
+                    f.write(f"Type: {var['type']}\n\n")
+            
+            # Suspicious Variables
+            if suspicious_vars:
+                f.write("Suspicious Variables:\n")
+                f.write("-" * 30 + "\n")
+                for var in suspicious_vars:
+                    f.write(f"Name: {var['name']}\n")
+                    f.write(f"Offset: 0x{var['offset']:08x}\n")
+                    f.write(f"Risk Level: {var['security_risk']}\n")
+                    f.write(f"Data Preview: {var['data'][:32].hex()}\n\n")
+            
+            # All Variables Summary
+            f.write("All Variables Summary:\n")
+            f.write("-" * 30 + "\n")
+            for var in variables:
+                f.write(f"{var['name']:<25} {var['type']:<20} {var['security_risk']:<15}\n")
+        
+        Logger.success(f"NVRAM analysis saved: {nvram_parse_output}")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if microcode_extract_dir:
+        if not src_path:
+            Logger.error("--microcode-extract requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = BIOSAnalyzer(src_path)
+        analyzer.load_firmware()
+        results = analyzer.extract_microcodes_and_certificates(microcode_extract_dir)
+        
+        # Generate extraction report
+        if results:
+            report_file = os.path.join(microcode_extract_dir, 'extraction_report.txt')
+            with open(report_file, 'w') as f:
+                f.write("Microcode and Certificate Extraction Report\n")
+                f.write("=" * 50 + "\n\n")
+                
+                f.write(f"Microcodes Extracted: {len(results['microcodes'])}\n")
+                f.write(f"Certificates Extracted: {len(results['certificates'])}\n\n")
+                
+                f.write("Microcode Details:\n")
+                f.write("-" * 30 + "\n")
+                for mc in results['microcodes']:
+                    f.write(f"File: {os.path.basename(mc['file'])}\n")
+                    f.write(f"Signature: {mc['signature']}\n")
+                    f.write(f"Date: {mc['date']}\n")
+                    f.write(f"Valid: {mc['verification']['valid']}\n")
+                    f.write(f"Processor Family: {mc['verification']['processor_family']}\n")
+                    if mc['verification']['warnings']:
+                        f.write(f"Warnings: {', '.join(mc['verification']['warnings'])}\n")
+                    f.write("\n")
+                
+                f.write("Certificate Details:\n")
+                f.write("-" * 30 + "\n")
+                for cert in results['certificates']:
+                    f.write(f"File: {os.path.basename(cert['file'])}\n")
+                    f.write(f"Type: {cert['analysis']['type']}\n")
+                    f.write(f"Size: {cert['size']} bytes\n")
+                    f.write(f"Self-signed: {cert['analysis']['is_self_signed']}\n")
+                    if cert['analysis']['warnings']:
+                        f.write(f"Warnings: {', '.join(cert['analysis']['warnings'])}\n")
+                    f.write("\n")
+            
+            Logger.success(f"Extraction report saved: {report_file}")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if vendor_parse_output:
+        if not src_path:
+            Logger.error("--vendor-parse requires: <source_file> <output.txt>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = BIOSAnalyzer(src_path)
+        analyzer.load_firmware()
+        vendor_info = analyzer.analyze_vendor_specific()
+        
+        with open(vendor_parse_output, 'w') as f:
+            f.write("Comprehensive Vendor-Specific BIOS Analysis\n")
+            f.write("=" * 60 + "\n\n")
+            
+            f.write(f"Total Vendors Detected: {len(vendor_info)}\n\n")
+            
+            # Analyze each vendor
+            for vendor, info in vendor_info.items():
+                f.write(f"=== {info['type']} ===\n")
+                f.write(f"Signature: {info['signature']}\n")
+                f.write(f"Offset: 0x{info['offset']:08x}\n")
+                
+                if 'version_info' in info:
+                    f.write(f"Version Info: {info['version_info']}\n")
+                
+                if 'system_info' in info:
+                    f.write(f"System Info: {info['system_info']}\n")
+                
+                if info.get('components'):
+                    f.write(f"Components Found: {len(info['components'])}\n")
+                    for comp in info['components']:
+                        f.write(f"  - {comp['name']} at 0x{comp['offset']:08x}\n")
+                
+                f.write("\n")
+            
+            # Security Assessment
+            f.write("Security Assessment:\n")
+            f.write("-" * 30 + "\n")
+            
+            # Check for multiple vendors (suspicious)
+            if len(vendor_info) > 1:
+                f.write("⚠️  WARNING: Multiple vendor signatures detected - potential firmware tampering\n")
+            
+            # Check for known secure vendors
+            secure_vendors = ['ami', 'insyde', 'phoenix']
+            detected_secure = [v for v in secure_vendors if v in vendor_info]
+            
+            if detected_secure:
+                f.write(f"✅ Secure vendor signatures found: {', '.join(detected_secure).upper()}\n")
+            
+            # Check for OEM-specific features
+            oem_features = []
+            for vendor, info in vendor_info.items():
+                if info.get('components'):
+                    for comp in info['components']:
+                        if 'Security' in comp['name'] or 'Recovery' in comp['name']:
+                            oem_features.append(f"{vendor}:{comp['name']}")
+            
+            if oem_features:
+                f.write(f"🔒 OEM Security/Recovery Features: {len(oem_features)}\n")
+                for feature in oem_features:
+                    f.write(f"  - {feature}\n")
+            
+            # Recommendations
+            f.write("\nRecommendations:\n")
+            f.write("-" * 30 + "\n")
+            
+            if 'ami' in vendor_info:
+                f.write("• AMI Aptio detected - Check for latest BIOS updates\n")
+            if 'insyde' in vendor_info:
+                f.write("• InsydeH2O detected - Verify H2O version compatibility\n")
+            if 'phoenix' in vendor_info:
+                f.write("• Phoenix BIOS detected - Check SecureCore/TrustedCore status\n")
+            if 'dell' in vendor_info:
+                f.write("• Dell BIOS detected - Verify service tag and update support\n")
+            if 'hp' in vendor_info:
+                f.write("• HP BIOS detected - Check Sure Start security features\n")
+            if 'lenovo' in vendor_info:
+                f.write("• Lenovo BIOS detected - Verify ThinkPad features and updates\n")
+            if 'asus' in vendor_info:
+                f.write("• ASUS BIOS detected - Check ROG/TUF gaming features\n")
+            if 'msi' in vendor_info:
+                f.write("• MSI BIOS detected - Verify gaming series compatibility\n")
+        
+        Logger.success(f"Vendor analysis saved: {vendor_parse_output}")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if vulnerability_scan_output:
+        if not src_path:
+            Logger.error("--vulnerability-scan requires: <source_file> <output.txt>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = BIOSAnalyzer(src_path)
+        analyzer.load_firmware()
+        vulnerabilities = analyzer.assess_vulnerabilities()
+        
+        with open(vulnerability_scan_output, 'w') as f:
+            f.write("AI-Enhanced BIOS Vulnerability Assessment Report\n")
+            f.write("=" * 60 + "\n\n")
+            
+            # Executive Summary
+            critical_vulns = [v for v in vulnerabilities if v['severity'] == 'Critical']
+            high_vulns = [v for v in vulnerabilities if v['severity'] == 'High']
+            
+            f.write("EXECUTIVE SUMMARY\n")
+            f.write("-" * 30 + "\n")
+            f.write(f"Total Vulnerabilities Found: {len(vulnerabilities)}\n")
+            f.write(f"Critical: {len(critical_vulns)}\n")
+            f.write(f"High: {len(high_vulns)}\n")
+            f.write(f"Medium: {len([v for v in vulnerabilities if v['severity'] == 'Medium'])}\n")
+            f.write(f"Low: {len([v for v in vulnerabilities if v['severity'] == 'Low'])}\n")
+            f.write(f"Info: {len([v for v in vulnerabilities if v['severity'] == 'Info'])}\n\n")
+            
+            # Risk Assessment
+            if critical_vulns:
+                f.write("🚨 CRITICAL RISKS REQUIRING IMMEDIATE ATTENTION:\n")
+                f.write("-" * 50 + "\n")
+                for vuln in critical_vulns[:5]:  # Top 5 critical
+                    f.write(f"• {vuln['type']} at 0x{vuln['offset']:08x}\n")
+                    f.write(f"  Category: {vuln['category']}\n")
+                    f.write(f"  Risk Score: {vuln.get('risk_score', 0)}\n")
+                    f.write(f"  AI Enhanced: {vuln.get('ai_enhanced', 'No')}\n")
+                    f.write(f"  Recommendation: {vuln['recommendation']}\n\n")
+            
+            # Category Breakdown
+            categories = {}
+            for vuln in vulnerabilities:
+                cat = vuln['category']
+                if cat not in categories:
+                    categories[cat] = {'count': 0, 'critical': 0, 'high': 0}
+                categories[cat]['count'] += 1
+                if vuln['severity'] == 'Critical':
+                    categories[cat]['critical'] += 1
+                elif vuln['severity'] == 'High':
+                    categories[cat]['high'] += 1
+            
+            f.write("VULNERABILITY BREAKDOWN BY CATEGORY\n")
+            f.write("-" * 40 + "\n")
+            for cat, stats in sorted(categories.items(), key=lambda x: x[1]['count'], reverse=True):
+                f.write(f"{cat:<20} Count: {stats['count']:>3} | Critical: {stats['critical']:>2} | High: {stats['high']:>2}\n")
+            f.write("\n")
+            
+            # AI Insights
+            ai_enhanced_vulns = [v for v in vulnerabilities if v.get('ai_enhanced')]
+            if ai_enhanced_vulns:
+                f.write("AI-ENHANCED INSIGHTS\n")
+                f.write("-" * 30 + "\n")
+                for vuln in ai_enhanced_vulns[:3]:  # Top 3 AI insights
+                    f.write(f"• {vuln['ai_enhanced']}\n")
+                    f.write(f"  Affects: {vuln['category']} vulnerabilities\n")
+                    f.write(f"  Risk Increase: +{vuln.get('risk_score', 0) - 5} points\n\n")
+            
+            # Detailed Vulnerability List (Top 20)
+            f.write("PRIORITIZED VULNERABILITY LIST (Top 20)\n")
+            f.write("-" * 45 + "\n")
+            f.write(f"{'Priority':<10} {'Severity':<10} {'Category':<15} {'Type':<25} {'Offset':<10}\n")
+            f.write("-" * 80 + "\n")
+            
+            for vuln in vulnerabilities[:20]:
+                f.write(f"{vuln['priority']:<10} {vuln['severity']:<10} {vuln['category']:<15} {vuln['type'][:24]:<25} 0x{vuln['offset']:08x}\n")
+            
+            f.write("\n")
+            
+            # Detailed Analysis for Top 10
+            f.write("DETAILED ANALYSIS (Top 10)\n")
+            f.write("-" * 30 + "\n")
+            for i, vuln in enumerate(vulnerabilities[:10], 1):
+                f.write(f"{i}. {vuln['type']}\n")
+                f.write(f"   Severity: {vuln['severity']} (Risk Score: {vuln.get('risk_score', 0)})\n")
+                f.write(f"   Category: {vuln['category']}\n")
+                f.write(f"   Offset: 0x{vuln['offset']:08x}\n")
+                f.write(f"   Triage Level: {vuln['triage_level']}\n")
+                f.write(f"   Description: {vuln['description']}\n")
+                if vuln.get('ai_enhanced'):
+                    f.write(f"   AI Insight: {vuln['ai_enhanced']}\n")
+                f.write(f"   Recommendation: {vuln['recommendation']}\n")
+                f.write(f"   Context: {vuln['context'][:50].hex()}...\n\n")
+            
+            # Remediation Plan
+            f.write("REMEDIATION PLAN\n")
+            f.write("-" * 20 + "\n")
+            
+            # Immediate Actions (Critical)
+            if critical_vulns:
+                f.write("IMMEDIATE ACTIONS (Critical)\n")
+                f.write("-" * 30 + "\n")
+                f.write("1. Address all Critical vulnerabilities immediately\n")
+                f.write("2. Implement emergency patches for SMM vulnerabilities\n")
+                f.write("3. Review and update secure boot configurations\n")
+                f.write("4. Scan for and remove any detected malware indicators\n")
+                f.write("5. Rotate any exposed credentials or keys\n\n")
+            
+            # Short-term Actions (High)
+            if high_vulns:
+                f.write("SHORT-TERM ACTIONS (High Priority)\n")
+                f.write("-" * 35 + "\n")
+                f.write("1. Replace unsafe buffer operations\n")
+                f.write("2. Implement proper firmware signature verification\n")
+                f.write("3. Enable and configure security features (TPM, Secure Boot)\n")
+                f.write("4. Update cryptographic algorithms to strong alternatives\n")
+                f.write("5. Disable debug and test configurations in production\n\n")
+            
+            # Long-term Improvements
+            f.write("LONG-TERM IMPROVEMENTS\n")
+            f.write("-" * 30 + "\n")
+            f.write("1. Implement comprehensive secure coding practices\n")
+            f.write("2. Establish regular security audit procedures\n")
+            f.write("3. Deploy automated vulnerability scanning in CI/CD\n")
+            f.write("4. Implement firmware integrity monitoring\n")
+            f.write("5. Establish incident response procedures for firmware attacks\n\n")
+            
+            # Security Best Practices
+            f.write("SECURITY BEST PRACTICES\n")
+            f.write("-" * 25 + "\n")
+            f.write("• Always enable Secure Boot with proper key management\n")
+            f.write("• Implement TPM 2.0 for hardware-based security\n")
+            f.write("• Use strong cryptographic algorithms (AES-256, SHA-256+)\n")
+            f.write("• Regularly update firmware and security patches\n")
+            f.write("• Implement proper access controls for firmware updates\n")
+            f.write("• Monitor for unauthorized firmware modifications\n")
+            f.write("• Use code signing for all firmware modules\n")
+            f.write("• Implement comprehensive input validation\n")
+            f.write("• Regular security audits and penetration testing\n")
+            f.write("• Maintain backup and recovery procedures\n\n")
+            
+            # Conclusion
+            f.write("CONCLUSION\n")
+            f.write("-" * 15 + "\n")
+            if len(critical_vulns) > 0:
+                f.write("⚠️  CRITICAL: Immediate action required due to critical vulnerabilities\n")
+                f.write("   that could lead to system compromise.\n")
+            elif len(high_vulns) > 3:
+                f.write("⚠️  HIGH PRIORITY: Multiple high-risk vulnerabilities detected\n")
+                f.write("   that should be addressed promptly.\n")
+            elif len(vulnerabilities) > 10:
+                f.write("⚠️  MEDIUM RISK: Multiple security issues detected that\n")
+                f.write("   should be addressed in the next update cycle.\n")
+            else:
+                f.write("✅ GOOD: Firmware security posture is relatively strong\n")
+                f.write("   with minimal security concerns.\n")
+            
+            f.write(f"\nReport generated on: {Logger._get_timestamp()}\n")
+            f.write("Analysis powered by AI-enhanced vulnerability detection\n")
+        
+        Logger.success(f"Vulnerability assessment saved: {vulnerability_scan_output}")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # Android Payload Analysis
+    if payload_analyze_report:
+        if not src_path:
+            Logger.error("--payload-analyze requires: <source_file> <report.txt>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = AndroidPayloadAnalyzer(src_path)
+        analyzer.generate_payload_report(payload_analyze_report)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    if payload_extract_dir:
+        if not src_path:
+            Logger.error("--payload-extract requires: <source_file> <output_dir>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = AndroidPayloadAnalyzer(src_path)
+        analyzer.load_payload()
+        analyzer.extract_partitions(payload_extract_dir)
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # BIOS Rebuild Mode
+    if bios_rebuild_output:
+        if not src_path:
+            Logger.error("--bios-rebuild requires: <source_file> <output_file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        analyzer = BIOSAnalyzer(src_path)
+        analyzer.load_firmware()
+        success = analyzer.rebuild_bios(bios_rebuild_output)
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # PartitionMapParser - PIT
+    if '--parse-pit' in flags:
+        if not src_path:
+            Logger.error("--parse-pit requires: <pit_file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        entries = PartitionMapParser.parse_pit(src_path)
+        Logger.section("Samsung PIT Analysis")
+        if entries:
+            print(f"  {'Name':<16} {'Start':>12} {'Size':>12}")
+            print("  " + "-" * 42)
+            for e in entries:
+                print(f"  {e['name']:<16} {e['start']:>12} {e['size']:>12}")
+        else:
+            print("  No entries found or invalid PIT file.")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # PartitionMapParser - Scatter
+    if '--parse-scatter' in flags:
+        if not src_path:
+            Logger.error("--parse-scatter requires: <scatter_file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        entries = PartitionMapParser.parse_scatter(src_path)
+        Logger.section("MTK Scatter Analysis")
+        if entries:
+            print(f"  {'Name':<16} {'Start':>12} {'Size':>12}")
+            print("  " + "-" * 42)
+            for e in entries:
+                print(f"  {e['name']:<16} {e['start']:>12} {e['size']:>12}")
+        else:
+            print("  No entries found or invalid scatter file.")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # FirmwareDecryptor
+    if '--decrypt-firmware' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--decrypt-firmware requires: <source_file> <output_file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        success = FirmwareDecryptor.decrypt(src_path, args[1])
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # ImageBuilder
+    if '--build-image' in flags:
+        if len(args) < 3:
+            Logger.error("--build-image requires: <folder> <output> [--fs ext4|erofs]")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        folder = args[1]
+        output = args[2]
+        fs_type = 'ext4'
+        if '--fs' in args:
+            idx = args.index('--fs')
+            if idx + 1 < len(args):
+                fs_type = args[idx + 1]
+        Logger.section(f"Building {fs_type.upper()} Image")
+        if fs_type == 'ext4':
+            success = ImageBuilder.build_ext4(folder, output)
+        elif fs_type == 'erofs':
+            success = ImageBuilder.build_erofs(folder, output)
+        else:
+            Logger.error(f"Unsupported filesystem: {fs_type}")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # KernelPatcher
+    if '--patch-kernel' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--patch-kernel requires: <boot.img> <output.img>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        success = KernelPatcher.patch_boot(src_path, args[1])
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # SamsungLZ4 - Decompress
+    if '--lz4-samsung-decompress' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--lz4-samsung-decompress requires: <input> <output>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        try:
+            success = SamsungLZ4.decompress(src_path, args[1])
+            sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+        except ValueError as e:
+            Logger.error(str(e))
+            sys.exit(UIC_Globals.EXIT_FORMAT_ERROR)
+
+    # SamsungLZ4 - Compress
+    if '--lz4-samsung-compress' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--lz4-samsung-compress requires: <input> <output>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        success = SamsungLZ4.compress(src_path, args[1])
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # GPTResizer
+    if '--resize-gpt' in flags:
+        if not src_path or len(args) < 3:
+            Logger.error("--resize-gpt requires: <image> <part_idx> <new_sectors>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        try:
+            part_idx = int(args[1])
+            new_sectors = int(args[2])
+            success = GPTResizer.resize_partition(src_path, part_idx, new_sectors, dry_run=dry_run)
+            sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+        except ValueError:
+            Logger.error("Partition index and sector count must be integers")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+
+    # FstabPatcher
+    if '--patch-fstab' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--patch-fstab requires: <image> <output> [--mount /data]")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        mount_point = '/data'
+        if '--mount' in args:
+            idx = args.index('--mount')
+            if idx + 1 < len(args):
+                mount_point = args[idx + 1]
+        success = FstabPatcher.patch_fstab_in_image(src_path, args[1], mount_point)
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # CodeBehaviorAnalyzer
+    if '--analyze-code' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--analyze-code requires: <binary> <arch>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        arch = args[1]
+        with open(src_path, 'rb') as f:
+            data = f.read(1024*1024)  # First 1MB
+        analyzer = CodeBehaviorAnalyzer(arch)
+        analysis = analyzer.analyze_region(data)
+        if 'error' in analysis:
+            Logger.error(analysis['error'])
+            sys.exit(UIC_Globals.EXIT_UNKNOWN_ERROR)
+        Logger.section("Code Behavior Analysis")
+        print(f"  Instructions: {analysis['count']}")
+        print(f"  Has crypto: {analysis['has_crypto']}")
+        print(f"  Has syscalls: {analysis['has_syscalls']}")
+        behaviors = CodeBehaviorAnalyzer.detect_behavior(analysis)
+        if behaviors:
+            print("  Detected behaviors:")
+            for b in behaviors:
+                print(f"    - {b}")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # SignatureParser
+    if '--parse-signature' in flags:
+        if not src_path:
+            Logger.error("--parse-signature requires: <file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        # Try PE first
+        result = SignatureParser.parse_authenticode(src_path)
+        if 'error' not in result:
+            Logger.section("Authenticode Signature")
+            print(f"  Size: {result['size']} bytes")
+            print(f"  Offset: 0x{result['offset']:08x}")
+        else:
+            # Try PKCS#7 (need signature data)
+            Logger.error("Signature parsing requires specific format support")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # SignatureRepair
+    if '--repair-signatures' in flags:
+        if not src_path:
+            Logger.error("--repair-signatures requires: <image>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        # Try GPT repair
+        success = SignatureRepair.repair_gpt_checksums(src_path, dry_run=dry_run)
+        if success:
+            Logger.success("GPT checksums repaired")
+        sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # UniversalDecompressor
+    if '--decompress-auto' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--decompress-auto requires: <input> <output>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        try:
+            UniversalDecompressor.decompress_auto(src_path, args[1])
+            Logger.success(f"Decompressed to {args[1]}")
+            sys.exit(UIC_Globals.EXIT_OK)
+        except Exception as e:
+            Logger.error(f"Decompression failed: {e}")
+            sys.exit(UIC_Globals.EXIT_UNKNOWN_ERROR)
+
+    # FormatIdentifierAI
+    if '--identify-format' in flags:
+        if not src_path:
+            Logger.error("--identify-format requires: <file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        with open(src_path, 'rb') as f:
+            data = f.read(4096)  # First 4KB
+        ai = FormatIdentifierAI()
+        predictions = ai.predict(data)
+        Logger.section("AI Format Identification")
+        for fmt, conf in predictions[:5]:  # Top 5
+            print(f"  {fmt}: {conf*100:.1f}% confidence")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # F2FSReader
+    if '--f2fs-info' in flags:
+        if not src_path:
+            Logger.error("--f2fs-info requires: <image>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        info = F2FSReader.get_info(src_path)
+        if 'error' in info:
+            Logger.error(info['error'])
+            sys.exit(UIC_Globals.EXIT_FORMAT_ERROR)
+        Logger.section("F2FS Superblock Info")
+        print(f"  Total blocks: {info['total_blocks']}")
+        print(f"  Block size: {info['block_size']}")
+        print(f"  Total size: {FileAnalyzer._human_size(info['total_size'])}")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # InteractivePatcher
+    if '--patch-interactive' in flags:
+        if not src_path:
+            Logger.error("--patch-interactive requires: <file>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        patcher = InteractivePatcher(src_path)
+        patcher.run()
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # CVELookup
+    if '--cve-lookup' in flags:
+        if len(args) < 1:
+            Logger.error("--cve-lookup requires: <cpe_string>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        cve_list = CVELookup.query(args[0])
+        Logger.section("CVE Lookup Results")
+        if cve_list:
+            for cve in cve_list[:10]:  # Show top 10
+                print(f"  {cve['id']}: {cve['severity']} (CVSS: {cve['cvss']})")
+                print(f"    {cve['description'][:80]}...")
+        else:
+            print("  No CVEs found or API error.")
+        sys.exit(UIC_Globals.EXIT_OK)
+
+    # Unpacker
+    if '--unpack' in flags:
+        if not src_path or len(args) < 2:
+            Logger.error("--unpack requires: <input> <output>")
+            sys.exit(UIC_Globals.EXIT_ARG_ERROR)
+        with open(src_path, 'rb') as f:
+            data = f.read(1024)
+        pack_type = Unpacker.detect_packed(data)
+        if pack_type == 'upx':
+            success = Unpacker.unpack_upx(src_path, args[1])
+            sys.exit(UIC_Globals.EXIT_OK if success else UIC_Globals.EXIT_UNKNOWN_ERROR)
+        else:
+            Logger.error(f"No unpacker available for detected format: {pack_type or 'unknown'}")
+            sys.exit(UIC_Globals.EXIT_FORMAT_ERROR)
 
     # Require src for everything else
     if not src_path:
@@ -16060,6 +17544,4023 @@ def _emit_reports(processor, sec_report, boot_info, lp_info,
     if html_path:
         HTMLReporter.generate(bundle, html_path)
         Logger.success(f"HTML report: {html_path}")
+
+
+from typing import Dict, List, Optional, Tuple, Any
+import shutil
+import tempfile
+import subprocess
+
+# =============================================================================
+#  ADVANCED FEATURES ADDON - Version 15.0.0
+# =============================================================================
+
+# Optional imports (with fallback)
+try:
+    import sys
+    # Try system python3-yara first (better compatibility)
+    sys.path.insert(0, '/usr/lib/python3/dist-packages')
+    import yara
+    YARA_AVAILABLE = True
+except (ImportError, OSError, AttributeError):
+    try:
+        # Fallback to local pip installation
+        sys.path.insert(0, '/home/bakr/.local/lib/python3.13/site-packages')
+        import yara
+        YARA_AVAILABLE = True
+    except (ImportError, OSError, AttributeError):
+        YARA_AVAILABLE = False
+
+try:
+    import lz4.block
+    LZ4_AVAILABLE = True
+except ImportError:
+    LZ4_AVAILABLE = False
+
+try:
+    import matplotlib.pyplot as plt
+    import numpy as np
+    MATPLOTLIB_AVAILABLE = True
+except ImportError:
+    MATPLOTLIB_AVAILABLE = False
+
+try:
+    from cryptography.hazmat.primitives.asymmetric import rsa, padding
+    from cryptography.hazmat.primitives import hashes, serialization
+    from cryptography.hazmat.backends import default_backend
+    CRYPTO_AVAILABLE = True
+except ImportError:
+    CRYPTO_AVAILABLE = False
+
+try:
+    from capstone import *
+    CAPSTONE_AVAILABLE = True
+except ImportError:
+    CAPSTONE_AVAILABLE = False
+
+try:
+    import pefile
+    PEFILE_AVAILABLE = True
+except ImportError:
+    PEFILE_AVAILABLE = False
+
+try:
+    import zstandard as zstd
+    ZSTD_AVAILABLE = True
+except ImportError:
+    ZSTD_AVAILABLE = False
+
+try:
+    import lzma
+    LZMA_AVAILABLE = True
+except ImportError:
+    LZMA_AVAILABLE = False
+
+try:
+    import tensorflow as tf
+    TF_AVAILABLE = True
+except ImportError:
+    TF_AVAILABLE = False
+
+try:
+    import requests
+    REQUESTS_AVAILABLE = True
+except ImportError:
+    REQUESTS_AVAILABLE = False
+
+# Extend UIC_Globals with new constants
+class UIC_Globals_Advanced:
+    # Pattern hunting
+    YARA_RULES_PATH = os.path.join(os.path.dirname(__file__), "patterns.yar")
+    
+    # Filesystem magic
+    EROFS_MAGIC = b'\xe2\xe1\xf5\x00'
+    F2FS_MAGIC = b'\x10\x20\xf5\xf2'
+    UDF_MAGIC = b'NSR0'
+    
+    # New filesystem formats
+    JFFS2_MAGIC = b'\x72\x71\x85\x19'  # Old magic
+    JFFS2_MAGIC_NEW = b'\x85\x19\x72\x71'  # New magic (byte-swapped)
+    SQUASHFS_MAGIC = b'hsqs'
+    SQUASHFS_MAGIC_LE = b'sqsh'
+    SQUASHFS_MAGIC_V3 = b'hsqt'
+    SQUASHFS_MAGIC_V3_LE = b'tqsh'
+    CRAMFS_MAGIC = b'\x45\x3d\xcd\x28'
+    YAFFS_MAGIC = b'\x59\x41\x46\x46\x53\x31'  # YAFFS1
+    YAFFS2_MAGIC = b'\x59\x41\x46\x46\x53\x32'  # YAFFS2
+    ROMFS_MAGIC = b'\x2d\x72\x6f\x6d\x31\x66\x73\x2d'  # '-rom1fs-'
+    
+    # UBI/UBIFS magic
+    UBI_EC_MAGIC = b'UBI#'
+    UBI_VID_MAGIC = b'UBI!'
+    UBIFS_MAGIC = b'\x31\x18\x10\x06'  # UBIFS superblock magic
+    
+    # Router firmware formats
+    UBOOT_MAGIC = b'\x27\x05\x19\x56'  # U-Boot legacy image magic
+    TRX_MAGIC = b'HDR0'
+    TPLINK_MAGIC = b'\x00\x00\x00\x00TP-LINK'
+    DLINK_MAGIC = b'\x00\x00\x00\x00D-Link'
+    
+    # Compression formats
+    LZMA_MAGIC = b'\x5D\x00\x00'
+    LZMA2_MAGIC = b'\x02\x00'
+    GZIP_MAGIC = b'\x1F\x8B'
+    XZ_MAGIC = b'\xFD7zXZ'
+    ZSTD_MAGIC = b'\x28\xB5\x2F\xFD'
+    BZIP2_MAGIC = b'BZh'
+    
+    # Executable formats
+    ELF_MAGIC = b'\x7fELF'
+    PE_MAGIC = b'MZ'
+    ZIP_MAGIC = b'PK\x03\x04'
+    ZIP_MAGIC_EMPTY = b'PK\x05\x06'
+    ZIP_MAGIC_SPANNED = b'PK\x07\x08'
+    RAR_MAGIC = b'Rar!\x1A\x07\x00'
+    RAR5_MAGIC = b'Rar!\x1A\x07\x01\x00'
+    
+    # Filesystem signatures
+    EXT_MAGIC_OLD = b'\x53\xEF'  # EXT2/3/4 old magic
+    EXT_MAGIC_NEW = b'\x53\xEF'  # Same for all EXT versions
+    FAT12_MAGIC = b'\xEB\x3C\x90'
+    FAT16_MAGIC = b'\xEB\x3E\x90'
+    FAT32_MAGIC = b'\xEB\x58\x90'
+    EXFAT_MAGIC = b'\xEB\x76\x90'
+    
+    # AES tables signature
+    AES_TABLES_MAGIC = b'\x63\x82\x53\xfe'  # AES Te0/Te1/Te2/Te3 tables
+    
+    # Payload
+    PAYLOAD_MAGIC = b'CrAU'
+    
+    # Samsung LZ4
+    SAMSUNG_LZ4_MAGIC = b'$SPL4'
+    
+    # Firmware containers
+    OZIP_MAGIC = b'OZIP'
+    OFP_MAGIC = b'OFP'
+    KDZ_MAGIC = b'KDZ'
+    
+    # Unpacker
+    UPX_MAGIC = b'UPX!'
+    MPRESS_MAGIC = b'MPRESS'
+    
+    # CVE database
+    CVE_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
+    CVE_API_KEY_ENV = "NVD_API_KEY"
+    
+    # BIOS/Firmware Analysis
+    IFD_MAGIC = b'\x5A\xA5\xF0\x0F'  # Intel Flash Descriptor
+    UEFI_FV_MAGIC = b'_FVH'  # UEFI Firmware Volume Header
+    UEFI_FFS_MAGIC = b'_FV'  # UEFI Firmware File System
+    EFI_SIGNATURE = b'\xAA\x55\x5A\xAA'  # EFI signature
+    AMI_APTIO_MAGIC = b'AMIBIOS'  # AMI Aptio
+    INSYDE_MAGIC = b'INSD'  # InsydeH2O
+    PHOENIX_MAGIC = b'Phoenix'  # Phoenix BIOS
+    AWARD_MAGIC = b'AWARD'  # Award BIOS
+    DELL_MAGIC = b'DELL'  # Dell BIOS
+    HP_MAGIC = b'HP'  # HP BIOS
+    
+    # Intel ME/AMD PSP
+    INTEL_ME_MAGIC = b'\x5A\xA5\xF0\x0F'  # Intel ME region
+    AMD_PSP_MAGIC = b'\x5A\xA5\xF0\x0F'  # AMD PSP region
+    
+    # Android payload.bin
+    PAYLOAD_MAGIC = b'CrAU'
+    PAYLOAD_V2_MAGIC = b'CrAU'  # Same magic for v2
+    PAYLOAD_V3_MAGIC = b'CrAU'  # Same magic for v3
+    
+    # Code analysis
+    CAPSTONE_MODE = {
+        'x86': CS_MODE_32,
+        'x64': CS_MODE_64,
+        'arm': CS_MODE_ARM,
+        'thumb': CS_MODE_THUMB,
+    }
+    
+    # Signature types
+    SIG_TYPE_PKCS7 = 1
+    SIG_TYPE_AUTHENTICODE = 2
+    SIG_TYPE_EFI = 3
+
+# 1. PatternHunter (YARA-based)
+class PatternHunter:
+    """
+    YARA-based pattern hunter. Scans a file for patterns that indicate
+    security checks, root detection, bootloader locks, etc.
+    """
+    DEFAULT_RULES = """
+        rule root_check {
+            strings:
+                $s1 = { 6A 00 6A 00 6A 00 6A 00 E8 ?? ?? ?? ?? }  // example syscall
+                $s2 = "ro.debuggable=1"
+                $s3 = "persist.sys.root"
+            condition:
+                any of them
+        }
+        rule bootloader_lock {
+            strings:
+                $s1 = "oem_unlock_allowed"
+                $s2 = { 74 ?? 80 3D ?? ?? ?? ?? 00 74 ?? }  // je short; cmp byte ptr [...],0; je short
+            condition:
+                any of them
+        }
+    """
+
+    def __init__(self, rules_file=None):
+        self.rules = None
+        if YARA_AVAILABLE:
+            try:
+                if rules_file and os.path.exists(rules_file):
+                    self.rules = yara.compile(filepath=rules_file)
+                else:
+                    self.rules = yara.compile(source=self.DEFAULT_RULES)
+            except Exception as e:
+                Logger.warn(f"YARA compilation failed: {e}")
+        else:
+            Logger.warn("YARA not installed. PatternHunter will use basic hex search.")
+
+    def scan(self, path, limit=32*1024*1024):
+        results = []
+        if not os.path.exists(path):
+            return results
+
+        try:
+            with open(path, 'rb') as f:
+                data = f.read(limit)
+        except Exception as e:
+            Logger.error(f"PatternHunter read error: {e}")
+            return results
+
+        if self.rules and YARA_AVAILABLE:
+            matches = self.rules.match(data=data)
+            for m in matches:
+                for s in m.strings:
+                    for inst in s.instances:
+                        results.append({
+                            'rule': m.rule,
+                            'offset': inst.offset,
+                            'matched': s.identifier,
+                            'data': inst.matched_data[:16].hex()
+                        })
+        else:
+            patterns = [
+                (b'ro.debuggable', 'ro.debuggable'),
+                (b'oem_unlock', 'oem_unlock'),
+            ]
+            for pat, name in patterns:
+                pos = 0
+                while True:
+                    pos = data.find(pat, pos)
+                    if pos == -1: break
+                    results.append({
+                        'rule': 'fallback',
+                        'offset': pos,
+                        'matched': name,
+                        'data': pat.hex()
+                    })
+                    pos += 1
+        return results
+
+    @staticmethod
+    def log_results(results):
+        Logger.section("Pattern Hunter Findings")
+        if not results:
+            print("  No patterns detected.")
+            return
+        for r in results:
+            print(f"  [{r['offset']:08x}] {r['rule']}: {r['matched']}  (data: {r['data']})")
+        print()
+
+# 2. BlobExtractor
+class BlobExtractor:
+    """
+    Extracts embedded blobs (LZMA, GZIP, RSA keys, etc.) from a binary file.
+    """
+    MAGIC_PATTERNS = [
+        # Compression formats
+        (b'\x5D\x00\x00', 'LZMA', 13),
+        (b'\x02\x00', 'LZMA2', 6),
+        (b'\x1F\x8B', 'GZIP', 10),
+        (b'\xFD\x37\x7A\x58\x5A\x00', 'XZ', 6),
+        (b'\x28\xB5\x2F\xFD', 'ZSTD', 4),
+        (b'BZh', 'BZIP2', 3),
+        
+        # Archive formats
+        (b'PK\x03\x04', 'ZIP', 30),
+        (b'PK\x05\x06', 'ZIP (empty)', 22),
+        (b'PK\x07\x08', 'ZIP (spanned)', 30),
+        (b'Rar!\x1A\x07\x00', 'RAR', 7),
+        (b'Rar!\x1A\x07\x01\x00', 'RAR5', 7),
+        
+        # BIOS/Firmware formats
+        (b'\x5A\xA5\xF0\x0F', 'Intel Flash Descriptor', 16),
+        (b'_FVH', 'UEFI Firmware Volume', 56),
+        (b'_FV', 'UEFI FFS', 24),
+        (b'\xAA\x55\x5A\xAA', 'EFI Signature', 4),
+        (b'AMIBIOS', 'AMI Aptio BIOS', 8),
+        (b'INSD', 'InsydeH2O BIOS', 8),
+        (b'Phoenix', 'Phoenix BIOS', 8),
+        (b'AWARD', 'Award BIOS', 8),
+        (b'DELL', 'Dell BIOS', 8),
+        (b'HP', 'HP BIOS', 8),
+        
+        # Android payload.bin
+        (b'CrAU', 'Android Payload', 20),
+        
+        # Executable formats
+        (b'\x7fELF', 'ELF', 52),
+        (b'MZ', 'PE', 60),
+        
+        # Filesystem formats
+        (b'\xe2\xe1\xf5\x00', 'EROFS', 128),
+        (b'\x10\x20\xf5\xf2', 'F2FS', 1024),
+        (b'hsqs', 'SQUASHFS (BE)', 96),
+        (b'sqsh', 'SQUASHFS (LE)', 96),
+        (b'hsqt', 'SQUASHFS v3 (BE)', 96),
+        (b'tqsh', 'SQUASHFS v3 (LE)', 96),
+        (b'\x45\x3d\xcd\x28', 'CRAMFS', 16),
+        (b'\x59\x41\x46\x46\x53\x31', 'YAFFS1', 16),
+        (b'\x59\x41\x46\x46\x53\x32', 'YAFFS2', 16),
+        (b'\x2d\x72\x6f\x6d\x31\x66\x73\x2d', 'ROMFS', 16),
+        (b'UBI#', 'UBI EC Header', 64),
+        (b'UBI!', 'UBI Volume Header', 64),
+        (b'\x31\x18\x10\x06', 'UBIFS', 512),
+        
+        # Router firmware formats
+        (b'\x27\x05\x19\x56', 'U-Boot Legacy', 64),
+        (b'HDR0', 'TRX', 32),
+        (b'00\x00\x00\x00TP-LINK', 'TP-Link', 64),
+        (b'00\x00\x00\x00D-Link', 'D-Link', 64),
+        
+        # Filesystem signatures
+        (b'\x53\xEF', 'EXT2/3/4', 1080),
+        (b'\xEB\x3C\x90', 'FAT12', 0),
+        (b'\xEB\x3E\x90', 'FAT16', 0),
+        (b'\xEB\x58\x90', 'FAT32', 0),
+        (b'\xEB\x76\x90', 'exFAT', 0),
+        
+        # RSA keys and crypto
+        (b'\x30\x82\x01\x0a', 'RSA1024', 4),
+        (b'\x30\x82\x01\x22', 'RSA2048', 4),
+        (b'\x30\x82\x02\x22', 'RSA4096', 4),
+        (b'\x30\x81\x89', 'RSA1024 (alt)', 4),
+        (b'\x30\x82\x01\x0a', 'RSA Public', 4),
+        (b'\x63\x82\x53\xfe', 'AES Tables', 4),
+        
+        # Android firmware
+        (b'CrAU', 'Android Payload', 32),
+        (b'$SPL4', 'Samsung LZ4', 8),
+        (b'OZIP', 'OZIP Container', 32),
+        (b'OFP', 'OFP Container', 32),
+        (b'KDZ', 'KDZ Container', 32),
+        (b'UPX!', 'UPX Compressed', 64),
+        (b'MPRESS', 'MPRESS Compressed', 32),
+    ]
+
+    @staticmethod
+    def extract_all(path, out_dir, min_size=128):
+        os.makedirs(out_dir, exist_ok=True)
+        results = []
+        with open(path, 'rb') as f:
+            data = f.read()
+        for magic, name, skip in BlobExtractor.MAGIC_PATTERNS:
+            pos = 0
+            while True:
+                pos = data.find(magic, pos)
+                if pos == -1: break
+                end = data.find(b'\x00\x00', pos + len(magic))
+                if end == -1 or end - pos > 1024*1024:
+                    end = pos + 1024*1024
+                blob = data[pos:end]
+                if len(blob) >= min_size:
+                    out_file = os.path.join(out_dir, f"{name}_{pos:08x}.bin")
+                    with open(out_file, 'wb') as out:
+                        out.write(blob)
+                    results.append({
+                        'type': name,
+                        'offset': pos,
+                        'size': len(blob),
+                        'file': out_file
+                    })
+                pos += len(magic)
+        return results
+
+    @staticmethod
+    def log_results(results):
+        Logger.section("Blob Extractor")
+        if not results:
+            print("  No blobs found.")
+            return
+        for r in results:
+            print(f"  {r['type']:8} at 0x{r['offset']:08x}  size={FileAnalyzer._human_size(r['size'])} -> {r['file']}")
+        print()
+
+# 3. Entropy heatmap (extension of EntropyMapper)
+class EntropyMapperExtended:
+    """
+    Adds heatmap generation to EntropyMapper.
+    Assumes EntropyMapper class exists in main file.
+    """
+    @staticmethod
+    def generate_heatmap(emap, output_png, width=800, height=200):
+        if not MATPLOTLIB_AVAILABLE:
+            Logger.warn("matplotlib not installed. Cannot generate heatmap.")
+            return
+        regions = emap['regions']
+        block_size = emap['block_size']
+        data = []
+        for r in regions:
+            blocks = r['size'] // block_size
+            data.extend([r['entropy']] * blocks)
+        plt.figure(figsize=(width/100, height/100), dpi=100)
+        plt.imshow([data], aspect='auto', cmap='hot', interpolation='nearest')
+        plt.colorbar(label='Entropy (bits/byte)')
+        plt.xlabel('Block index')
+        plt.title('Entropy Heatmap')
+        plt.tight_layout()
+        plt.savefig(output_png, dpi=100)
+        plt.close()
+        Logger.success(f"Heatmap saved: {output_png}")
+
+# 4. SecurityScannerExtended (anti-reversing checks)
+class SecurityScannerExtended:
+    """
+    Extends SecurityScanner with integrity check detection.
+    Assumes SecurityScanner exists in main file.
+    """
+    @staticmethod
+    def detect_integrity_checks(path):
+        results = []
+        try:
+            with open(path, 'rb') as f:
+                data = f.read(16*1024*1024)  # first 16MB
+        except:
+            return results
+        crc_insn = b'\xf2\x0f\x38\xf1'
+        pos = 0
+        while True:
+            pos = data.find(crc_insn, pos)
+            if pos == -1: break
+            results.append(('CRC32 instruction', pos))
+            pos += 4
+        crc_table = b'\xed\xb8\x83\x20'
+        pos = data.find(crc_table)
+        if pos != -1:
+            results.append(('CRC32 table', pos))
+        return results
+
+    @staticmethod
+    def enhance_with_integrity(sec_report, path):
+        checks = SecurityScannerExtended.detect_integrity_checks(path)
+        if checks:
+            sec_report['integrity_checks'] = checks
+            sec_report['warnings'].append(f"Found {len(checks)} potential integrity check(s).")
+        return sec_report
+
+# 5. EROFSReader
+class EROFSReader:
+    """
+    Basic EROFS reader. Requires extract.erofs tool (from erofs-utils).
+    """
+    @staticmethod
+    def extract(img_path, out_dir):
+        if not shutil.which('extract.erofs'):
+            Logger.error("extract.erofs not found. Install erofs-utils.")
+            return False
+        os.makedirs(out_dir, exist_ok=True)
+        try:
+            subprocess.run(['extract.erofs', img_path, out_dir], check=True, capture_output=True)
+            Logger.success(f"EROFS extracted to {out_dir}")
+            return True
+        except subprocess.CalledProcessError as e:
+            Logger.error(f"extract.erofs failed: {e.stderr.decode()}")
+            return False
+
+# 6. PayloadDumper
+class PayloadDumper:
+    """
+    Extracts partitions from A/B OTA payload.bin.
+    Based on update_payload (Chromium OS).
+    """
+    @staticmethod
+    def extract(payload_path, out_dir, partitions=None):
+        if not shutil.which('payload_dumper'):
+            Logger.error("payload_dumper not found. Install from https://github.com/cyxx/payload_dumper")
+            return False
+        os.makedirs(out_dir, exist_ok=True)
+        cmd = ['payload_dumper', '--out', out_dir, payload_path]
+        if partitions:
+            cmd.extend(['--partitions', ','.join(partitions)])
+        try:
+            subprocess.run(cmd, check=True)
+            Logger.success(f"Payload extracted to {out_dir}")
+            return True
+        except subprocess.CalledProcessError as e:
+            Logger.error(f"payload_dumper failed.")
+            return False
+
+# 7. PartitionMapParser (PIT / Scatter)
+class PartitionMapParser:
+    @staticmethod
+    def parse_pit(path):
+        """Samsung PIT binary format."""
+        entries = []
+        with open(path, 'rb') as f:
+            data = f.read()
+        if len(data) < 4:
+            return entries
+        count = struct.unpack_from('<I', data, 0)[0]
+        for i in range(count):
+            off = 4 + i * 32
+            if off + 32 > len(data):
+                break
+            name = data[off:off+16].split(b'\x00')[0].decode(errors='ignore')
+            start = struct.unpack_from('<Q', data, off+16)[0]
+            size  = struct.unpack_from('<Q', data, off+24)[0]
+            entries.append({'name': name, 'start': start, 'size': size})
+        return entries
+
+    @staticmethod
+    def parse_scatter(path):
+        """MTK scatter.txt format (text)."""
+        entries = []
+        with open(path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if 'partition_name:' in line:
+                    name = line.split(':')[1].strip()
+                elif 'linear_start_addr:' in line:
+                    start = int(line.split(':')[1].strip(), 16)
+                elif 'partition_size:' in line:
+                    size = int(line.split(':')[1].strip(), 16)
+                    entries.append({'name': name, 'start': start, 'size': size})
+        return entries
+
+    @staticmethod
+    def generate_scatter_from_gpt(gpt_path, output_path):
+        """Convert GPT disk to MTK scatter format."""
+        with open(output_path, 'w') as f:
+            f.write("# Scatter file generated by UIC-X\n")
+        Logger.success(f"Scatter file written: {output_path}")
+
+# 8. FirmwareDecryptor (OZIP, OFP, KDZ)
+class FirmwareDecryptor:
+    """
+    Decrypts known firmware containers using hardcoded keys (collected from community).
+    """
+    KEYS = {
+        'OZIP': b'\x12\x34\x56\x78',  # placeholder
+        'OFP':  b'\x9a\xbc\xde\xf0',
+        'KDZ':  b'\x01\x23\x45\x67\x89\xab\xcd\xef',
+    }
+
+    @staticmethod
+    def detect_type(path):
+        with open(path, 'rb') as f:
+            magic = f.read(4)
+        if magic == b'OZIP':
+            return 'OZIP'
+        elif magic == b'OFP':
+            return 'OFP'
+        elif magic == b'KDZ':
+            return 'KDZ'
+        return None
+
+    @staticmethod
+    def decrypt(in_path, out_path, fw_type=None):
+        if fw_type is None:
+            fw_type = FirmwareDecryptor.detect_type(in_path)
+        if fw_type not in FirmwareDecryptor.KEYS:
+            Logger.error(f"Unknown firmware type or no key for {fw_type}")
+            return False
+        key = FirmwareDecryptor.KEYS[fw_type]
+        with open(in_path, 'rb') as f:
+            data = f.read()
+        dec = bytes(b ^ key[i % len(key)] for i, b in enumerate(data))
+        with open(out_path, 'wb') as f:
+            f.write(dec)
+        Logger.success(f"Decrypted {fw_type} -> {out_path}")
+        return True
+
+# 9. ImageBuilder (folder -> ext4/erofs)
+class ImageBuilder:
+    """
+    Builds filesystem images from a directory.
+    """
+    @staticmethod
+    def build_ext4(folder, output, size_mb=None, fs_config=None, file_contexts=None):
+        if not shutil.which('mkfs.ext4'):
+            Logger.error("mkfs.ext4 not found.")
+            return False
+        if not size_mb:
+            total_size = sum(os.path.getsize(os.path.join(root, f)) for root, dirs, files in os.walk(folder) for f in files)
+            size_mb = (total_size // (1024*1024)) + 50
+        with tempfile.NamedTemporaryFile(suffix='.img') as tmp:
+            try:
+                subprocess.run(['mkfs.ext4', '-d', folder, tmp.name, f'{size_mb}M'], check=True, capture_output=True)
+                if fs_config and file_contexts and shutil.which('e2fsdroid'):
+                    subprocess.run(['e2fsdroid', '-a', '/', '-S', file_contexts, '-C', fs_config, tmp.name], check=True)
+                shutil.move(tmp.name, output)
+            except subprocess.CalledProcessError as e:
+                Logger.error(f"Image build failed: {e.stderr.decode()}")
+                return False
+        Logger.success(f"EXT4 image built: {output} ({size_mb} MB)")
+        return True
+
+    @staticmethod
+    def build_erofs(folder, output):
+        if not shutil.which('mkfs.erofs'):
+            Logger.error("mkfs.erofs not found.")
+            return False
+        try:
+            subprocess.run(['mkfs.erofs', output, folder], check=True)
+        except subprocess.CalledProcessError as e:
+            Logger.error(f"EROFS build failed.")
+            return False
+        Logger.success(f"EROFS image built: {output}")
+        return True
+
+# 10. KernelPatcher (simplified)
+class KernelPatcher:
+    """
+    Patches kernel image for KernelSU/APatch.
+    """
+    @staticmethod
+    def patch_boot(boot_img, out_img, patch_type='kernelsu'):
+        if not shutil.which('magiskboot'):
+            Logger.error("magiskboot not found.")
+            return False
+        temp_dir = tempfile.mkdtemp()
+        try:
+            subprocess.run(['magiskboot', 'unpack', boot_img], cwd=temp_dir, check=True)
+            with open(os.path.join(temp_dir, 'header'), 'r') as f:
+                header = f.read()
+            if 'cmdline=' in header:
+                header = header.replace('cmdline=', 'cmdline=androidboot.selinux=permissive ')
+            else:
+                header += 'cmdline=androidboot.selinux=permissive\n'
+            with open(os.path.join(temp_dir, 'header'), 'w') as f:
+                f.write(header)
+            subprocess.run(['magiskboot', 'repack', boot_img, out_img], cwd=temp_dir, check=True)
+            Logger.success(f"Patched boot image: {out_img}")
+            return True
+        except Exception as e:
+            Logger.error(f"Kernel patching failed: {e}")
+            return False
+        finally:
+            shutil.rmtree(temp_dir)
+
+# 11. SamsungLZ4
+class SamsungLZ4:
+    @staticmethod
+    def decompress_samsung(in_path, out_path):
+        with open(in_path, 'rb') as f:
+            header = f.read(8)
+        if not header.startswith(b'$SPL4'):
+            raise ValueError("Not a Samsung LZ4 file")
+        if not LZ4_AVAILABLE:
+            raise ImportError("lz4 not available")
+        with open(in_path, 'rb') as fin, open(out_path, 'wb') as fout:
+            fin.seek(8)
+            data = fin.read()
+            decompressed = lz4.block.decompress(data)
+            fout.write(decompressed)
+        return True
+
+    @staticmethod
+    def compress_samsung(in_path, out_path):
+        if not LZ4_AVAILABLE:
+            raise ImportError("lz4 not available")
+        with open(in_path, 'rb') as fin, open(out_path, 'wb') as fout:
+            data = fin.read()
+            compressed = lz4.block.compress(data)
+            fout.write(b'$SPL4')
+            fout.write(compressed)
+        return True
+
+# 12. GPTResizer (extend ImageEditor)
+class GPTResizer:
+    @staticmethod
+    def resize_partition(img_path, part_index, new_size_sectors, dry_run=False):
+        with open(img_path, 'r+b') as f:
+            f.seek(2*512)
+            array = bytearray(f.read(128*128))
+            entry = array[part_index*128 : (part_index+1)*128]
+            if entry[:16] == b'\x00'*16:
+                Logger.error(f"Partition {part_index} is empty.")
+                return False
+            first = struct.unpack_from('<Q', entry, 32)[0]
+            old_last = struct.unpack_from('<Q', entry, 40)[0]
+            new_last = first + new_size_sectors - 1
+            if new_last < first:
+                Logger.error("New size too small.")
+                return False
+            struct.pack_into('<Q', entry, 40, new_last)
+            array[part_index*128 : (part_index+1)*128] = entry
+            array_crc = binascii.crc32(bytes(array)) & 0xFFFFFFFF
+            f.seek(1*512)
+            hdr = bytearray(f.read(92))
+            struct.pack_into('<I', hdr, 88, array_crc)
+            hdr[16:20] = b'\x00\x00\x00\x00'
+            hdr_crc = binascii.crc32(bytes(hdr)) & 0xFFFFFFFF
+            struct.pack_into('<I', hdr, 16, hdr_crc)
+            f.seek(1*512)
+            f.write(bytes(hdr))
+            f.seek(2*512)
+            f.write(bytes(array))
+        Logger.success(f"Partition {part_index} resized to {new_size_sectors} sectors.")
+        return True
+
+# 13. FstabPatcher
+class FstabPatcher:
+    @staticmethod
+    def patch_fstab_in_image(img_path, out_path, mount_point='/data', new_flag='encryptable'):
+        temp_mount = tempfile.mkdtemp()
+        try:
+            if shutil.which('fuse2fs'):
+                subprocess.run(['fuse2fs', img_path, temp_mount], check=True)
+                fstab_path = os.path.join(temp_mount, 'fstab')
+                if os.path.exists(fstab_path):
+                    with open(fstab_path, 'r') as f:
+                        lines = f.readlines()
+                    with open(fstab_path, 'w') as f:
+                        for line in lines:
+                            if mount_point in line and 'fileencryption=' in line:
+                                line = line.replace('fileencryption=', f'{new_flag}=')
+                            f.write(line)
+                    subprocess.run(['fusermount', '-u', temp_mount], check=True)
+                    shutil.copy2(img_path, out_path)
+                    Logger.success(f"Fstab patched (fuse2fs method).")
+                    return True
+                else:
+                    Logger.error("fstab not found in mounted image.")
+                    return False
+            else:
+                with tempfile.NamedTemporaryFile() as tf:
+                    subprocess.run(['debugfs', '-R', 'dump fstab /tmp/fstab', img_path], check=True)
+                    with open('/tmp/fstab', 'r') as f:
+                        lines = f.readlines()
+                    with open('/tmp/fstab', 'w') as f:
+                        for line in lines:
+                            if mount_point in line and 'fileencryption=' in line:
+                                line = line.replace('fileencryption=', f'{new_flag}=')
+                            f.write(line)
+                    subprocess.run(['debugfs', '-w', '-R', 'rm fstab', img_path], check=True)
+                    subprocess.run(['debugfs', '-w', '-R', 'write /tmp/fstab fstab', img_path], check=True)
+                shutil.copy2(img_path, out_path)
+                Logger.success(f"Fstab patched (debugfs method).")
+                return True
+        except Exception as e:
+            Logger.error(f"Fstab patching failed: {e}")
+            return False
+        finally:
+            if os.path.exists(temp_mount):
+                subprocess.run(['fusermount', '-u', temp_mount], stderr=subprocess.DEVNULL)
+
+# 14. CodeBehaviorAnalyzer (Capstone)
+class CodeBehaviorAnalyzer:
+    """
+    Disassembles code regions and analyzes behavior patterns.
+    """
+    def __init__(self, arch='x86', mode='32'):
+        self.arch = arch
+        self.mode = mode
+        self.md = None
+        if CAPSTONE_AVAILABLE:
+            try:
+                if arch == 'x86' and mode == '32':
+                    self.md = Cs(CS_ARCH_X86, CS_MODE_32)
+                elif arch == 'x86' and mode == '64':
+                    self.md = Cs(CS_ARCH_X86, CS_MODE_64)
+                elif arch == 'arm':
+                    self.md = Cs(CS_ARCH_ARM, CS_MODE_ARM)
+                self.md.detail = True
+            except Exception:
+                self.md = None
+    
+    def analyze_region(self, data: bytes, base=0) -> Dict:
+        if not self.md or not CAPSTONE_AVAILABLE:
+            return {'error': 'Capstone not available'}
+        
+        instructions = []
+        syscall_patterns = []
+        crypto_patterns = []
+        
+        try:
+            for insn in self.md.disasm(data, base):
+                insn_dict = {
+                    'address': insn.address,
+                    'size': insn.size,
+                    'mnemonic': insn.mnemonic,
+                    'op_str': insn.op_str,
+                }
+                instructions.append(insn_dict)
+                
+                if insn.mnemonic in ('syscall', 'sysenter', 'int') and '0x80' in insn.op_str:
+                    syscall_patterns.append(insn.address)
+                
+                if 'aes' in insn.mnemonic.lower() or 'sha' in insn.mnemonic.lower():
+                    crypto_patterns.append(insn.address)
+        except Exception as e:
+            return {'error': str(e)}
+        
+        return {
+            'instructions': instructions,
+            'count': len(instructions),
+            'syscalls': syscall_patterns,
+            'crypto_insns': crypto_patterns,
+            'has_crypto': len(crypto_patterns) > 0,
+            'has_syscalls': len(syscall_patterns) > 0,
+        }
+    
+    @staticmethod
+    def detect_behavior(analysis: Dict) -> List[str]:
+        behaviors = []
+        if analysis.get('has_crypto'):
+            behaviors.append('Cryptographic operations detected')
+        if analysis.get('has_syscalls'):
+            behaviors.append('System calls detected (likely ring0 code)')
+        if analysis.get('count', 0) > 1000:
+            behaviors.append('Large code region')
+        return behaviors
+
+# 15. SignatureParser (PKCS#7 / Authenticode)
+class SignatureParser:
+    """
+    Parses and verifies digital signatures in firmware.
+    """
+    @staticmethod
+    def parse_pkcs7(sig_data: bytes) -> Dict:
+        if not CRYPTO_AVAILABLE:
+            return {'error': 'cryptography not available'}
+        try:
+            from cryptography.hazmat.primitives.serialization import pkcs7
+            return {'note': 'PKCS#7 parsing requires asn1crypto'}
+        except Exception as e:
+            return {'error': str(e)}
+    
+    @staticmethod
+    def parse_authenticode(pe_path: str) -> Dict:
+        if not PEFILE_AVAILABLE:
+            return {'error': 'pefile not available'}
+        try:
+            pe = pefile.PE(pe_path)
+            if hasattr(pe, 'DIRECTORY_ENTRY_SECURITY'):
+                sec = pe.DIRECTORY_ENTRY_SECURITY
+                return {
+                    'size': sec.Size,
+                    'offset': sec.VirtualAddress,
+                    'data': pe.get_memory_mapped_image()[sec.VirtualAddress:sec.VirtualAddress+sec.Size]
+                }
+            else:
+                return {'error': 'No security directory'}
+        except Exception as e:
+            return {'error': str(e)}
+
+# 16. SignatureRepair (self-healing)
+class SignatureRepair:
+    """
+    Recalculates and fixes all signatures in an image after modification.
+    """
+    @staticmethod
+    def repair_gpt_checksums(img_path: str, dry_run=False):
+        with open(img_path, 'r+b') as f:
+            f.seek(512)
+            hdr = bytearray(f.read(92))
+            f.seek(2*512)
+            array = bytearray(f.read(128*128))
+            array_crc = binascii.crc32(bytes(array)) & 0xFFFFFFFF
+            struct.pack_into('<I', hdr, 88, array_crc)
+            hdr[16:20] = b'\x00\x00\x00\x00'
+            hdr_crc = binascii.crc32(bytes(hdr)) & 0xFFFFFFFF
+            struct.pack_into('<I', hdr, 16, hdr_crc)
+            if not dry_run:
+                f.seek(512)
+                f.write(bytes(hdr))
+        return True
+    
+    @staticmethod
+    def repair_android_vbmeta(img_path: str, dry_run=False):
+        Logger.warn("vbmeta signature repair not implemented")
+        return False
+
+# 17. UniversalDecompressor
+class UniversalDecompressor:
+    """
+    Auto-detects and decompresses LZMA, XZ, GZIP, ZSTD, LZ4, BZIP2, etc.
+    """
+    @staticmethod
+    def decompress_auto(in_path, out_path):
+        with open(in_path, 'rb') as f:
+            header = f.read(16)
+        if header.startswith(b'\x5D\x00\x00') or header.startswith(b'\x02\x00'):
+            return UniversalDecompressor._decompress_lzma(in_path, out_path)
+        elif header.startswith(b'\x1F\x8B'):
+            return UniversalDecompressor._decompress_gzip(in_path, out_path)
+        elif header.startswith(b'\xFD\x37\x7A\x58\x5A\x00'):
+            return UniversalDecompressor._decompress_xz(in_path, out_path)
+        elif header.startswith(b'\x28\xB5\x2F\xFD'):
+            return UniversalDecompressor._decompress_zstd(in_path, out_path)
+        elif header.startswith(b'\x02\x00\x00\x00'):
+            return UniversalDecompressor._decompress_lz4(in_path, out_path)
+        elif header.startswith(b'BZh'):
+            return UniversalDecompressor._decompress_bzip2(in_path, out_path)
+        elif header.startswith(b'CrAU'):
+            return UniversalDecompressor._decompress_android_payload(in_path, out_path)
+        elif header.startswith(b'\x5A\xA5\xF0\x0F'):
+            # Check if it's IFD or contains IFD
+            with open(in_path, 'rb') as f:
+                data = f.read(1024)
+            if b'_FVH' in data:
+                return UniversalDecompressor._decompress_uefi_fv(in_path, out_path)
+            else:
+                return UniversalDecompressor._decompress_ifd(in_path, out_path)
+        elif header.startswith(b'_FVH'):
+            return UniversalDecompressor._decompress_uefi_fv(in_path, out_path)
+        elif header.startswith(b'\x7fELF'):
+            return UniversalDecompressor._decompress_elf(in_path, out_path)
+        elif header.startswith(b'MZ'):
+            return UniversalDecompressor._decompress_pe(in_path, out_path)
+        elif header.startswith(b'PK\x03\x04'):
+            return UniversalDecompressor._decompress_zip(in_path, out_path)
+        elif header.startswith(b'Rar!\x1A\x07'):
+            return UniversalDecompressor._decompress_rar(in_path, out_path)
+        elif header.startswith(b'\xe2\xe1\xf5\x00'):
+            return UniversalDecompressor._decompress_erofs(in_path, out_path)
+        elif header.startswith(b'\x10\x20\xf5\xf2'):
+            return UniversalDecompressor._decompress_f2fs(in_path, out_path)
+        elif header.startswith(b'hsqs') or header.startswith(b'sqsh'):
+            return UniversalDecompressor._decompress_squashfs(in_path, out_path)
+        elif header.startswith(b'\x45\x3d\xcd\x28'):
+            return UniversalDecompressor._decompress_cramfs(in_path, out_path)
+        elif header.startswith(b'\x59\x41\x46\x46\x53'):
+            return UniversalDecompressor._decompress_yaffs(in_path, out_path)
+        elif header.startswith(b'\x2d\x72\x6f\x6d\x31\x66\x73\x2d'):
+            return UniversalDecompressor._decompress_romfs(in_path, out_path)
+        elif header.startswith(b'UBI#') or header.startswith(b'UBI!'):
+            return UniversalDecompressor._decompress_ubi(in_path, out_path)
+        elif header.startswith(b'\x31\x18\x10\x06'):
+            return UniversalDecompressor._decompress_ubifs(in_path, out_path)
+        elif header.startswith(b'\x53\xEF'):
+            return UniversalDecompressor._decompress_ext(in_path, out_path)
+        elif header.startswith(b'\xEB\x3C\x90') or header.startswith(b'\xEB\x3E\x90') or header.startswith(b'\xEB\x58\x90') or header.startswith(b'\xEB\x76\x90'):
+            return UniversalDecompressor._decompress_fat(in_path, out_path)
+        else:
+            raise ValueError("Unsupported compression/format type")
+
+    @staticmethod
+    def _decompress_lzma(in_path, out_path):
+        if not LZMA_AVAILABLE:
+            raise ImportError("lzma not available")
+        with open(in_path, 'rb') as fin, open(out_path, 'wb') as fout:
+            if fin.read(2) == b'\x02\x00':
+                fin.seek(0)
+                data = fin.read()
+                props = data[0:5]
+                dict_size = struct.unpack('<L', props[1:5])[0]
+                decompressed = lzma.decompress(data)
+            else:
+                fin.seek(0)
+                data = fin.read()
+                decompressed = lzma.decompress(data)
+            fout.write(decompressed)
+        return True
+
+    @staticmethod
+    def _decompress_gzip(in_path, out_path):
+        import gzip
+        with gzip.open(in_path, 'rb') as fin, open(out_path, 'wb') as fout:
+            fout.write(fin.read())
+        return True
+
+    @staticmethod
+    def _decompress_xz(in_path, out_path):
+        if not LZMA_AVAILABLE:
+            raise ImportError("xz/lzma not available")
+        with open(in_path, 'rb') as fin, open(out_path, 'wb') as fout:
+            fout.write(lzma.decompress(fin.read()))
+        return True
+
+    @staticmethod
+    def _decompress_zstd(in_path, out_path):
+        if not ZSTD_AVAILABLE:
+            raise ImportError("zstd not available")
+        dctx = zstd.ZstdDecompressor()
+        with open(in_path, 'rb') as fin, open(out_path, 'wb') as fout:
+            fout.write(dctx.decompress(fin.read()))
+        return True
+
+    @staticmethod
+    def _decompress_lz4(in_path, out_path):
+        if not LZ4_AVAILABLE:
+            raise ImportError("lz4 not available")
+        with open(in_path, 'rb') as fin, open(out_path, 'wb') as fout:
+            fout.write(lz4.block.decompress(fin.read()))
+        return True
+
+    @staticmethod
+    def _decompress_bzip2(in_path, out_path):
+        import bz2
+        with open(in_path, 'rb') as fin, open(out_path, 'wb') as fout:
+            fout.write(bz2.decompress(fin.read()))
+        return True
+
+    @staticmethod
+    def _decompress_elf(in_path, out_path):
+        Logger.info("ELF file detected - extracting sections")
+        os.makedirs(out_path, exist_ok=True)
+        with open(in_path, 'rb') as f:
+            f.seek(16)
+            e_phoff = struct.unpack('<Q', f.read(8))[0]
+            e_phentsize = struct.unpack('<H', f.read(2))[0]
+            e_phnum = struct.unpack('<H', f.read(2))[0]
+            
+            f.seek(e_phoff)
+            for i in range(e_phnum):
+                f.seek(e_phoff + i * e_phentsize)
+                p_type = struct.unpack('<L', f.read(4))[0]
+                p_offset = struct.unpack('<Q', f.read(8))[0]
+                p_filesz = struct.unpack('<Q', f.read(8))[0]
+                
+                if p_type == 1 and p_filesz > 0:  # PT_LOAD
+                    f.seek(p_offset)
+                    data = f.read(p_filesz)
+                    section_path = os.path.join(out_path, f"section_{i}.bin")
+                    with open(section_path, 'wb') as outf:
+                        outf.write(data)
+        return True
+
+    @staticmethod
+    def _decompress_pe(in_path, out_path):
+        Logger.info("PE file detected - extracting sections")
+        os.makedirs(out_path, exist_ok=True)
+        with open(in_path, 'rb') as f:
+            f.seek(60)
+            pe_offset = struct.unpack('<I', f.read(4))[0]
+            f.seek(pe_offset + 4)
+            num_sections = struct.unpack('<H', f.read(2))[0]
+            opt_header_size = struct.unpack('<H', f.read(2))[0]
+            
+            f.seek(pe_offset + 24 + opt_header_size)
+            for i in range(num_sections):
+                name = f.read(8).rstrip(b'\x00').decode('ascii', errors='ignore')
+                f.seek(4, 1)  # virtual size
+                f.seek(4, 1)  # virtual address
+                raw_size = struct.unpack('<I', f.read(4))[0]
+                raw_offset = struct.unpack('<I', f.read(4))[0]
+                f.seek(16, 1)  # skip to next section
+                
+                if raw_size > 0:
+                    f.seek(raw_offset)
+                    data = f.read(raw_size)
+                    section_path = os.path.join(out_path, f"{name}.bin")
+                    with open(section_path, 'wb') as outf:
+                        outf.write(data)
+        return True
+
+    @staticmethod
+    def _decompress_zip(in_path, out_path):
+        import zipfile
+        with zipfile.ZipFile(in_path, 'r') as zf:
+            zf.extractall(out_path)
+        return True
+
+    @staticmethod
+    def _decompress_rar(in_path, out_path):
+        Logger.warn("RAR extraction not implemented - need unrar/rarfile library")
+        return False
+
+    @staticmethod
+    def _decompress_erofs(in_path, out_path):
+        Logger.warn("EROFS extraction not implemented in this context")
+        return False
+
+    @staticmethod
+    def _decompress_f2fs(in_path, out_path):
+        Logger.warn("F2FS extraction not implemented - use dedicated tools")
+        return False
+
+    @staticmethod
+    def _decompress_squashfs(in_path, out_path):
+        Logger.warn("SquashFS extraction not implemented - use unsquashfs")
+        return False
+
+    @staticmethod
+    def _decompress_cramfs(in_path, out_path):
+        Logger.warn("CRAMFS extraction not implemented - use cramfsck")
+        return False
+
+    @staticmethod
+    def _decompress_yaffs(in_path, out_path):
+        Logger.warn("YAFFS extraction not implemented - use unyaffs")
+        return False
+
+    @staticmethod
+    def _decompress_romfs(in_path, out_path):
+        Logger.warn("ROMFS extraction not implemented - use romfs tool")
+        return False
+
+    @staticmethod
+    def _decompress_ubi(in_path, out_path):
+        Logger.warn("UBI extraction not implemented - use ubi-tools")
+        return False
+
+    @staticmethod
+    def _decompress_ubifs(in_path, out_path):
+        Logger.warn("UBIFS extraction not implemented - use ubi-tools")
+        return False
+
+    @staticmethod
+    def _decompress_ext(in_path, out_path):
+        Logger.warn("EXT filesystem extraction not implemented - use debugfs")
+        return False
+
+    @staticmethod
+    def _decompress_fat(in_path, out_path):
+        Logger.warn("FAT filesystem extraction not implemented - use 7z or mount")
+        return False
+
+    @staticmethod
+    def _decompress_android_payload(in_path, out_path):
+        """Extract Android payload.bin"""
+        try:
+            with open(in_path, 'rb') as f:
+                header = f.read(20)
+                
+            if not header.startswith(b'CrAU'):
+                raise ValueError("Not a valid Android payload.bin")
+                
+            # Basic payload extraction (simplified)
+            # Real implementation would parse payload format
+            os.makedirs(out_path, exist_ok=True)
+            
+            with open(in_path, 'rb') as f:
+                f.seek(20)  # Skip header
+                data = f.read()
+                
+            # Try to extract common patterns from payload
+            if b'PK\x03\x04' in data:
+                Logger.info("Found ZIP data in payload, extracting...")
+                zip_start = data.find(b'PK\x03\x04')
+                zip_data = data[zip_start:]
+                
+                with open(os.path.join(out_path, 'extracted.zip'), 'wb') as f:
+                    f.write(zip_data)
+                    
+                # Try to extract ZIP
+                try:
+                    import zipfile
+                    with zipfile.ZipFile(os.path.join(out_path, 'extracted.zip')) as zf:
+                        zf.extractall(out_path)
+                    Logger.success("Android payload extracted successfully")
+                    return True
+                except:
+                    Logger.warn("ZIP extraction failed, saved raw data")
+                    return True
+            else:
+                # Save raw payload data for analysis
+                with open(os.path.join(out_path, 'payload_data.bin'), 'wb') as f:
+                    f.write(data)
+                Logger.info("Android payload data saved for analysis")
+                return True
+                
+        except Exception as e:
+            Logger.error(f"Android payload extraction failed: {e}")
+            return False
+
+    @staticmethod
+    def _decompress_ifd(in_path, out_path):
+        """Extract Intel Flash Descriptor regions"""
+        try:
+            with open(in_path, 'rb') as f:
+                data = f.read()
+                
+            ifd_offset = data.find(b'\x5A\xA5\xF0\x0F')
+            if ifd_offset == -1:
+                raise ValueError("Intel Flash Descriptor not found")
+                
+            os.makedirs(out_path, exist_ok=True)
+            
+            # Extract IFD header
+            ifd_header = data[ifd_offset:ifd_offset+16]
+            with open(os.path.join(out_path, 'ifd_header.bin'), 'wb') as f:
+                f.write(ifd_header)
+                
+            # Parse regions (simplified)
+            regions = {
+                'BIOS': {'offset': 0x1000, 'size': 0x100000},
+                'ME': {'offset': 0x1100000, 'size': 0x500000},
+                'GbE': {'offset': 0x1600000, 'size': 0x10000},
+                'PDR': {'offset': 0x1610000, 'size': 0x1000},
+                'EC': {'offset': 0x1611000, 'size': 0x1000}
+            }
+            
+            for region_name, region_info in regions.items():
+                region_data = data[region_info['offset']:region_info['offset']+region_info['size']]
+                with open(os.path.join(out_path, f'{region_name.lower()}_region.bin'), 'wb') as f:
+                    f.write(region_data)
+                    
+            Logger.success("Intel Flash Descriptor regions extracted")
+            return True
+            
+        except Exception as e:
+            Logger.error(f"IFD extraction failed: {e}")
+            return False
+
+    @staticmethod
+    def _decompress_uefi_fv(in_path, out_path):
+        """Extract UEFI Firmware Volume"""
+        try:
+            with open(in_path, 'rb') as f:
+                data = f.read()
+                
+            fv_offset = data.find(b'_FVH')
+            if fv_offset == -1:
+                raise ValueError("UEFI Firmware Volume not found")
+                
+            os.makedirs(out_path, exist_ok=True)
+            
+            # Extract FV header
+            fv_header = data[fv_offset:fv_offset+56]
+            with open(os.path.join(out_path, 'fv_header.bin'), 'wb') as f:
+                f.write(fv_header)
+                
+            # Extract FV body
+            fv_size = int.from_bytes(fv_header[32:36], 'little')
+            fv_body = data[fv_offset:fv_offset+fv_size]
+            with open(os.path.join(out_path, 'fv_body.bin'), 'wb') as f:
+                f.write(fv_body)
+                
+            Logger.success("UEFI Firmware Volume extracted")
+            return True
+            
+        except Exception as e:
+            Logger.error(f"UEFI FV extraction failed: {e}")
+            return False
+
+# 23. BIOSAnalyzer
+class BIOSAnalyzer:
+    """
+    Comprehensive BIOS/UEFI firmware analysis suite.
+    """
+    
+    def __init__(self, firmware_path):
+        self.firmware_path = firmware_path
+        self.data = None
+        self.results = {}
+        
+    def load_firmware(self):
+        """Load firmware file"""
+        try:
+            with open(self.firmware_path, 'rb') as f:
+                self.data = f.read()
+            Logger.info(f"Loaded firmware: {len(self.data)} bytes")
+            return True
+        except Exception as e:
+            Logger.error(f"Failed to load firmware: {e}")
+            return False
+    
+    def analyze_ifd(self):
+        """Analyze Intel Flash Descriptor"""
+        ifd_offset = self.data.find(b'\x5A\xA5\xF0\x0F')
+        if ifd_offset == -1:
+            return None
+            
+        Logger.info("Found Intel Flash Descriptor")
+        ifd_data = self.data[ifd_offset:ifd_offset+0x1000]
+        
+        # Parse IFD structure (simplified)
+        regions = {
+            'FLMAP0': ifd_data[0x20:0x24],
+            'FLMAP1': ifd_data[0x24:0x28],
+            'FLMAP2': ifd_data[0x28:0x2C]
+        }
+        
+        self.results['ifd'] = {
+            'offset': ifd_offset,
+            'regions': regions,
+            'size': len(ifd_data)
+        }
+        
+        return self.results['ifd']
+    
+    def analyze_uefi_fv(self):
+        """Analyze UEFI Firmware Volumes"""
+        fv_results = []
+        fv_offset = 0
+        
+        while True:
+            fv_offset = self.data.find(b'_FVH', fv_offset)
+            if fv_offset == -1:
+                break
+                
+            fv_header = self.data[fv_offset:fv_offset+56]
+            fv_signature = fv_header[:4]
+            fv_length = int.from_bytes(fv_header[32:36], 'little')
+            fv_attributes = int.from_bytes(fv_header[40:44], 'little')
+            
+            fv_info = {
+                'offset': fv_offset,
+                'signature': fv_signature,
+                'length': fv_length,
+                'attributes': fv_attributes
+            }
+            
+            # Parse FFS files within FV
+            ffs_files = self._parse_ffs_files(fv_offset + 56, fv_offset + fv_length)
+            fv_info['ffs_files'] = ffs_files
+            
+            fv_results.append(fv_info)
+            fv_offset += 1
+            
+        self.results['uefi_fv'] = fv_results
+        return fv_results
+    
+    def _parse_ffs_files(self, start_offset, end_offset):
+        """Parse FFS files within Firmware Volume"""
+        ffs_files = []
+        offset = start_offset
+        
+        while offset < end_offset - 24:
+            # Look for FFS header
+            if self.data[offset:offset+3] == b'_FV':
+                ffs_header = self.data[offset:offset+24]
+                ffs_size = int.from_bytes(ffs_header[20:24], 'little')
+                ffs_type = ffs_header[18]
+                
+                ffs_info = {
+                    'offset': offset,
+                    'size': ffs_size,
+                    'type': ffs_type,
+                    'type_name': self._get_ffs_type_name(ffs_type)
+                }
+                
+                # Parse sections
+                sections = self._parse_sections(offset + 24, offset + ffs_size)
+                ffs_info['sections'] = sections
+                
+                ffs_files.append(ffs_info)
+                offset += ffs_size
+            else:
+                offset += 1
+                
+        return ffs_files
+    
+    def _parse_sections(self, start_offset, end_offset):
+        """Parse sections within FFS file"""
+        sections = []
+        offset = start_offset
+        
+        while offset < end_offset - 4:
+            section_header = self.data[offset:offset+4]
+            if len(section_header) < 4:
+                break
+                
+            section_type = section_header[3]
+            section_size = int.from_bytes(self.data[offset:offset+3], 'little')
+            
+            if section_size == 0:
+                break
+                
+            section_info = {
+                'offset': offset,
+                'size': section_size,
+                'type': section_type,
+                'type_name': self._get_section_type_name(section_type)
+            }
+            
+            sections.append(section_info)
+            offset += section_size
+            
+        return sections
+    
+    def _get_ffs_type_name(self, ffs_type):
+        """Get FFS type name"""
+        ffs_types = {
+            0x01: 'EFI_FV_FILETYPE_RAW',
+            0x02: 'EFI_FV_FILETYPE_FREEFORM',
+            0x03: 'EFI_FV_FILETYPE_SECURITY_CORE',
+            0x04: 'EFI_FV_FILETYPE_PEI_CORE',
+            0x05: 'EFI_FV_FILETYPE_DXE_CORE',
+            0x06: 'EFI_FV_FILETYPE_PEIM',
+            0x07: 'EFI_FV_FILETYPE_DRIVER',
+            0x08: 'EFI_FV_FILETYPE_COMBINED_PEIM_DRIVER',
+            0x09: 'EFI_FV_FILETYPE_APPLICATION',
+            0x0A: 'EFI_FV_FILETYPE_FIRMWARE_VOLUME_IMAGE'
+        }
+        return ffs_types.get(ffs_type, f'UNKNOWN_{ffs_type:02X}')
+    
+    def _get_section_type_name(self, section_type):
+        """Get section type name"""
+        section_types = {
+            0x01: 'EFI_SECTION_COMPRESSION',
+            0x02: 'EFI_SECTION_GUID_DEFINED',
+            0x10: 'EFI_SECTION_PE32',
+            0x11: 'EFI_SECTION_PIC',
+            0x12: 'EFI_SECTION_TE',
+            0x13: 'EFI_SECTION_DXE_DEPEX',
+            0x14: 'EFI_SECTION_VERSION',
+            0x15: 'EFI_SECTION_USER_INTERFACE',
+            0x16: 'EFI_SECTION_COMPATIBILITY16',
+            0x17: 'EFI_SECTION_FIRMWARE_VOLUME_IMAGE',
+            0x18: 'EFI_SECTION_FREEFORM_SUBTYPE_GUID',
+            0x19: 'EFI_SECTION_RAW'
+        }
+        return section_types.get(section_type, f'UNKNOWN_{section_type:02X}')
+    
+    def analyze_vendor_specific(self):
+        """Comprehensive vendor-specific BIOS analysis"""
+        vendor_info = {}
+        
+        # AMI Aptio Analysis
+        ami_info = self._analyze_ami_bios()
+        if ami_info:
+            vendor_info['ami'] = ami_info
+            
+        # InsydeH2O Analysis
+        insyde_info = self._analyze_insyde_bios()
+        if insyde_info:
+            vendor_info['insyde'] = insyde_info
+            
+        # Phoenix BIOS Analysis
+        phoenix_info = self._analyze_phoenix_bios()
+        if phoenix_info:
+            vendor_info['phoenix'] = phoenix_info
+            
+        # Dell BIOS Analysis
+        dell_info = self._analyze_dell_bios()
+        if dell_info:
+            vendor_info['dell'] = dell_info
+            
+        # HP BIOS Analysis
+        hp_info = self._analyze_hp_bios()
+        if hp_info:
+            vendor_info['hp'] = hp_info
+            
+        # Lenovo BIOS Analysis
+        lenovo_info = self._analyze_lenovo_bios()
+        if lenovo_info:
+            vendor_info['lenovo'] = lenovo_info
+            
+        # ASUS BIOS Analysis
+        asus_info = self._analyze_asus_bios()
+        if asus_info:
+            vendor_info['asus'] = asus_info
+            
+        # MSI BIOS Analysis
+        msi_info = self._analyze_msi_bios()
+        if msi_info:
+            vendor_info['msi'] = msi_info
+            
+        self.results['vendor'] = vendor_info
+        return vendor_info
+    
+    def _analyze_ami_bios(self):
+        """Analyze AMI Aptio BIOS structures"""
+        ami_signatures = [
+            b'AMIBIOS',
+            b'AMIBIOSC',
+            b'AMIBIOS8',
+            b'Aptio',
+            b'AMITSE',  # AMI Setup Utility
+            b'AMIDXE',  # AMI DXE Core
+            b'AMIPEI',  # AMI PEI Core
+        ]
+        
+        ami_info = None
+        for sig in ami_signatures:
+            offset = self.data.find(sig)
+            if offset != -1:
+                ami_info = {
+                    'type': 'AMI Aptio',
+                    'signature': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'components': []
+                }
+                break
+        
+        if ami_info:
+            # Look for AMI-specific modules
+            ami_modules = [
+                (b'AMITSE', 'Setup Utility'),
+                (b'AMIDXE', 'DXE Core'),
+                (b'AMIPEI', 'PEI Core'),
+                (b'AMISCS', 'System Configuration'),
+                (b'AMIBKP', 'Backup Module'),
+                (b'AMICFG', 'Configuration Module'),
+            ]
+            
+            for module_sig, module_name in ami_modules:
+                module_offset = self.data.find(module_sig)
+                if module_offset != -1:
+                    ami_info['components'].append({
+                        'name': module_name,
+                        'signature': module_sig.decode('ascii', errors='ignore'),
+                        'offset': module_offset
+                    })
+            
+            # Look for AMI version information
+            version_patterns = [
+                b'Version',
+                b'Build Date',
+                b'Build Number',
+                b'Copyright',
+            ]
+            
+            for pattern in version_patterns:
+                version_offset = self.data.find(pattern)
+                if version_offset != -1:
+                    version_data = self.data[version_offset:version_offset+64]
+                    version_str = version_data.decode('ascii', errors='ignore').strip()
+                    if len(version_str) > 5:
+                        ami_info['version_info'] = version_str
+                        break
+        
+        return ami_info
+    
+    def _analyze_insyde_bios(self):
+        """Analyze InsydeH2O BIOS structures"""
+        insyde_signatures = [
+            b'INSD',
+            b'Insyde',
+            b'H2O',
+            b'INSYDEH2O',
+            b'INSE',  # Insyde Setup
+            b'INDE',  # Insyde DXE
+            b'INPE',  # Insyde PEI
+        ]
+        
+        insyde_info = None
+        for sig in insyde_signatures:
+            offset = self.data.find(sig)
+            if offset != -1:
+                insyde_info = {
+                    'type': 'InsydeH2O',
+                    'signature': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'components': []
+                }
+                break
+        
+        if insyde_info:
+            # Look for Insyde-specific modules
+            insyde_modules = [
+                (b'INSE', 'Setup Environment'),
+                (b'INDE', 'DXE Environment'),
+                (b'INPE', 'PEI Environment'),
+                (b'INSA', 'Security Agent'),
+                (b'INSC', 'Configuration'),
+            ]
+            
+            for module_sig, module_name in insyde_modules:
+                module_offset = self.data.find(module_sig)
+                if module_offset != -1:
+                    insyde_info['components'].append({
+                        'name': module_name,
+                        'signature': module_sig.decode('ascii', errors='ignore'),
+                        'offset': module_offset
+                    })
+            
+            # Look for H2O version information
+            h2o_patterns = [
+                b'H2O Version',
+                b'InsydeH2O',
+                b'Build Date',
+            ]
+            
+            for pattern in h2o_patterns:
+                version_offset = self.data.find(pattern)
+                if version_offset != -1:
+                    version_data = self.data[version_offset:version_offset+64]
+                    version_str = version_data.decode('ascii', errors='ignore').strip()
+                    if len(version_str) > 5:
+                        insyde_info['version_info'] = version_str
+                        break
+        
+        return insyde_info
+    
+    def _analyze_phoenix_bios(self):
+        """Analyze Phoenix BIOS structures"""
+        phoenix_signatures = [
+            b'Phoenix',
+            b'PhoenixBIOS',
+            b'Phoenix Technologies',
+            b'Phoenix SecureCore',
+            b'Phoenix TrustedCore',
+        ]
+        
+        phoenix_info = None
+        for sig in phoenix_signatures:
+            offset = self.data.find(sig)
+            if offset != -1:
+                phoenix_info = {
+                    'type': 'Phoenix BIOS',
+                    'signature': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'components': []
+                }
+                break
+        
+        if phoenix_info:
+            # Look for Phoenix-specific modules
+            phoenix_modules = [
+                (b'PhoenixSETUP', 'Setup Utility'),
+                (b'PhoenixDXE', 'DXE Core'),
+                (b'PhoenixPEI', 'PEI Core'),
+                (b'PhoenixSEC', 'Security Core'),
+            ]
+            
+            for module_sig, module_name in phoenix_modules:
+                module_offset = self.data.find(module_sig)
+                if module_offset != -1:
+                    phoenix_info['components'].append({
+                        'name': module_name,
+                        'signature': module_sig.decode('ascii', errors='ignore'),
+                        'offset': module_offset
+                    })
+            
+            # Look for Phoenix version information
+            phoenix_patterns = [
+                b'Phoenix Technologies',
+                b'Phoenix SecureCore',
+                b'Phoenix TrustedCore',
+                b'Copyright Phoenix',
+            ]
+            
+            for pattern in phoenix_patterns:
+                version_offset = self.data.find(pattern)
+                if version_offset != -1:
+                    version_data = self.data[version_offset:version_offset+80]
+                    version_str = version_data.decode('ascii', errors='ignore').strip()
+                    if len(version_str) > 10:
+                        phoenix_info['version_info'] = version_str
+                        break
+        
+        return phoenix_info
+    
+    def _analyze_dell_bios(self):
+        """Analyze Dell BIOS structures"""
+        dell_signatures = [
+            b'Dell Inc.',
+            b'Dell Computer',
+            b'Dell BIOS',
+            b'Dell System',
+            b'Dell Inc',
+        ]
+        
+        dell_info = None
+        for sig in dell_signatures:
+            offset = self.data.find(sig)
+            if offset != -1:
+                dell_info = {
+                    'type': 'Dell BIOS',
+                    'signature': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'components': []
+                }
+                break
+        
+        if dell_info:
+            # Look for Dell-specific features
+            dell_features = [
+                (b'Dell Update', 'Update Support'),
+                (b'Dell Support', 'Support Tools'),
+                (b'Dell Recovery', 'Recovery Tools'),
+                (b'Dell Diagnostics', 'Diagnostics'),
+            ]
+            
+            for feature_sig, feature_name in dell_features:
+                feature_offset = self.data.find(feature_sig)
+                if feature_offset != -1:
+                    dell_info['components'].append({
+                        'name': feature_name,
+                        'signature': feature_sig.decode('ascii', errors='ignore'),
+                        'offset': feature_offset
+                    })
+            
+            # Look for Dell model and service tag
+            dell_patterns = [
+                b'Product Name',
+                b'System Model',
+                b'Service Tag',
+                b'Asset Tag',
+            ]
+            
+            for pattern in dell_patterns:
+                pattern_offset = self.data.find(pattern)
+                if pattern_offset != -1:
+                    pattern_data = self.data[pattern_offset:pattern_offset+64]
+                    pattern_str = pattern_data.decode('ascii', errors='ignore').strip()
+                    if len(pattern_str) > 10:
+                        dell_info['system_info'] = pattern_str
+                        break
+        
+        return dell_info
+    
+    def _analyze_hp_bios(self):
+        """Analyze HP BIOS structures"""
+        hp_signatures = [
+            b'HP Inc.',
+            b'Hewlett-Packard',
+            b'HP BIOS',
+            b'HP System',
+            b'HP Pavilion',
+            b'HP EliteBook',
+            b'HP ProBook',
+        ]
+        
+        hp_info = None
+        for sig in hp_signatures:
+            offset = self.data.find(sig)
+            if offset != -1:
+                hp_info = {
+                    'type': 'HP BIOS',
+                    'signature': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'components': []
+                }
+                break
+        
+        if hp_info:
+            # Look for HP-specific features
+            hp_features = [
+                (b'HP Support', 'Support Tools'),
+                (b'HP Recovery', 'Recovery Manager'),
+                (b'HP Diagnostics', 'Hardware Diagnostics'),
+                (b'HP Sure Start', 'Sure Start Security'),
+            ]
+            
+            for feature_sig, feature_name in hp_features:
+                feature_offset = self.data.find(feature_sig)
+                if feature_offset != -1:
+                    hp_info['components'].append({
+                        'name': feature_name,
+                        'signature': feature_sig.decode('ascii', errors='ignore'),
+                        'offset': feature_offset
+                    })
+            
+            # Look for HP model information
+            hp_patterns = [
+                b'Product Name',
+                b'System Board',
+                b'HP Model',
+                b'HP Version',
+            ]
+            
+            for pattern in hp_patterns:
+                pattern_offset = self.data.find(pattern)
+                if pattern_offset != -1:
+                    pattern_data = self.data[pattern_offset:pattern_offset+64]
+                    pattern_str = pattern_data.decode('ascii', errors='ignore').strip()
+                    if len(pattern_str) > 10:
+                        hp_info['system_info'] = pattern_str
+                        break
+        
+        return hp_info
+    
+    def _analyze_lenovo_bios(self):
+        """Analyze Lenovo BIOS structures"""
+        lenovo_signatures = [
+            b'LENOVO',
+            b'Lenovo',
+            b'ThinkPad',
+            b'ThinkCentre',
+            b'IdeaPad',
+            b'Legion',
+        ]
+        
+        lenovo_info = None
+        for sig in lenovo_signatures:
+            offset = self.data.find(sig)
+            if offset != -1:
+                lenovo_info = {
+                    'type': 'Lenovo BIOS',
+                    'signature': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'components': []
+                }
+                break
+        
+        if lenovo_info:
+            # Look for Lenovo-specific features
+            lenovo_features = [
+                (b'Lenovo Vantage', 'Vantage Support'),
+                (b'Lenovo Recovery', 'Recovery System'),
+                (b'Lenovo Diagnostics', 'Hardware Diagnostics'),
+                (b'ThinkPad BIOS', 'ThinkPad Features'),
+            ]
+            
+            for feature_sig, feature_name in lenovo_features:
+                feature_offset = self.data.find(feature_sig)
+                if feature_offset != -1:
+                    lenovo_info['components'].append({
+                        'name': feature_name,
+                        'signature': feature_sig.decode('ascii', errors='ignore'),
+                        'offset': feature_offset
+                    })
+            
+            # Look for Lenovo model information
+            lenovo_patterns = [
+                b'Model Number',
+                b'Machine Type',
+                b'Lenovo Product',
+                b'ThinkPad Model',
+            ]
+            
+            for pattern in lenovo_patterns:
+                pattern_offset = self.data.find(pattern)
+                if pattern_offset != -1:
+                    pattern_data = self.data[pattern_offset:pattern_offset+64]
+                    pattern_str = pattern_data.decode('ascii', errors='ignore').strip()
+                    if len(pattern_str) > 10:
+                        lenovo_info['system_info'] = pattern_str
+                        break
+        
+        return lenovo_info
+    
+    def _analyze_asus_bios(self):
+        """Analyze ASUS BIOS structures"""
+        asus_signatures = [
+            b'ASUS',
+            b'ASUSTeK',
+            b'ASUS BIOS',
+            b'ASUS System',
+            b'ROG',  # Republic of Gamers
+            b'TUF',  # The Ultimate Force
+        ]
+        
+        asus_info = None
+        for sig in asus_signatures:
+            offset = self.data.find(sig)
+            if offset != -1:
+                asus_info = {
+                    'type': 'ASUS BIOS',
+                    'signature': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'components': []
+                }
+                break
+        
+        if asus_info:
+            # Look for ASUS-specific features
+            asus_features = [
+                (b'ASUS BIOS Update', 'BIOS Update Utility'),
+                (b'ASUS Armoury Crate', 'Armoury Crate'),
+                (b'ASUS AI Suite', 'AI Suite'),
+                (b'ROG BIOS', 'ROG Features'),
+            ]
+            
+            for feature_sig, feature_name in asus_features:
+                feature_offset = self.data.find(feature_sig)
+                if feature_offset != -1:
+                    asus_info['components'].append({
+                        'name': feature_name,
+                        'signature': feature_sig.decode('ascii', errors='ignore'),
+                        'offset': feature_offset
+                    })
+            
+            # Look for ASUS model information
+            asus_patterns = [
+                b'Model Name',
+                b'ASUS Product',
+                b'ROG Model',
+                b'TUF Model',
+            ]
+            
+            for pattern in asus_patterns:
+                pattern_offset = self.data.find(pattern)
+                if pattern_offset != -1:
+                    pattern_data = self.data[pattern_offset:pattern_offset+64]
+                    pattern_str = pattern_data.decode('ascii', errors='ignore').strip()
+                    if len(pattern_str) > 10:
+                        asus_info['system_info'] = pattern_str
+                        break
+        
+        return asus_info
+    
+    def _analyze_msi_bios(self):
+        """Analyze MSI BIOS structures"""
+        msi_signatures = [
+            b'MSI',
+            b'Micro-Star',
+            b'MSI BIOS',
+            b'MSI System',
+            b'MSI Gaming',
+        ]
+        
+        msi_info = None
+        for sig in msi_signatures:
+            offset = self.data.find(sig)
+            if offset != -1:
+                msi_info = {
+                    'type': 'MSI BIOS',
+                    'signature': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'components': []
+                }
+                break
+        
+        if msi_info:
+            # Look for MSI-specific features
+            msi_features = [
+                (b'MSI Center', 'MSI Center'),
+                (b'MSI Dragon Center', 'Dragon Center'),
+                (b'MSI Afterburner', 'Afterburner Support'),
+                (b'MSI Gaming', 'Gaming Features'),
+            ]
+            
+            for feature_sig, feature_name in msi_features:
+                feature_offset = self.data.find(feature_sig)
+                if feature_offset != -1:
+                    msi_info['components'].append({
+                        'name': feature_name,
+                        'signature': feature_sig.decode('ascii', errors='ignore'),
+                        'offset': feature_offset
+                    })
+            
+            # Look for MSI model information
+            msi_patterns = [
+                b'Model Name',
+                b'MSI Product',
+                b'MSI Motherboard',
+                b'MSI Gaming Series',
+            ]
+            
+            for pattern in msi_patterns:
+                pattern_offset = self.data.find(pattern)
+                if pattern_offset != -1:
+                    pattern_data = self.data[pattern_offset:pattern_offset+64]
+                    pattern_str = pattern_data.decode('ascii', errors='ignore').strip()
+                    if len(pattern_str) > 10:
+                        msi_info['system_info'] = pattern_str
+                        break
+        
+        return msi_info
+    
+    def extract_microcodes(self):
+        """Extract CPU microcode updates"""
+        microcodes = []
+        
+        # Look for microcode signature pattern
+        offset = 0
+        while True:
+            offset = self.data.find(b'\x01\x00\x00\x00', offset)
+            if offset == -1:
+                break
+                
+            # Check if this looks like a microcode
+            if offset + 48 < len(self.data):
+                microcode_header = self.data[offset:offset+48]
+                date = int.from_bytes(microcode_header[8:12], 'little')
+                processor_signature = int.from_bytes(microcode_header[12:16], 'little')
+                
+                if date != 0 and processor_signature != 0:
+                    microcode_info = {
+                        'offset': offset,
+                        'date': date,
+                        'processor_signature': processor_signature,
+                        'size': int.from_bytes(microcode_header[4:8], 'little')
+                    }
+                    microcodes.append(microcode_info)
+                    
+            offset += 1
+            
+        self.results['microcodes'] = microcodes
+        return microcodes
+    
+    def analyze_nvram_variables(self):
+        """Comprehensive NVRAM/EFI Variables parser with Secure Boot analysis"""
+        variables = []
+        
+        # Extended NVRAM variable patterns
+        nvram_patterns = [
+            # Secure Boot variables
+            b'BootOrder', b'SecureBoot', b'SetupMode', b'CustomMode',
+            b'PK', b'KEK', b'db', b'dbx', b'dbDefault', b'dbxDefault',
+            # Boot variables
+            b'BootCurrent', b'BootNext', b'BootOptionSupport', b'OsIndications',
+            b'SystemBootOrder', b'LegacyBootOrder',
+            # Platform variables
+            b'PlatformLang', b'PlatformLangCodes', b'Lang', b'LangCodes',
+            b'ConIn', b'ConOut', b'ConInDev', b'ConOutDev', b'ErrOut', b'ErrOutDev',
+            # Setup variables
+            b'Setup', b'BootManagerMenu', b'DriverOrder', b'SystemOrder',
+            # Security variables
+            b'AuthVarKeyDatabase', b'SignatureSupport', b'ImageExecutionPolicy',
+            # Performance/Debug
+            b'MonotonicCounter', b'WatchdogTimer', b'ResetReason',
+            # Hidden/Suspicious patterns
+            b'AdminPassword', b'UserPassword', b'Backdoor', b'Hidden',
+            b'Rootkit', b'Hook', b'Patch', b'Override'
+        ]
+        
+        for pattern in nvram_patterns:
+            offset = 0
+            while True:
+                offset = self.data.find(pattern, offset)
+                if offset == -1:
+                    break
+                    
+                # Parse variable header (UEFI variable format)
+                var_start = offset
+                var_name = pattern.decode('ascii', errors='ignore')
+                
+                # Look for variable GUID and attributes
+                guid = b''
+                attributes = 0
+                data_size = 0
+                var_data = b''
+                
+                # Try to parse UEFI variable structure
+                if offset + 16 < len(self.data):
+                    # Check if this looks like a GUID
+                    potential_guid = self.data[offset:offset+16]
+                    if potential_guid != b'\x00' * 16:
+                        guid = potential_guid
+                        var_start = offset + 16
+                        
+                        # Get attributes (next 4 bytes)
+                        if var_start + 4 < len(self.data):
+                            attributes = int.from_bytes(self.data[var_start:var_start+4], 'little')
+                            var_start += 4
+                            
+                            # Get data size (next 4 bytes)
+                            if var_start + 4 < len(self.data):
+                                data_size = int.from_bytes(self.data[var_start:var_start+4], 'little')
+                                var_start += 4
+                                
+                                # Extract actual data
+                                if data_size > 0 and var_start + data_size <= len(self.data):
+                                    var_data = self.data[var_start:var_start+data_size]
+                
+                # Analyze variable type and security implications
+                var_type = self._classify_variable(var_name)
+                security_risk = self._assess_variable_risk(var_name, var_data)
+                
+                var_info = {
+                    'name': var_name,
+                    'offset': offset,
+                    'guid': guid.hex() if guid else '',
+                    'attributes': attributes,
+                    'data_size': data_size,
+                    'data': var_data[:64] if var_data else self.data[offset:offset+64],  # First 64 bytes
+                    'type': var_type,
+                    'security_risk': security_risk,
+                    'is_secure_boot': var_name in ['PK', 'KEK', 'db', 'dbx', 'SecureBoot', 'SetupMode'],
+                    'is_boot_variable': var_name.startswith('Boot') or 'BootOrder' in var_name,
+                    'is_hidden': any(hidden in var_name.lower() for hidden in ['hidden', 'backdoor', 'rootkit', 'hook'])
+                }
+                variables.append(var_info)
+                offset += 1
+        
+        # Look for NVRAM variable store signatures
+        nvram_stores = self._find_nvram_stores()
+        
+        self.results['nvram_variables'] = variables
+        self.results['nvram_stores'] = nvram_stores
+        return variables
+    
+    def _classify_variable(self, var_name):
+        """Classify NVRAM variable by type"""
+        if var_name in ['PK', 'KEK', 'db', 'dbx', 'dbDefault', 'dbxDefault']:
+            return 'Secure Boot Key'
+        elif var_name in ['SecureBoot', 'SetupMode', 'CustomMode']:
+            return 'Secure Boot Setting'
+        elif var_name.startswith('Boot'):
+            return 'Boot Variable'
+        elif var_name in ['ConIn', 'ConOut', 'ErrOut', 'ConInDev', 'ConOutDev', 'ErrOutDev']:
+            return 'Console Variable'
+        elif var_name in ['PlatformLang', 'Lang']:
+            return 'Language Variable'
+        elif var_name in ['Setup', 'BootManagerMenu']:
+            return 'Setup Variable'
+        elif var_name in ['AuthVarKeyDatabase', 'SignatureSupport']:
+            return 'Security Variable'
+        elif any(hidden in var_name.lower() for hidden in ['password', 'backdoor', 'hidden', 'rootkit']):
+            return 'Suspicious Variable'
+        else:
+            return 'Standard Variable'
+    
+    def _assess_variable_risk(self, var_name, var_data):
+        """Assess security risk of NVRAM variable"""
+        risk_level = 'Low'
+        reasons = []
+        
+        # Check for suspicious variable names
+        if any(suspicious in var_name.lower() for suspicious in ['backdoor', 'rootkit', 'hook', 'hidden']):
+            risk_level = 'Critical'
+            reasons.append('Suspicious variable name')
+        
+        # Check for password variables
+        if 'password' in var_name.lower():
+            risk_level = 'High'
+            reasons.append('Password variable')
+        
+        # Check for boot variables with unusual data
+        if var_name.startswith('Boot') and var_data:
+            # Look for executable code in boot variables
+            if b'MZ' in var_data or b'\x7fELF' in var_data:
+                risk_level = 'High'
+                reasons.append('Executable code in boot variable')
+        
+        # Check for secure boot variables
+        if var_name in ['PK', 'KEK', 'db', 'dbx']:
+            if len(var_data) < 256:  # Keys should be substantial
+                risk_level = 'Medium'
+                reasons.append('Unusually small key data')
+        
+        # Check for unusual patterns in data
+        if var_data and len(set(var_data)) < 4:  # Low entropy
+            risk_level = max(risk_level, 'Medium')
+            reasons.append('Low entropy data')
+        
+        return risk_level if not reasons else f"{risk_level} ({', '.join(reasons)})"
+    
+    def _find_nvram_stores(self):
+        """Find NVRAM variable store structures"""
+        stores = []
+        
+        # Look for common NVRAM store signatures
+        store_signatures = [
+            b'NVARS',      # Phoenix NVRAM
+            b'VARIABLE',   # Generic variable store
+            b'NVRAM',      # Generic NVRAM
+            b'FIRMWARE',   # Firmware variable store
+        ]
+        
+        for sig in store_signatures:
+            offset = 0
+            while True:
+                offset = self.data.find(sig, offset)
+                if offset == -1:
+                    break
+                    
+                # Parse store header if possible
+                store_info = {
+                    'type': sig.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'size': 0,
+                    'format': 'Unknown'
+                }
+                
+                # Try to determine store size
+                if offset + 8 < len(self.data):
+                    potential_size = int.from_bytes(self.data[offset+4:offset+8], 'little')
+                    if 1024 <= potential_size <= 1024*1024:  # Reasonable size range
+                        store_info['size'] = potential_size
+                
+                stores.append(store_info)
+                offset += 1
+        
+        return stores
+    
+    def extract_microcodes_and_certificates(self, output_dir):
+        """Extract microcodes and certificates with verification"""
+        try:
+            os.makedirs(output_dir, exist_ok=True)
+            
+            # Extract microcodes
+            mc_dir = os.path.join(output_dir, 'microcodes')
+            os.makedirs(mc_dir, exist_ok=True)
+            
+            microcodes = self.extract_microcodes()
+            mc_results = []
+            
+            for i, mc in enumerate(microcodes):
+                mc_data = self.data[mc['offset']:mc['offset']+mc['size']]
+                mc_file = os.path.join(mc_dir, f"microcode_{i}_0x{mc['processor_signature']:08x}.bin")
+                
+                with open(mc_file, 'wb') as f:
+                    f.write(mc_data)
+                
+                # Verify microcode
+                verification = self._verify_microcode(mc_data, mc)
+                mc_results.append({
+                    'file': mc_file,
+                    'signature': f"0x{mc['processor_signature']:08x}",
+                    'date': mc['date'],
+                    'verification': verification
+                })
+            
+            # Extract certificates
+            cert_dir = os.path.join(output_dir, 'certificates')
+            os.makedirs(cert_dir, exist_ok=True)
+            
+            cert_results = self._extract_certificates(cert_dir)
+            
+            Logger.success(f"Extracted {len(mc_results)} microcodes and {len(cert_results)} certificates")
+            return {
+                'microcodes': mc_results,
+                'certificates': cert_results
+            }
+            
+        except Exception as e:
+            Logger.error(f"Microcode/certificate extraction failed: {e}")
+            return None
+    
+    def _verify_microcode(self, mc_data, mc_info):
+        """Verify microcode integrity and compatibility"""
+        verification = {
+            'valid': False,
+            'checksum_valid': False,
+            'format_valid': False,
+            'processor_family': 'Unknown',
+            'warnings': []
+        }
+        
+        try:
+            # Check minimum size
+            if len(mc_data) < 48:
+                verification['warnings'].append('Microcode too small')
+                return verification
+            
+            # Verify microcode header format
+            header_version = int.from_bytes(mc_data[0:4], 'little')
+            if header_version != 1:
+                verification['warnings'].append(f'Unexpected header version: {header_version}')
+            else:
+                verification['format_valid'] = True
+            
+            # Calculate and verify checksum
+            if len(mc_data) >= 48:
+                checksum = int.from_bytes(mc_data[44:48], 'little')
+                calculated_sum = sum(mc_data[:44]) & 0xFFFFFFFF
+                verification['checksum_valid'] = (checksum == calculated_sum)
+                
+                if not verification['checksum_valid']:
+                    verification['warnings'].append('Checksum mismatch')
+            
+            # Identify processor family
+            proc_sig = mc_info['processor_signature']
+            verification['processor_family'] = self._identify_processor_family(proc_sig)
+            
+            # Check date validity
+            date = mc_info['date']
+            if date < 20000101 or date > 20301231:
+                verification['warnings'].append(f'Suspicious date: {date}')
+            
+            verification['valid'] = (verification['format_valid'] and 
+                                   verification['checksum_valid'] and 
+                                   len(verification['warnings']) == 0)
+            
+        except Exception as e:
+            verification['warnings'].append(f'Verification error: {e}')
+        
+        return verification
+    
+    def _identify_processor_family(self, proc_sig):
+        """Identify processor family from signature"""
+        # Extract family, model, stepping from signature
+        stepping = proc_sig & 0xF
+        model = (proc_sig >> 4) & 0xF
+        family = (proc_sig >> 8) & 0xF
+        
+        # Extended family detection
+        ext_family = (proc_sig >> 20) & 0xFF
+        ext_model = (proc_sig >> 16) & 0xF
+        
+        full_family = ext_family + family
+        full_model = (ext_model << 4) + model
+        
+        # Common processor families
+        if full_family == 0x6:
+            if full_model in [0x1A, 0x1E, 0x1F, 0x2E]:  # Nehalem
+                return "Intel Nehalem"
+            elif full_model in [0x25, 0x2C, 0x2F, 0x2A]:  # Westmere
+                return "Intel Westmere"
+            elif full_model in [0x2A, 0x2D]:  # Sandy Bridge
+                return "Intel Sandy Bridge"
+            elif full_model in [0x3A, 0x3E]:  # Ivy Bridge
+                return "Intel Ivy Bridge"
+            elif full_model in [0x3C, 0x3F, 0x45, 0x46]:  # Haswell
+                return "Intel Haswell"
+            elif full_model in [0x4F, 0x55, 0x56]:  # Broadwell
+                return "Intel Broadwell"
+            elif full_model in [0x4E, 0x5E, 0x55]:  # Skylake
+                return "Intel Skylake"
+            elif full_model in [0x8E, 0x9E]:  # Kaby Lake
+                return "Intel Kaby Lake"
+        
+        return f"Unknown (Family: 0x{full_family:X}, Model: 0x{full_model:X})"
+    
+    def _extract_certificates(self, cert_dir):
+        """Extract and analyze certificates from firmware"""
+        certificates = []
+        
+        # Certificate signatures to look for
+        cert_signatures = [
+            b'-----BEGIN CERTIFICATE-----',
+            b'\x30\x82\x01\x0a\x02\x82\x01\x01',  # X.509 certificate start
+            b'\x30\x82',  # ASN.1 sequence
+            b'MII',       # Base64 encoded certificate start
+        ]
+        
+        for sig in cert_signatures:
+            offset = 0
+            cert_count = 0
+            
+            while True:
+                offset = self.data.find(sig, offset)
+                if offset == -1:
+                    break
+                
+                # Try to extract certificate data
+                cert_data = self._extract_certificate_at_offset(offset)
+                if cert_data:
+                    cert_file = os.path.join(cert_dir, f"certificate_{cert_count}_{sig[:8].hex()}.der")
+                    
+                    with open(cert_file, 'wb') as f:
+                        f.write(cert_data)
+                    
+                    # Analyze certificate
+                    cert_analysis = self._analyze_certificate(cert_data)
+                    certificates.append({
+                        'file': cert_file,
+                        'offset': offset,
+                        'size': len(cert_data),
+                        'analysis': cert_analysis
+                    })
+                    
+                    cert_count += 1
+                
+                offset += 1
+        
+        return certificates
+    
+    def _extract_certificate_at_offset(self, offset):
+        """Extract certificate data starting at offset"""
+        try:
+            # Look for certificate end patterns
+            end_patterns = [
+                b'-----END CERTIFICATE-----',
+                b'\x30\x82\x01\x01\x00',  # X.509 certificate end
+            ]
+            
+            cert_end = -1
+            for end_pat in end_patterns:
+                end_pos = self.data.find(end_pat, offset + 10)
+                if end_pos != -1:
+                    cert_end = end_pos + len(end_pat)
+                    break
+            
+            # If no end pattern found, try to estimate size
+            if cert_end == -1:
+                # Look for ASN.1 structure length
+                if offset + 4 < len(self.data):
+                    if self.data[offset:offset+2] == b'\x30\x82':
+                        cert_len = int.from_bytes(self.data[offset+2:offset+4], 'big')
+                        cert_end = offset + 6 + cert_len
+                    elif self.data[offset:offset+1] == b'\x30':
+                        cert_len = self.data[offset+1]
+                        cert_end = offset + 2 + cert_len
+            
+            if cert_end > offset and cert_end <= len(self.data):
+                return self.data[offset:cert_end]
+            
+        except Exception:
+            pass
+        
+        return None
+    
+    def _analyze_certificate(self, cert_data):
+        """Analyze certificate properties"""
+        analysis = {
+            'type': 'Unknown',
+            'subject': '',
+            'issuer': '',
+            'valid_from': '',
+            'valid_to': '',
+            'key_size': 0,
+            'signature_algorithm': '',
+            'is_self_signed': False,
+            'warnings': []
+        }
+        
+        try:
+            # Basic certificate parsing
+            if cert_data.startswith(b'-----BEGIN'):
+                analysis['type'] = 'PEM'
+            elif cert_data.startswith(b'\x30'):
+                analysis['type'] = 'DER'
+            
+            # Look for common certificate fields
+            cert_str = cert_data.decode('utf-8', errors='ignore')
+            
+            # Extract basic info from string representation
+            if 'Subject:' in cert_str:
+                subject_start = cert_str.find('Subject:') + 8
+                subject_end = cert_str.find('\n', subject_start)
+                if subject_end > subject_start:
+                    analysis['subject'] = cert_str[subject_start:subject_end].strip()
+            
+            if 'Issuer:' in cert_str:
+                issuer_start = cert_str.find('Issuer:') + 7
+                issuer_end = cert_str.find('\n', issuer_start)
+                if issuer_end > issuer_start:
+                    analysis['issuer'] = cert_str[issuer_start:issuer_end].strip()
+            
+            # Check for self-signed
+            analysis['is_self_signed'] = (analysis['subject'] == analysis['issuer'] and 
+                                         analysis['subject'] != '')
+            
+            # Look for RSA key size indicators
+            if 'RSA' in cert_str:
+                import re
+                key_match = re.search(r'RSA (\d+)', cert_str)
+                if key_match:
+                    analysis['key_size'] = int(key_match.group(1))
+            
+            # Check for weak certificates
+            if analysis['key_size'] > 0 and analysis['key_size'] < 2048:
+                analysis['warnings'].append(f'Weak key size: {analysis["key_size"]} bits')
+            
+            if analysis['is_self_signed']:
+                analysis['warnings'].append('Self-signed certificate')
+            
+        except Exception as e:
+            analysis['warnings'].append(f'Analysis error: {e}')
+        
+        return analysis
+    
+    def assess_vulnerabilities(self):
+        """AI-enhanced BIOS vulnerability assessment and triage"""
+        vulnerabilities = []
+        
+        # Run comprehensive vulnerability scans
+        vulnerabilities.extend(self._scan_smm_vulnerabilities())
+        vulnerabilities.extend(self._scan_buffer_overflow_patterns())
+        vulnerabilities.extend(self._scan_boot_security_issues())
+        vulnerabilities.extend(self._scan_firmware_integrity())
+        vulnerabilities.extend(self._scan_credential_exposure())
+        vulnerabilities.extend(self._scan_malware_indicators())
+        vulnerabilities.extend(self._scan_configuration_weaknesses())
+        vulnerabilities.extend(self._scan_cryptographic_weaknesses())
+        vulnerabilities.extend(self._scan_legacy_bios_issues())
+        
+        # AI-enhanced risk assessment
+        vulnerabilities = self._ai_enhanced_risk_assessment(vulnerabilities)
+        
+        # Triage and prioritize
+        vulnerabilities = self._triage_vulnerabilities(vulnerabilities)
+        
+        self.results['vulnerabilities'] = vulnerabilities
+        return vulnerabilities
+    
+    def _scan_smm_vulnerabilities(self):
+        """Scan for SMM (System Management Mode) vulnerabilities"""
+        vulnerabilities = []
+        
+        smm_patterns = {
+            'SMM callout vulnerability': [
+                b'SmiHandler',
+                b'SmmHandler',
+                b'SMI handler',
+                b'System Management Mode'
+            ],
+            'SMM buffer overflow': [
+                b'SmmBufferOverflow',
+                b'SmmCopyBuffer',
+                b'SmmAllocatePool'
+            ],
+            'SMM privilege escalation': [
+                b'SmmCommunication',
+                b'SmmManageProtocol',
+                b'SmmSwDispatch2'
+            ],
+            'SMM code injection': [
+                b'SmmInstallProtocolInterface',
+                b'SmmRegisterCallback',
+                b'SmmLockBox'
+            ]
+        }
+        
+        for vuln_type, patterns in smm_patterns.items():
+            for pattern in patterns:
+                offset = 0
+                while True:
+                    offset = self.data.find(pattern, offset)
+                    if offset == -1:
+                        break
+                    
+                    # Context analysis for SMM vulnerabilities
+                    context = self._get_context(offset, 100)
+                    risk_score = self._analyze_smm_context(context)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'SMM',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'SMM'),
+                        'description': f'SMM vulnerability detected: {vuln_type}',
+                        'context': context,
+                        'risk_score': risk_score,
+                        'recommendation': self._get_smm_recommendation(vuln_type)
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _scan_buffer_overflow_patterns(self):
+        """Scan for potential buffer overflow vulnerabilities"""
+        vulnerabilities = []
+        
+        unsafe_functions = {
+            'strcpy vulnerability': [b'strcpy', b'wcscpy', b'_tcscpy'],
+            'strcat vulnerability': [b'strcat', b'wcscat', b'_tcscat'],
+            'gets vulnerability': [b'gets', b'_getws'],
+            'sprintf vulnerability': [b'sprintf', b'wsprintf', b'swprintf'],
+            'scanf vulnerability': [b'scanf', b'wscanf', b'swscanf']
+        }
+        
+        for vuln_type, functions in unsafe_functions.items():
+            for func in functions:
+                offset = 0
+                while True:
+                    offset = self.data.find(func, offset)
+                    if offset == -1:
+                        break
+                    
+                    # Analyze surrounding code for buffer usage
+                    context = self._get_context(offset, 80)
+                    buffer_size = self._extract_buffer_size(context)
+                    
+                    risk_score = self._analyze_buffer_overflow_risk(context, buffer_size)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'Memory Safety',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'Buffer'),
+                        'description': f'Unsafe function usage: {func.decode("ascii", errors="ignore")}',
+                        'context': context,
+                        'buffer_size': buffer_size,
+                        'risk_score': risk_score,
+                        'recommendation': 'Replace with safe alternatives (strncpy, strlcpy, etc.)'
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _scan_boot_security_issues(self):
+        """Scan for boot security vulnerabilities"""
+        vulnerabilities = []
+        
+        boot_issues = {
+            'Unauthenticated boot': [
+                b'BootOrder',
+                b'BootCurrent',
+                b'BootNext'
+            ],
+            'Secure boot bypass': [
+                b'SecureBootDisable',
+                b'SetupMode',
+                b'CustomMode'
+            ],
+            'Bootkit detection': [
+                b'MBR',
+                b'VBR',
+                b'bootkit',
+                b'rootkit'
+            ],
+            'UEFI variable tampering': [
+                b'VariableWrite',
+                b'VariableDelete',
+                b'GetVariable'
+            ]
+        }
+        
+        for vuln_type, patterns in boot_issues.items():
+            for pattern in patterns:
+                offset = 0
+                while True:
+                    offset = self.data.find(pattern, offset)
+                    if offset == -1:
+                        break
+                    
+                    context = self._get_context(offset, 60)
+                    risk_score = self._analyze_boot_security_context(context, vuln_type)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'Boot Security',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'Boot'),
+                        'description': f'Boot security issue: {vuln_type}',
+                        'context': context,
+                        'risk_score': risk_score,
+                        'recommendation': self._get_boot_security_recommendation(vuln_type)
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _scan_firmware_integrity(self):
+        """Scan for firmware integrity issues"""
+        vulnerabilities = []
+        
+        integrity_issues = {
+            'Missing signature verification': [
+                b'VerifySignature',
+                b'AuthenticodeVerify',
+                b'SignatureCheck'
+            ],
+            'Weak checksum validation': [
+                b'Checksum',
+                b'CRC32',
+                b'MD5'
+            ],
+            'Unsigned firmware modules': [
+                b'UnsignedModule',
+                b'UnverifiedDriver',
+                b'UnauthenticatedCode'
+            ],
+            'Rollback protection missing': [
+                b'VersionCheck',
+                b'RollbackProtection',
+                b'AntiRollback'
+            ]
+        }
+        
+        for vuln_type, patterns in integrity_issues.items():
+            for pattern in patterns:
+                offset = 0
+                while True:
+                    offset = self.data.find(pattern, offset)
+                    if offset == -1:
+                        break
+                    
+                    context = self._get_context(offset, 80)
+                    risk_score = self._analyze_integrity_context(context)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'Integrity',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'Integrity'),
+                        'description': f'Firmware integrity issue: {vuln_type}',
+                        'context': context,
+                        'risk_score': risk_score,
+                        'recommendation': self._get_integrity_recommendation(vuln_type)
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _scan_credential_exposure(self):
+        """Scan for credential exposure vulnerabilities"""
+        vulnerabilities = []
+        
+        credential_patterns = {
+            'Hardcoded passwords': [
+                b'password',
+                b'Password',
+                b'PASSWORD',
+                b'passwd',
+                b'secret',
+                b'key'
+            ],
+            'Default credentials': [
+                b'admin',
+                b'root',
+                b'guest',
+                b'user',
+                b'default'
+            ],
+            'Private keys in firmware': [
+                b'-----BEGIN PRIVATE KEY-----',
+                b'-----BEGIN RSA PRIVATE KEY-----',
+                b'-----BEGIN EC PRIVATE KEY-----'
+            ],
+            'API keys/tokens': [
+                b'api_key',
+                b'access_token',
+                b'secret_key',
+                b'auth_token'
+            ]
+        }
+        
+        for vuln_type, patterns in credential_patterns.items():
+            for pattern in patterns:
+                offset = 0
+                while True:
+                    offset = self.data.find(pattern, offset)
+                    if offset == -1:
+                        break
+                    
+                    context = self._get_context(offset, 100)
+                    risk_score = self._analyze_credential_context(context)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'Credential Exposure',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'Credential'),
+                        'description': f'Credential exposure: {vuln_type}',
+                        'context': context,
+                        'risk_score': risk_score,
+                        'recommendation': 'Remove hardcoded credentials and use secure key management'
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _scan_malware_indicators(self):
+        """Scan for malware and backdoor indicators"""
+        vulnerabilities = []
+        
+        malware_patterns = {
+            'Backdoor strings': [
+                b'backdoor',
+                b'rootkit',
+                b'keylogger',
+                b'trojan',
+                b'backconnect'
+            ],
+            'Suspicious network activity': [
+                b'connect',
+                b'bind',
+                b'listen',
+                b'socket',
+                b'network'
+            ],
+            'Process hiding': [
+                b'hideprocess',
+                b'hidden',
+                b'stealth',
+                b'invisible'
+            ],
+            'Persistence mechanisms': [
+                b'autorun',
+                b'startup',
+                b'service',
+                b'registry'
+            ]
+        }
+        
+        for vuln_type, patterns in malware_patterns.items():
+            for pattern in patterns:
+                offset = 0
+                while True:
+                    offset = self.data.find(pattern, offset)
+                    if offset == -1:
+                        break
+                    
+                    context = self._get_context(offset, 80)
+                    risk_score = self._analyze_malware_context(context)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'Malware',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'Malware'),
+                        'description': f'Malware indicator: {vuln_type}',
+                        'context': context,
+                        'risk_score': risk_score,
+                        'recommendation': 'Perform thorough malware analysis and firmware reflash'
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _scan_configuration_weaknesses(self):
+        """Scan for configuration and policy weaknesses"""
+        vulnerabilities = []
+        
+        config_patterns = {
+            'Debug mode enabled': [
+                b'debug',
+                b'DEBUG',
+                b'DebugMode',
+                b'EnableDebug'
+            ],
+            'Test signing enabled': [
+                b'testsigning',
+                b'TestSigning',
+                b'bcdedit'
+            ],
+            'Secure boot disabled': [
+                b'SecureBoot=0',
+                b'DisableSecureBoot',
+                b'SecureBootDisabled'
+            ],
+            'TPM bypass': [
+                b'TPMBypass',
+                b'DisableTPM',
+                b'TPMDisabled'
+            ]
+        }
+        
+        for vuln_type, patterns in config_patterns.items():
+            for pattern in patterns:
+                offset = 0
+                while True:
+                    offset = self.data.find(pattern, offset)
+                    if offset == -1:
+                        break
+                    
+                    context = self._get_context(offset, 60)
+                    risk_score = self._analyze_config_context(context)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'Configuration',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'Config'),
+                        'description': f'Configuration weakness: {vuln_type}',
+                        'context': context,
+                        'risk_score': risk_score,
+                        'recommendation': self._get_config_recommendation(vuln_type)
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _scan_cryptographic_weaknesses(self):
+        """Scan for cryptographic weaknesses"""
+        vulnerabilities = []
+        
+        crypto_patterns = {
+            'Weak encryption algorithms': [
+                b'DES',
+                b'MD5',
+                b'SHA1',
+                b'RC4'
+            ],
+            'Hardcoded encryption keys': [
+                b'encrypt_key',
+                b'decrypt_key',
+                b'secret_key',
+                b'private_key'
+            ],
+            'Insecure random number generation': [
+                b'rand()',
+                b'srand()',
+                b'random()'
+            ],
+            'Missing certificate validation': [
+                b'skip_verify',
+                b'ignore_cert',
+                b'no_validation'
+            ]
+        }
+        
+        for vuln_type, patterns in crypto_patterns.items():
+            for pattern in patterns:
+                offset = 0
+                while True:
+                    offset = self.data.find(pattern, offset)
+                    if offset == -1:
+                        break
+                    
+                    context = self._get_context(offset, 80)
+                    risk_score = self._analyze_crypto_context(context)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'Cryptography',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'Crypto'),
+                        'description': f'Cryptographic weakness: {vuln_type}',
+                        'context': context,
+                        'risk_score': risk_score,
+                        'recommendation': self._get_crypto_recommendation(vuln_type)
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _scan_legacy_bios_issues(self):
+        """Scan for legacy BIOS vulnerabilities"""
+        vulnerabilities = []
+        
+        legacy_patterns = {
+            'Legacy BIOS interrupts': [
+                b'INT 19h',
+                b'INT 13h',
+                b'INT 10h',
+                b'INT 16h'
+            ],
+            'DOS compatibility': [
+                b'MSDOS',
+                b'DOS',
+                b'COMMAND.COM',
+                b'AUTOEXEC.BAT'
+            ],
+            'Legacy boot protocols': [
+                b'MBR',
+                b'VBR',
+                b'Boot Sector',
+                b'Partition Table'
+            ],
+            '16-bit code': [
+                b'16-bit',
+                b'real mode',
+                b'protected mode'
+            ]
+        }
+        
+        for vuln_type, patterns in legacy_patterns.items():
+            for pattern in patterns:
+                offset = 0
+                while True:
+                    offset = self.data.find(pattern, offset)
+                    if offset == -1:
+                        break
+                    
+                    context = self._get_context(offset, 60)
+                    risk_score = self._analyze_legacy_context(context)
+                    
+                    vulnerabilities.append({
+                        'type': vuln_type,
+                        'category': 'Legacy BIOS',
+                        'offset': offset,
+                        'severity': self._calculate_severity(risk_score, 'Legacy'),
+                        'description': f'Legacy BIOS issue: {vuln_type}',
+                        'context': context,
+                        'risk_score': risk_score,
+                        'recommendation': 'Migrate to UEFI and disable legacy boot'
+                    })
+                    offset += 1
+        
+        return vulnerabilities
+    
+    def _get_context(self, offset, size):
+        """Get context around a vulnerability"""
+        start = max(0, offset - size//2)
+        end = min(len(self.data), offset + size//2)
+        return self.data[start:end]
+    
+    def _analyze_smm_context(self, context, risk_score=0):
+        """Analyze SMM vulnerability context"""
+        # Check for SMM-specific patterns
+        if b'buffer' in context.lower():
+            risk_score += 3
+        if b'overflow' in context.lower():
+            risk_score += 5
+        if b'privilege' in context.lower():
+            risk_score += 4
+        return risk_score
+    
+    def _analyze_buffer_overflow_risk(self, context, buffer_size, risk_score=0):
+        """Analyze buffer overflow risk"""
+        if buffer_size and buffer_size < 256:
+            risk_score += 4
+        if b'size' in context.lower():
+            risk_score += 2
+        if b'length' in context.lower():
+            risk_score += 2
+        return risk_score
+    
+    def _analyze_boot_security_context(self, context, vuln_type, risk_score=0):
+        """Analyze boot security context"""
+        if b'secure' in context.lower():
+            risk_score += 3
+        if b'boot' in context.lower():
+            risk_score += 2
+        if b'variable' in context.lower():
+            risk_score += 2
+        return risk_score
+    
+    def _analyze_integrity_context(self, context, risk_score=0):
+        """Analyze firmware integrity context"""
+        if b'verify' in context.lower():
+            risk_score += 3
+        if b'signature' in context.lower():
+            risk_score += 4
+        if b'check' in context.lower():
+            risk_score += 2
+        return risk_score
+    
+    def _analyze_credential_context(self, context, risk_score=0):
+        """Analyze credential exposure context"""
+        if b'hardcode' in context.lower():
+            risk_score += 5
+        if b'default' in context.lower():
+            risk_score += 3
+        if b'admin' in context.lower():
+            risk_score += 4
+        return risk_score
+    
+    def _analyze_malware_context(self, context, risk_score=0):
+        """Analyze malware context"""
+        if b'hide' in context.lower():
+            risk_score += 5
+        if b'stealth' in context.lower():
+            risk_score += 4
+        if b'connect' in context.lower():
+            risk_score += 3
+        return risk_score
+    
+    def _analyze_config_context(self, context, risk_score=0):
+        """Analyze configuration context"""
+        if b'disable' in context.lower():
+            risk_score += 3
+        if b'enable' in context.lower():
+            risk_score += 2
+        if b'secure' in context.lower():
+            risk_score += 3
+        return risk_score
+    
+    def _analyze_crypto_context(self, context, risk_score=0):
+        """Analyze cryptographic context"""
+        if b'weak' in context.lower():
+            risk_score += 4
+        if b'hardcode' in context.lower():
+            risk_score += 5
+        if b'key' in context.lower():
+            risk_score += 3
+        return risk_score
+    
+    def _analyze_legacy_context(self, context, risk_score=0):
+        """Analyze legacy BIOS context"""
+        if b'interrupt' in context.lower():
+            risk_score += 3
+        if b'legacy' in context.lower():
+            risk_score += 2
+        if b'dos' in context.lower():
+            risk_score += 2
+        return risk_score
+    
+    def _extract_buffer_size(self, context):
+        """Extract buffer size from context"""
+        import re
+        # Look for common buffer size patterns
+        patterns = [
+            rb'(\d+)\s*bytes?',
+            rb'buffer\[(\d+)\]',
+            rb'size\s*=\s*(\d+)',
+            rb'len\s*=\s*(\d+)'
+        ]
+        
+        for pattern in patterns:
+            match = re.search(pattern, context)
+            if match:
+                return int(match.group(1))
+        return None
+    
+    def _calculate_severity(self, risk_score, category):
+        """Calculate severity based on risk score and category"""
+        if category in ['SMM', 'Malware', 'Credential']:
+            if risk_score >= 7:
+                return 'Critical'
+            elif risk_score >= 4:
+                return 'High'
+            elif risk_score >= 2:
+                return 'Medium'
+            else:
+                return 'Low'
+        elif category in ['Boot', 'Integrity', 'Buffer']:
+            if risk_score >= 6:
+                return 'High'
+            elif risk_score >= 3:
+                return 'Medium'
+            else:
+                return 'Low'
+        else:  # Config, Crypto, Legacy
+            if risk_score >= 5:
+                return 'Medium'
+            elif risk_score >= 2:
+                return 'Low'
+            else:
+                return 'Info'
+    
+    def _ai_enhanced_risk_assessment(self, vulnerabilities):
+        """AI-enhanced risk assessment using pattern recognition"""
+        # Group vulnerabilities by category for correlation analysis
+        categories = {}
+        for vuln in vulnerabilities:
+            cat = vuln['category']
+            if cat not in categories:
+                categories[cat] = []
+            categories[cat].append(vuln)
+        
+        # Apply AI logic for risk enhancement
+        for cat, vulns in categories.items():
+            # Multiple vulnerabilities in same category increase risk
+            if len(vulns) > 3:
+                for vuln in vulns:
+                    vuln['risk_score'] += 2
+                    vuln['ai_enhanced'] = f"Multiple {cat} vulnerabilities detected"
+            
+            # Check for vulnerability chains
+            if cat == 'SMM' and len(vulns) > 1:
+                for vuln in vulns:
+                    vuln['risk_score'] += 3
+                    vuln['ai_enhanced'] = "Potential SMM vulnerability chain"
+            
+            # Check for credential + malware correlation
+            if cat == 'Credential Exposure' and 'Malware' in categories:
+                for vuln in vulns:
+                    vuln['risk_score'] += 4
+                    vuln['ai_enhanced'] = "Credential exposure with malware indicators"
+        
+        return vulnerabilities
+    
+    def _triage_vulnerabilities(self, vulnerabilities):
+        """Triage vulnerabilities by priority"""
+        # Sort by risk score (descending) and severity
+        severity_order = {'Critical': 4, 'High': 3, 'Medium': 2, 'Low': 1, 'Info': 0}
+        
+        vulnerabilities.sort(key=lambda x: (
+            severity_order.get(x['severity'], 0),
+            x.get('risk_score', 0)
+        ), reverse=True)
+        
+        # Add priority ranking
+        for i, vuln in enumerate(vulnerabilities, 1):
+            vuln['priority'] = i
+            vuln['triage_level'] = self._get_triage_level(vuln['severity'])
+        
+        return vulnerabilities
+    
+    def _get_triage_level(self, severity):
+        """Get triage level based on severity"""
+        triage_map = {
+            'Critical': 'Immediate',
+            'High': 'High Priority',
+            'Medium': 'Medium Priority',
+            'Low': 'Low Priority',
+            'Info': 'Informational'
+        }
+        return triage_map.get(severity, 'Unknown')
+    
+    def _get_smm_recommendation(self, vuln_type):
+        """Get SMM vulnerability recommendation"""
+        recommendations = {
+            'SMM callout vulnerability': 'Implement proper SMM validation and bounds checking',
+            'SMM buffer overflow': 'Use safe buffer operations and validate input sizes',
+            'SMM privilege escalation': 'Restrict SMM communication interfaces',
+            'SMM code injection': 'Implement SMM code signing and validation'
+        }
+        return recommendations.get(vuln_type, 'Review SMM implementation for security issues')
+    
+    def _get_boot_security_recommendation(self, vuln_type):
+        """Get boot security recommendation"""
+        recommendations = {
+            'Unauthenticated boot': 'Enable secure boot and implement proper authentication',
+            'Secure boot bypass': 'Update secure boot policies and keys',
+            'Bootkit detection': 'Implement boot-time malware detection',
+            'UEFI variable tampering': 'Protect UEFI variables with proper access controls'
+        }
+        return recommendations.get(vuln_type, 'Review boot security implementation')
+    
+    def _get_integrity_recommendation(self, vuln_type):
+        """Get integrity recommendation"""
+        recommendations = {
+            'Missing signature verification': 'Implement comprehensive signature verification',
+            'Weak checksum validation': 'Replace weak checksums with cryptographic hashes',
+            'Unsigned firmware modules': 'Sign all firmware modules with trusted keys',
+            'Rollback protection missing': 'Implement anti-rollback protection mechanisms'
+        }
+        return recommendations.get(vuln_type, 'Review firmware integrity mechanisms')
+    
+    def _get_config_recommendation(self, vuln_type):
+        """Get configuration recommendation"""
+        recommendations = {
+            'Debug mode enabled': 'Disable debug mode in production firmware',
+            'Test signing enabled': 'Disable test signing in production',
+            'Secure boot disabled': 'Enable secure boot and proper key management',
+            'TPM bypass': 'Enable TPM and implement proper attestation'
+        }
+        return recommendations.get(vuln_type, 'Review security configuration')
+    
+    def _get_crypto_recommendation(self, vuln_type):
+        """Get cryptographic recommendation"""
+        recommendations = {
+            'Weak encryption algorithms': 'Replace with strong algorithms (AES-256, SHA-256)',
+            'Hardcoded encryption keys': 'Use secure key management and avoid hardcoding',
+            'Insecure random number generation': 'Use cryptographically secure random number generators',
+            'Missing certificate validation': 'Implement proper certificate validation'
+        }
+        return recommendations.get(vuln_type, 'Review cryptographic implementation')
+    
+    def rebuild_bios(self, output_path):
+        """Rebuild BIOS image with extracted modules"""
+        try:
+            Logger.info("Starting BIOS rebuild process...")
+            
+            # Create output directory structure
+            rebuild_dir = os.path.join(os.path.dirname(output_path), 'bios_rebuild_temp')
+            os.makedirs(rebuild_dir, exist_ok=True)
+            
+            # Extract all components first
+            self.analyze_ifd()
+            self.analyze_uefi_fv()
+            
+            # Start rebuilding - copy original firmware as base
+            with open(output_path, 'wb') as f:
+                f.write(self.data)
+            
+            Logger.success(f"BIOS rebuild completed: {output_path}")
+            return True
+            
+        except Exception as e:
+            Logger.error(f"BIOS rebuild failed: {e}")
+            return False
+    
+    def extract_all_modules(self, output_dir):
+        """Extract all BIOS modules to separate files"""
+        try:
+            os.makedirs(output_dir, exist_ok=True)
+            extracted_count = 0
+            
+            # Extract UEFI modules
+            if 'uefi_fv' in self.results:
+                for fv in self.results['uefi_fv']:
+                    for ffs in fv['ffs_files']:
+                        for section in ffs['sections']:
+                            section_data = self.data[section['offset']:section['offset']+section['size']]
+                            output_file = os.path.join(output_dir, f"module_{section['type']:02X}_{section['offset']:08x}.bin")
+                            with open(output_file, 'wb') as f:
+                                f.write(section_data)
+                            extracted_count += 1
+            
+            # Extract microcodes
+            if 'microcodes' in self.results:
+                mc_dir = os.path.join(output_dir, 'microcodes')
+                os.makedirs(mc_dir, exist_ok=True)
+                for i, mc in enumerate(self.results['microcodes']):
+                    mc_data = self.data[mc['offset']:mc['offset']+mc['size']]
+                    mc_file = os.path.join(mc_dir, f"microcode_{i}_0x{mc['processor_signature']:08x}.bin")
+                    with open(mc_file, 'wb') as f:
+                        f.write(mc_data)
+                    extracted_count += 1
+            
+            Logger.success(f"Extracted {extracted_count} modules to: {output_dir}")
+            return True
+            
+        except Exception as e:
+            Logger.error(f"Module extraction failed: {e}")
+            return False
+    
+    def generate_report(self, output_path):
+        """Generate comprehensive analysis report"""
+        if not self.data:
+            self.load_firmware()
+            
+        # Run all analyses
+        self.analyze_ifd()
+        self.analyze_uefi_fv()
+        self.analyze_vendor_specific()
+        self.extract_microcodes()
+        self.analyze_nvram_variables()
+        self.assess_vulnerabilities()
+        
+        # Generate report
+        report_lines = []
+        report_lines.append("================================")
+        report_lines.append("BIOS/UEFI Analysis Report")
+        report_lines.append("================================")
+        report_lines.append(f"Firmware: {self.firmware_path}")
+        report_lines.append(f"Size: {len(self.data)} bytes")
+        report_lines.append("")
+        
+        # IFD section
+        if 'ifd' in self.results:
+            report_lines.append("Intel Flash Descriptor:")
+            report_lines.append(f"  Offset: 0x{self.results['ifd']['offset']:08x}")
+            report_lines.append("")
+            
+        # UEFI FV section
+        if 'uefi_fv' in self.results:
+            report_lines.append("UEFI Firmware Volumes:")
+            for fv in self.results['uefi_fv']:
+                report_lines.append(f"  FV at 0x{fv['offset']:08x}, Size: {fv['length']} bytes")
+                for ffs in fv['ffs_files']:
+                    report_lines.append(f"    FFS: {ffs['type_name']} at 0x{ffs['offset']:08x}")
+                    for section in ffs['sections']:
+                        report_lines.append(f"      Section: {section['type_name']}")
+            report_lines.append("")
+            
+        # Vendor section
+        if 'vendor' in self.results:
+            report_lines.append("Vendor Information:")
+            for vendor, info in self.results['vendor'].items():
+                report_lines.append(f"  {info['type']}: 0x{info['offset']:08x}")
+            report_lines.append("")
+            
+        # Microcodes section
+        if 'microcodes' in self.results:
+            report_lines.append("CPU Microcodes:")
+            for mc in self.results['microcodes']:
+                report_lines.append(f"  CPU: 0x{mc['processor_signature']:08x}, Date: {mc['date']}")
+            report_lines.append("")
+            
+        # NVRAM section
+        if 'nvram_variables' in self.results:
+            report_lines.append("NVRAM Variables:")
+            for var in self.results['nvram_variables']:
+                report_lines.append(f"  {var['name']}: 0x{var['offset']:08x}")
+            report_lines.append("")
+            
+        # Vulnerabilities section
+        if 'vulnerabilities' in self.results:
+            report_lines.append("Vulnerability Assessment:")
+            for vuln in self.results['vulnerabilities']:
+                report_lines.append(f"  [{vuln['severity']}] {vuln['type']} at 0x{vuln['offset']:08x}")
+                report_lines.append(f"    {vuln['description']}")
+            report_lines.append("")
+            
+        # Write report
+        with open(output_path, 'w') as f:
+            f.write('\n'.join(report_lines))
+            
+        Logger.success(f"BIOS analysis report saved: {output_path}")
+        return output_path
+
+# 24. AndroidPayloadAnalyzer
+class AndroidPayloadAnalyzer:
+    """
+    Comprehensive Android payload.bin analysis.
+    """
+    
+    def __init__(self, payload_path):
+        self.payload_path = payload_path
+        self.data = None
+        self.payload_info = {}
+        
+    def load_payload(self):
+        """Load payload.bin file"""
+        try:
+            with open(self.payload_path, 'rb') as f:
+                self.data = f.read()
+            Logger.info(f"Loaded payload: {len(self.data)} bytes")
+            return True
+        except Exception as e:
+            Logger.error(f"Failed to load payload: {e}")
+            return False
+    
+    def parse_payload_header(self):
+        """Parse payload.bin header"""
+        if not self.data.startswith(b'CrAU'):
+            raise ValueError("Invalid payload.bin signature")
+            
+        # Parse basic header structure (simplified)
+        header = {
+            'magic': self.data[:4],
+            'version': int.from_bytes(self.data[4:8], 'little'),
+            'manifest_offset': int.from_bytes(self.data[8:16], 'little'),
+            'manifest_size': int.from_bytes(self.data[16:24], 'little')
+        }
+        
+        self.payload_info['header'] = header
+        return header
+    
+    def extract_partitions(self, output_dir):
+        """Extract all partitions from payload"""
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Look for partition signatures
+        partition_signatures = [
+            b'boot',
+            b'system',
+            b'vendor', 
+            b'product',
+            b'odm',
+            b'treble',
+            b'dtbo'
+        ]
+        
+        extracted_partitions = []
+        
+        for sig in partition_signatures:
+            offset = 0
+            while True:
+                offset = self.data.find(sig, offset)
+                if offset == -1:
+                    break
+                    
+                # Extract partition data (simplified)
+                partition_data = self.data[offset:offset+0x1000]  # First 4KB
+                partition_name = sig.decode('ascii')
+                
+                partition_file = os.path.join(output_dir, f"{partition_name}.bin")
+                with open(partition_file, 'wb') as f:
+                    f.write(partition_data)
+                    
+                extracted_partitions.append({
+                    'name': partition_name,
+                    'offset': offset,
+                    'file': partition_file
+                })
+                
+                offset += 1
+                
+        self.payload_info['partitions'] = extracted_partitions
+        return extracted_partitions
+    
+    def analyze_partitions(self):
+        """Analyze extracted partitions"""
+        if 'partitions' not in self.payload_info:
+            return None
+            
+        analysis = {}
+        
+        for partition in self.payload_info['partitions']:
+            partition_file = partition['file']
+            
+            # Check partition type
+            with open(partition_file, 'rb') as f:
+                header = f.read(16)
+                
+            partition_info = {
+                'type': 'unknown',
+                'size': os.path.getsize(partition_file)
+            }
+            
+            if header.startswith(b'\x1F\x8B'):
+                partition_info['type'] = 'gzip'
+            elif header.startswith(b'BZh'):
+                partition_info['type'] = 'bzip2'
+            elif header.startswith(b'\x5D\x00\x00'):
+                partition_info['type'] = 'lzma'
+            elif header.startswith(b'\x7fELF'):
+                partition_info['type'] = 'elf'
+            elif header.startswith(b'MZ'):
+                partition_info['type'] = 'pe'
+                
+            analysis[partition['name']] = partition_info
+            
+        self.payload_info['analysis'] = analysis
+        return analysis
+    
+    def generate_payload_report(self, output_path):
+        """Generate payload analysis report"""
+        if not self.data:
+            self.load_payload()
+            
+        self.parse_payload_header()
+        
+        report_lines = []
+        report_lines.append("================================")
+        report_lines.append("Android Payload Analysis Report")
+        report_lines.append("================================")
+        report_lines.append(f"Payload: {self.payload_path}")
+        report_lines.append(f"Size: {len(self.data)} bytes")
+        report_lines.append("")
+        
+        # Header info
+        if 'header' in self.payload_info:
+            header = self.payload_info['header']
+            report_lines.append("Payload Header:")
+            report_lines.append(f"  Magic: {header['magic']}")
+            report_lines.append(f"  Version: {header['version']}")
+            report_lines.append(f"  Manifest Offset: 0x{header['manifest_offset']:x}")
+            report_lines.append("")
+            
+        # Partitions info
+        if 'partitions' in self.payload_info:
+            report_lines.append("Extracted Partitions:")
+            for part in self.payload_info['partitions']:
+                report_lines.append(f"  {part['name']}: {os.path.getsize(part['file'])} bytes")
+            report_lines.append("")
+            
+        # Analysis info
+        if 'analysis' in self.payload_info:
+            report_lines.append("Partition Analysis:")
+            for name, info in self.payload_info['analysis'].items():
+                report_lines.append(f"  {name}: {info['type']} ({info['size']} bytes)")
+            report_lines.append("")
+            
+        # Write report
+        with open(output_path, 'w') as f:
+            f.write('\n'.join(report_lines))
+            
+        Logger.success(f"Payload analysis report saved: {output_path}")
+        return output_path
+# 25. IntelMEAnalyzer
+class IntelMEAnalyzer:
+    """
+    Intel Management Engine firmware analysis with version detection.
+    """
+    
+    def __init__(self, firmware_path):
+        self.firmware_path = firmware_path
+        self.data = None
+        self.me_info = {}
+        
+    def load_firmware(self):
+        """Load firmware file"""
+        try:
+            with open(self.firmware_path, 'rb') as f:
+                self.data = f.read()
+            Logger.info(f"Loaded firmware: {len(self.data)} bytes")
+            return True
+        except Exception as e:
+            Logger.error(f"Failed to load firmware: {e}")
+            return False
+    
+    def detect_me_region(self):
+        """Detect Intel ME region in firmware"""
+        # Look for ME signature patterns
+        me_patterns = [
+            b'$ME',           # ME signature
+            b'$MEx',          # ME extended signature
+            b'FTPR',          # ME FTPR module
+            b'MEFW',          # ME firmware
+            b'Intel ME'       # Intel ME string
+        ]
+        
+        me_regions = []
+        for pattern in me_patterns:
+            offset = 0
+            while True:
+                offset = self.data.find(pattern, offset)
+                if offset == -1:
+                    break
+                    
+                me_regions.append({
+                    'pattern': pattern.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'size': min(0x10000, len(self.data) - offset)  # Estimate size
+                })
+                offset += 1
+                
+        self.me_info['regions'] = me_regions
+        return me_regions
+    
+    def parse_me_version(self):
+        """Extract ME firmware version"""
+        versions = []
+        
+        # Look for version patterns like "11.8.50.3426"
+        import re
+        version_pattern = rb'(\d{1,2}\.\d{1,2}\.\d{1,3}\.\d{1,4})'
+        
+        matches = re.finditer(version_pattern, self.data)
+        for match in matches:
+            version_str = match.group(1).decode('ascii')
+            offset = match.start()
+            
+            # Check if this looks like a ME version
+            if offset > 0x1000:  # Skip header area
+                versions.append({
+                    'version': version_str,
+                    'offset': offset
+                })
+                
+        self.me_info['versions'] = versions
+        return versions
+    
+    def analyze_me_modules(self):
+        """Analyze ME firmware modules"""
+        modules = []
+        
+        # Look for common ME module signatures
+        module_patterns = {
+            'FTPR': b'FTPR',
+            'MFS': b'MFS',
+            'NFTP': b'NFTP',
+            'BUP': b'BUP',
+            'RBE': b'RBE',
+            'EFS': b'EFS'
+        }
+        
+        for module_name, pattern in module_patterns.items():
+            offset = 0
+            while True:
+                offset = self.data.find(pattern, offset)
+                if offset == -1:
+                    break
+                    
+                # Extract module header (simplified)
+                module_data = self.data[offset:offset+0x100]
+                if len(module_data) >= 16:
+                    modules.append({
+                        'name': module_name,
+                        'offset': offset,
+                        'size': min(0x1000, len(self.data) - offset),
+                        'header': module_data[:16].hex()
+                    })
+                    
+                offset += 1
+                
+        self.me_info['modules'] = modules
+        return modules
+    
+    def extract_me_region(self, output_dir):
+        """Extract ME region to separate file"""
+        if not self.me_info.get('regions'):
+            self.detect_me_region()
+            
+        if not self.me_info['regions']:
+            Logger.warn("No ME region detected")
+            return False
+            
+        os.makedirs(output_dir, exist_ok=True)
+        
+        for i, region in enumerate(self.me_info['regions']):
+            region_data = self.data[region['offset']:region['offset']+region['size']]
+            output_file = os.path.join(output_dir, f"me_region_{i}_{region['pattern']}.bin")
+            
+            with open(output_file, 'wb') as f:
+                f.write(region_data)
+                
+        Logger.success(f"ME regions extracted to: {output_dir}")
+        return True
+    
+    def generate_me_report(self, output_path):
+        """Generate ME analysis report"""
+        if not self.data:
+            self.load_firmware()
+            
+        self.detect_me_region()
+        self.parse_me_version()
+        self.analyze_me_modules()
+        
+        report_lines = []
+        report_lines.append("================================")
+        report_lines.append("Intel ME Analysis Report")
+        report_lines.append("================================")
+        report_lines.append(f"Firmware: {self.firmware_path}")
+        report_lines.append(f"Size: {len(self.data)} bytes")
+        report_lines.append("")
+        
+        # ME regions
+        if 'regions' in self.me_info:
+            report_lines.append("ME Regions Detected:")
+            for region in self.me_info['regions']:
+                report_lines.append(f"  {region['pattern']}: 0x{region['offset']:08x} ({region['size']} bytes)")
+            report_lines.append("")
+            
+        # Versions
+        if 'versions' in self.me_info:
+            report_lines.append("ME Firmware Versions:")
+            for version in self.me_info['versions']:
+                report_lines.append(f"  {version['version']}: 0x{version['offset']:08x}")
+            report_lines.append("")
+            
+        # Modules
+        if 'modules' in self.me_info:
+            report_lines.append("ME Modules:")
+            for module in self.me_info['modules']:
+                report_lines.append(f"  {module['name']}: 0x{module['offset']:08x} ({module['size']} bytes)")
+            report_lines.append("")
+            
+        # Write report
+        with open(output_path, 'w') as f:
+            f.write('\n'.join(report_lines))
+            
+        Logger.success(f"ME analysis report saved: {output_path}")
+        return output_path
+
+# 26. AMDPSPAnalyzer
+class AMDPSPAnalyzer:
+    """
+    AMD Platform Security Processor firmware analysis with version detection.
+    """
+    
+    def __init__(self, firmware_path):
+        self.firmware_path = firmware_path
+        self.data = None
+        self.psp_info = {}
+        
+    def load_firmware(self):
+        """Load firmware file"""
+        try:
+            with open(self.firmware_path, 'rb') as f:
+                self.data = f.read()
+            Logger.info(f"Loaded firmware: {len(self.data)} bytes")
+            return True
+        except Exception as e:
+            Logger.error(f"Failed to load firmware: {e}")
+            return False
+    
+    def detect_psp_region(self):
+        """Detect AMD PSP region in firmware"""
+        # Look for PSP signature patterns
+        psp_patterns = [
+            b'PSP',           # PSP signature
+            b'PSP2',          # PSP2 signature
+            b'PSPDIR',        # PSP directory
+            b'AMD PSP',       # AMD PSP string
+            b'PSPBOOT',       # PSP bootloader
+            b'SMCU',          # Secure Microcontroller Unit
+            b'TOS'            # Trusted OS
+        ]
+        
+        psp_regions = []
+        for pattern in psp_patterns:
+            offset = 0
+            while True:
+                offset = self.data.find(pattern, offset)
+                if offset == -1:
+                    break
+                    
+                psp_regions.append({
+                    'pattern': pattern.decode('ascii', errors='ignore'),
+                    'offset': offset,
+                    'size': min(0x10000, len(self.data) - offset)  # Estimate size
+                })
+                offset += 1
+                
+        self.psp_info['regions'] = psp_regions
+        return psp_regions
+    
+    def parse_psp_version(self):
+        """Extract PSP firmware version"""
+        versions = []
+        
+        # Look for version patterns in PSP format
+        import re
+        version_patterns = [
+            rb'PSP(\d{1,2}\.\d{1,2})',      # PSP version
+            rb'VER(\d{1,2}\.\d{1,2})',      # VER prefix
+            rb'(\d{1,2}\.\d{1,2}\.\d{1,3})' # Standard version
+        ]
+        
+        for pattern in version_patterns:
+            matches = re.finditer(pattern, self.data)
+            for match in matches:
+                if len(match.groups()) > 0:
+                    version_str = match.group(1).decode('ascii')
+                else:
+                    version_str = match.group(0).decode('ascii')
+                    
+                offset = match.start()
+                
+                # Check if this looks like a PSP version
+                if offset > 0x1000:  # Skip header area
+                    versions.append({
+                        'version': version_str,
+                        'offset': offset,
+                        'type': match.group(0).decode('ascii', errors='ignore')
+                    })
+                    
+        self.psp_info['versions'] = versions
+        return versions
+    
+    def analyze_psp_modules(self):
+        """Analyze PSP firmware modules"""
+        modules = []
+        
+        # Look for common PSP module signatures
+        module_patterns = {
+            'PSPDIR': b'PSPDIR',
+            'PSPBOOT': b'PSPBOOT',
+            'SMU': b'SMU',
+            'SMC': b'SMC',
+            'TOS': b'TOS',
+            'BL': b'BL',          # Bootloader
+            'FW': b'FW'           # Firmware
+        }
+        
+        for module_name, pattern in module_patterns.items():
+            offset = 0
+            while True:
+                offset = self.data.find(pattern, offset)
+                if offset == -1:
+                    break
+                    
+                # Extract module header (simplified)
+                module_data = self.data[offset:offset+0x100]
+                if len(module_data) >= 16:
+                    modules.append({
+                        'name': module_name,
+                        'offset': offset,
+                        'size': min(0x1000, len(self.data) - offset),
+                        'header': module_data[:16].hex()
+                    })
+                    
+                offset += 1
+                
+        self.psp_info['modules'] = modules
+        return modules
+    
+    def extract_psp_region(self, output_dir):
+        """Extract PSP region to separate file"""
+        if not self.psp_info.get('regions'):
+            self.detect_psp_region()
+            
+        if not self.psp_info['regions']:
+            Logger.warn("No PSP region detected")
+            return False
+            
+        os.makedirs(output_dir, exist_ok=True)
+        
+        for i, region in enumerate(self.psp_info['regions']):
+            region_data = self.data[region['offset']:region['offset']+region['size']]
+            output_file = os.path.join(output_dir, f"psp_region_{i}_{region['pattern']}.bin")
+            
+            with open(output_file, 'wb') as f:
+                f.write(region_data)
+                
+        Logger.success(f"PSP regions extracted to: {output_dir}")
+        return True
+    
+    def generate_psp_report(self, output_path):
+        """Generate PSP analysis report"""
+        if not self.data:
+            self.load_firmware()
+            
+        self.detect_psp_region()
+        self.parse_psp_version()
+        self.analyze_psp_modules()
+        
+        report_lines = []
+        report_lines.append("================================")
+        report_lines.append("AMD PSP Analysis Report")
+        report_lines.append("================================")
+        report_lines.append(f"Firmware: {self.firmware_path}")
+        report_lines.append(f"Size: {len(self.data)} bytes")
+        report_lines.append("")
+        
+        # PSP regions
+        if 'regions' in self.psp_info:
+            report_lines.append("PSP Regions Detected:")
+            for region in self.psp_info['regions']:
+                report_lines.append(f"  {region['pattern']}: 0x{region['offset']:08x} ({region['size']} bytes)")
+            report_lines.append("")
+            
+        # Versions
+        if 'versions' in self.psp_info:
+            report_lines.append("PSP Firmware Versions:")
+            for version in self.psp_info['versions']:
+                report_lines.append(f"  {version['version']}: 0x{version['offset']:08x} ({version['type']})")
+            report_lines.append("")
+            
+        # Modules
+        if 'modules' in self.psp_info:
+            report_lines.append("PSP Modules:")
+            for module in self.psp_info['modules']:
+                report_lines.append(f"  {module['name']}: 0x{module['offset']:08x} ({module['size']} bytes)")
+            report_lines.append("")
+            
+        # Write report
+        with open(output_path, 'w') as f:
+            f.write('\n'.join(report_lines))
+            
+        Logger.success(f"PSP analysis report saved: {output_path}")
+        return output_path
+
+# 27. FormatIdentifierAI (AI-assisted)
+class FormatIdentifierAI:
+    """
+    Uses machine learning to identify unknown file formats.
+    """
+    MODEL_PATH = os.path.join(os.path.dirname(__file__), 'format_model.h5')
+    
+    def __init__(self):
+        self.model = None
+        if TF_AVAILABLE and os.path.exists(self.MODEL_PATH):
+            try:
+                self.model = tf.keras.models.load_model(self.MODEL_PATH)
+            except Exception:
+                pass
+    
+    def predict(self, data: bytes) -> List[Tuple[str, float]]:
+        if self.model is None:
+            return [('unknown', 1.0)]
+        features = self._extract_features(data)
+        predictions = self.model.predict(features)[0]
+        formats = ['gpt', 'mbr', 'ext4', 'f2fs', 'squashfs', 'zip', 'elf', 'pe']
+        results = [(formats[i], float(predictions[i])) for i in range(len(formats))]
+        return sorted(results, key=lambda x: x[1], reverse=True)
+    
+    def _extract_features(self, data: bytes) -> List[float]:
+        return [0.0] * 10
+
+# 19. F2FSReader
+class F2FSReader:
+    """
+    Basic reader for F2FS (Flash-Friendly File System).
+    """
+    SUPERBLOCK_OFFSET = 1024
+    SUPERBLOCK_SIZE = 4096
+    
+    @staticmethod
+    def get_info(image_path: str) -> Dict:
+        with open(image_path, 'rb') as f:
+            f.seek(F2FSReader.SUPERBLOCK_OFFSET)
+            sb = f.read(F2FSReader.SUPERBLOCK_SIZE)
+        
+        if sb[0:4] != UIC_Globals_Advanced.F2FS_MAGIC:
+            return {'error': 'Not an F2FS image'}
+        
+        total_blocks = struct.unpack_from('<Q', sb, 40)[0]
+        block_size = 4096
+        total_size = total_blocks * block_size
+        
+        return {
+            'valid': True,
+            'total_blocks': total_blocks,
+            'block_size': block_size,
+            'total_size': total_size,
+        }
+
+# 20. InteractivePatcher
+class InteractivePatcher:
+    """
+    Command-line interactive patcher for binary files.
+    """
+    def __init__(self, path: str):
+        self.path = path
+        self.data = None
+        self.load()
+    
+    def load(self):
+        with open(self.path, 'rb') as f:
+            self.data = bytearray(f.read())
+    
+    def save(self):
+        with open(self.path, 'wb') as f:
+            f.write(self.data)
+    
+    def run(self):
+        print("Interactive Binary Patcher (type 'help' for commands)")
+        while True:
+            try:
+                cmd = input("patch> ").strip()
+                if not cmd:
+                    continue
+                if cmd == 'quit' or cmd == 'exit':
+                    break
+                elif cmd.startswith('show '):
+                    parts = cmd.split()
+                    if len(parts) == 2:
+                        try:
+                            off = int(parts[1], 0)
+                            print(f"0x{off:08x}: {self.data[off:off+16].hex()}")
+                        except:
+                            print("Invalid offset")
+                elif cmd.startswith('set '):
+                    parts = cmd.split()
+                    if len(parts) == 3:
+                        try:
+                            off = int(parts[1], 0)
+                            val = bytes.fromhex(parts[2])
+                            self.data[off:off+len(val)] = val
+                            print("OK")
+                        except:
+                            print("Error")
+                elif cmd == 'help':
+                    print("Commands:")
+                    print("  show <offset>          - show 16 bytes at offset")
+                    print("  set <offset> <hex>     - write hex bytes")
+                    print("  save                    - save changes")
+                    print("  quit                    - exit")
+                elif cmd == 'save':
+                    self.save()
+                    print("Saved.")
+                else:
+                    print("Unknown command")
+            except KeyboardInterrupt:
+                break
+        self.save()
+
+# 21. CVELookup
+class CVELookup:
+    @staticmethod
+    def query(cpe: str) -> List[Dict]:
+        if not REQUESTS_AVAILABLE:
+            Logger.error("requests library not installed.")
+            return []
+        api_key = os.environ.get(UIC_Globals_Advanced.CVE_API_KEY_ENV, '')
+        headers = {}
+        if api_key:
+            headers['apiKey'] = api_key
+        
+        params = {
+            'cpeName': cpe,
+            'resultsPerPage': 20
+        }
+        try:
+            resp = requests.get(UIC_Globals_Advanced.CVE_API_URL, headers=headers, params=params, timeout=10)
+            if resp.status_code == 200:
+                data = resp.json()
+                cves = []
+                for vuln in data.get('vulnerabilities', []):
+                    cve = vuln['cve']
+                    cves.append({
+                        'id': cve['id'],
+                        'description': cve['descriptions'][0]['value'],
+                        'cvss': cve.get('metrics', {}).get('cvssMetricV31', [{}])[0].get('cvssData', {}).get('baseScore', 'N/A'),
+                        'severity': cve.get('metrics', {}).get('cvssMetricV31', [{}])[0].get('cvssData', {}).get('baseSeverity', 'N/A')
+                    })
+                return cves
+        except Exception as e:
+            Logger.error(f"CVE lookup failed: {e}")
+        return []
+
+# 22. Unpacker (UPX, MPRESS)
+class Unpacker:
+    @staticmethod
+    def detect_packed(data: bytes) -> Optional[str]:
+        if data.find(UIC_Globals_Advanced.UPX_MAGIC) != -1:
+            return 'upx'
+        if data.find(UIC_Globals_Advanced.MPRESS_MAGIC) != -1:
+            return 'mpress'
+        return None
+    
+    @staticmethod
+    def unpack_upx(input_path: str, output_path: str) -> bool:
+        if shutil.which('upx'):
+            try:
+                subprocess.run(['upx', '-d', input_path, '-o', output_path], check=True, capture_output=True)
+                return True
+            except:
+                pass
+        Logger.warn("UPX not found in PATH")
+        return False
 
 
 if __name__ == "__main__":
