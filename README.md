@@ -5,7 +5,7 @@ Advanced Firmware Engineering and Binary Analysis Framework
 UIC-X Ultimate Image Converter (v14.4.2)
 High-Performance Firmware Analysis and Image Conversion Tool
 =======
-Version: 14.5.1-STABLE Author: Bakr Contact: bakrhere57@gmail.com
+Version: 14.5.2-STABLE Author: Bakr Contact: bakrhere57@gmail.com
 >>>>>>> e8b52d4 (Release v14.5.0-STABLE: Added AI Diagnostics and Parallel Hashing)
 Overview
 

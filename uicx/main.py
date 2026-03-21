@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # =============================================================================
 #  UIC-X Ultimate Image Converter — Enhanced Precision Edition
-#  Version: 14.5.0-STABLE
+#  Version: 14.5.2-STABLE
 #
 #  Supports: ISO 9660, Raw BIN, IMG, GPT Disk, MBR Disk, Android Boot,
 #            BIOS Firmware BIN, Raw Binary Blobs,
@@ -1134,7 +1134,7 @@ class UIC_Globals:
     AI_API_VERSION           = "2023-06-01"
 
     # ---- Tool Metadata ------------------------------------------------------
-    VERSION               = "14.5.0-STABLE"
+    VERSION               = "14.5.2-STABLE"
     TOOL_NAME             = "UIC-X Ultimate Image Converter"
     AUTHOR                = "UIC-X Project"
     BUILD_DATE            = "2026-03"
@@ -15652,7 +15652,7 @@ def print_banner():
 
 def print_usage():
     print("""
-UIC-X Ultimate Image Converter v14.5.0-STABLE
+UIC-X Ultimate Image Converter v14.5.2-STABLE
 Usage Guide
 ================================================================================
 
