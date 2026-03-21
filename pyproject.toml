@@ -41,3 +41,6 @@ dependencies = [
 
 [project.scripts]
 uicx = "main:main"
+
+[tool.setuptools]
+py-modules = ["main"]
