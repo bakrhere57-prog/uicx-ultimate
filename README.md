@@ -1,88 +1,136 @@
+UIC-X Ultimate Image Converter
+Advanced Firmware Engineering and Binary Analysis Framework
 
-UIC-X Ultimate Image Converter (v14.4.0)
-High-Performance Firmware Analysis and Image Conversion Tool
+Version: 14.5.0-STABLE Author: Bakr Contact: bakrhere57@gmail.com
 Overview
 
-UIC-X Ultimate is a specialized command-line utility designed for forensic analysis, structural validation, and conversion of low-level binary images. It provides deep inspection capabilities for various firmware formats, including optical media (ISO), Android system images, and UEFI/BIOS firmware capsules.
+UIC-X Ultimate is a professional-grade framework designed for low-level firmware manipulation, partition analysis, and image conversion. It provides researchers and system engineers with the tools necessary to handle complex binary structures, ranging from Android system images and bootloaders to UEFI/BIOS capsules and legacy disk structures (GPT/MBR).
 
-The tool is engineered for technical professionals, security researchers, and Android developers who require precise control over image manipulation and format transition.
-Core Specifications
+The v14.5.0-STABLE release introduces high-performance parallel processing for large-scale data integrity and an integrated AI-driven diagnostics engine for automated error analysis.
+Core Features
+1. Partition and Disk Management
 
-    Supported Source Formats:
+    GPT/MBR Analysis: Full parsing of GUID Partition Tables and Master Boot Records.
 
-        ISO 9660 Optical Images
+    ISO 9660 Handling: Deep inspection and extraction of optical disc images.
 
-        Android Boot, Recovery, and Vendor Boot Images
+    Android Sparse Image Support: Conversion between RAW and SIMG (sparse) formats, supporting super.img structures found in modern Android devices.
 
-        Android Sparse Images (simg / super.img)
+2. Firmware and BIOS Engineering
 
-        UEFI / BIOS Firmware Capsules (ASUS, AMI, EDK2)
+    Capsule Generation: Build ASUS BIOS CAP, EFI Firmware Capsules, and AMI APTIO ROMs.
 
-        Raw Binary Blobs and GPT/MBR Disk Images
+    Header Manipulation: Dynamic computation of CRC32 checksums and variable-size header structures for server-grade BIOS.
 
-    Integrated Analysis Engines:
+    Android Boot Analysis: Unpacking and repacking of boot.img/recovery.img including VBMeta (AVB2) patching.
 
-        Entropy Mapping: Statistical byte distribution analysis.
+3. Advanced Binary Analysis (Ultimate Module)
 
-        AI Security Triage: Automated risk assessment and CVE pattern recognition.
+    Code Behavior Analysis: Powered by the Capstone Engine for disassembling executable regions.
 
-        Metadata Extraction: Retrieval of volume identifiers, creation dates, and partition tables.
+    Pattern Hunting: Integrated YARA engine for identifying malicious signatures or specific binary patterns.
 
-    Performance:
+    Entropy Mapping: Visualizing data distribution to identify compressed or encrypted regions using Matplotlib.
 
-        Parallel SHA-256 and MD5 hashing for large datasets.
+4. High-Performance Engine
 
-        Multi-threaded I/O operations for high-speed conversion.
+    Parallel Hashing: Multi-threaded SHA-256 and MD5 computation for files exceeding 128 MB, decoupling I/O from CPU-intensive hashing tasks.
+
+    AI Diagnostics: Automated error classification using a specialized AI model to troubleshoot failed conversions or corrupted headers.
 
 Installation
+Method 1: Via PyPI (Recommended for Users)
 
-UIC-X Ultimate is distributed via the Python Package Index (PyPI). It requires Python 3.10 or higher.
+The easiest way to install the stable release and all its dependencies:
 Bash
 
-pip install uic-x-ultimate
+pip install uicx-ultimate
 
-Usage Documentation
+Method 2: Manual Installation (For Developers)
 
-The basic command syntax is as follows:
+Clone the repository and install dependencies manually:
 Bash
 
-uicx <source_file> <destination_path> [options]
+git clone https://github.com/bakrhere57-prog/uicx-ultimate.git
+cd uicx-ultimate
+pip install -r requirements.txt
 
-Primary Arguments:
+Method 3: Local Package Installation
 
-    source_file: The path to the input binary or image file.
+If you have modified the source and want to install it as a system command:
+Bash
 
-    destination_path: The output path (use /dev/null for information-only mode).
+pip install .
 
-Operational Flags:
+System Dependencies
 
-    --info: Perform a non-destructive analysis and display image metadata.
+Certain advanced features require external system binaries. Ensure the following are in your PATH:
 
-    --report <filename.html>: Generate a comprehensive HTML diagnostic report.
+    QEMU Tools: qemu-img for virtual disk conversions.
 
-    --security: Execute the AI Security Triage engine to detect potential vulnerabilities.
+    Android Tools: e2fsdroid, mkfs.erofs, and payload_dumper.
 
-    --verbose: Enable detailed debug logging for troubleshooting.
+    Compression: lz4, zstd, and upx.
 
-Technical Architecture
+Usage Examples
+1. Analyzing a GPT Disk Image
 
-The application is built on a modular architecture consisting of:
+Identify partitions and filesystem types within a raw disk dump:
+Bash
 
-    The Core Processor: Handles low-level file offsets and binary parsing.
+uicx --input physical_dump.bin --type gpt --analyze
 
-    The Forensic Module: Conducts entropy calculations and data structure validation.
+2. Converting RAW to Android Sparse Image (Build Mode)
 
-    The Build Engine: Responsible for constructing compliant Sparse and Capsule images from raw data.
+Construct a compliant .simg from a raw ext4 partition:
+Bash
 
-    The Reporting System: Exports analysis results into structured HTML, JSON, or YAML formats.
+uicx --input system_raw.img --output system.simg --mode build --format sparse
 
-Licensing
+3. Generating a UEFI BIOS Capsule
 
-This project is licensed under the MIT License. See the LICENSE file for full legal text and permissions.
-Contact and Contributions
+Wrap a raw BIOS binary into a UEFI-compliant CAP file for flashing:
+Bash
 
-    Author: Bakr
+uicx --input bios_update.bin --output update.cap --mode build --format efi-capsule
 
-    Email: bakrhere57@gmail.com
+4. Parallel Integrity Check
 
-    Repository: https://github.com/bakrhere57-prog/uicx-ultimate
+Compute hashes for large firmware files using the parallel engine:
+Bash
+
+uicx --input large_firmware.zip --hash sha256 --parallel
+
+5. AI-Assisted Error Diagnosis
+
+If a conversion fails, the AI engine automatically analyzes the stack trace and binary context:
+Bash
+
+uicx --input corrupted.img --output clean.img --verbose
+
+Environment Variables
+
+To enable AI-enhanced analysis and CVE lookups, configure your API keys:
+Bash
+
+export ANTHROPIC_API_KEY='your_api_key_here'
+
+Technical Specifications
+Feature	Support Level
+Max File Size	Tested up to 128GB
+Python Version	3.8 or higher
+Multithreading	Enabled (Parallel Hashing / Queue Management)
+Logging	Level-based (INFO, SUCCESS, WARNING, ERROR, DEBUG)
+Output Formats	JSON, YAML, HTML, RAW, BIN, SIMG, CAP
+Author Information
+
+Project Lead: Bakr
+
+Role: Firmware Engineer / Systems Developer
+
+GitHub: bakrhere57-prog
+
+Email: bakrhere57@gmail.com
+License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

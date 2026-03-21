@@ -3,31 +3,41 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "uicx-ultimate-tool"
-version = "14.4.2"
-authors = [
-  { name="Bakr", email="bakrhere57@gmail.com" },
-]
-description = "Ultimate Image Converter & Firmware Analyzer (ISO, Android Boot, BIOS, Sparse)"
+name = "uicx-ultimate"
+version = "14.5.0"
+description = "UIC-X Ultimate Image Converter - Advanced Firmware Engineering Framework"
 readme = "README.md"
-requires-python = ">=3.10"
-license = {text = "MIT"}
+requires-python = ">=3.8"
+keywords = [
+    "uicx", "uicx-ultimate", "firmware", "android-rom", "reverse-engineering", 
+    "gpt-parser", "mbr", "iso-builder", "sparse-image", "simg", "payload-dumper", 
+    "boot-img", "vbmeta", "avb2", "bios-modding", "uefi-capsule", "erofs", 
+    "f2fs", "samsung-lz4", "ozip-decrypt", "kernel-patcher", "ksu", "apatch",
+    "forensics", "security-analysis", "binary-logic", "partition-manager"
+]
+authors = [
+    { name = "Bakr", email = "bakrhere57@gmail.com" }
+]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: POSIX :: Linux",
-    "Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator",
-    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Hardware",
+    "Topic :: Security"
 ]
 dependencies = [
-    "colorama>=0.4.6",
-    "tqdm>=4.66.0",
-    "PyYAML>=6.0",
+    "lz4>=4.3.2",
+    "zstandard>=0.22.0",
+    "cryptography>=41.0.0",
+    "requests>=2.31.0",
+    "pyyaml>=6.0.1",
+    "yara-python>=4.3.1",
+    "capstone>=5.0.1",
+    "pefile>=2023.2.7",
+    "matplotlib>=3.8.0",
+    "tensorflow>=2.15.0",
+    "numpy>=1.26.0"
 ]
 
-[project.urls]
-"Homepage" = "https://github.com/bakrhere57-prog/uicx-ultimate"
-"Bug Tracker" = "https://github.com/bakrhere57-prog/uicx-ultimate/issues"
-
 [project.scripts]
-uicx = "uicx.main:main"
+uicx = "main:main"

@@ -1,0 +1,82 @@
+############################################################################################################
+# Auto-generated MTK rescue package
+############################################################################################################
+
+general:
+  config_version: V1.1.2
+  platform: MTK
+
+- partition_index: SYS0
+  partition_name: boot
+  file_name: boot.img
+  is_download: true
+  type: NORMAL_ROM
+  linear_start_addr: 0x00000000
+  physical_start_addr: 0x00000000
+  partition_size: 0x00040000
+  region: EMMC_USER
+  storage: HW_STORAGE_EMMC
+  boundary_check: true
+  is_reserved: false
+  operation_type: UPDATE
+  reserve: 0x00
+
+- partition_index: SYS1
+  partition_name: gpt
+  file_name: gpt.img
+  is_download: true
+  type: NORMAL_ROM
+  linear_start_addr: 0x00040000
+  physical_start_addr: 0x00040000
+  partition_size: 0x00100000
+  region: EMMC_USER
+  storage: HW_STORAGE_EMMC
+  boundary_check: true
+  is_reserved: false
+  operation_type: UPDATE
+  reserve: 0x00
+
+- partition_index: SYS2
+  partition_name: sample.erofs
+  file_name: sample.erofs.img
+  is_download: true
+  type: NORMAL_ROM
+  linear_start_addr: 0x00140000
+  physical_start_addr: 0x00140000
+  partition_size: 0x00001000
+  region: EMMC_USER
+  storage: HW_STORAGE_EMMC
+  boundary_check: true
+  is_reserved: false
+  operation_type: UPDATE
+  reserve: 0x00
+
+- partition_index: SYS3
+  partition_name: system
+  file_name: system.img
+  is_download: true
+  type: NORMAL_ROM
+  linear_start_addr: 0x00150000
+  physical_start_addr: 0x00150000
+  partition_size: 0x00100000
+  region: EMMC_USER
+  storage: HW_STORAGE_EMMC
+  boundary_check: true
+  is_reserved: false
+  operation_type: UPDATE
+  reserve: 0x00
+
+- partition_index: SYS4
+  partition_name: vendor
+  file_name: vendor.img
+  is_download: true
+  type: NORMAL_ROM
+  linear_start_addr: 0x00250000
+  physical_start_addr: 0x00250000
+  partition_size: 0x00080000
+  region: EMMC_USER
+  storage: HW_STORAGE_EMMC
+  boundary_check: true
+  is_reserved: false
+  operation_type: UPDATE
+  reserve: 0x00
